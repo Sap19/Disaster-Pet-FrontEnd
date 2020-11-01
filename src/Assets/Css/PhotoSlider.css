@@ -1,0 +1,46 @@
+.indicator {
+    cursor: pointer;
+    text-decoration: tra;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.indicator.active {
+    background-color: #717171;
+}
+
+.each-fade {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding-top: 53px;
+}
+
+.each-fade > div {
+    width: 100%;
+}
+
+.site-banner-image{
+    height: 0;
+    padding-bottom: 25%;
+    background-color: #606060;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.each-fade p {
+    color: #fff;
+    background-color: #3a3a3a;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+@media screen and (max-width: 820px) {
+	body {
+    font-size: 18px;
+    }
+	}

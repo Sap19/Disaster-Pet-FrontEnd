@@ -1,0 +1,31 @@
+.column {
+    float: left;
+    width: 33.33%;
+    padding-left:5%;
+    padding-right: 5%;
+}
+h2 {
+    text-align: center;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.row {
+	padding-bottom: 60px;
+	padding-top: 40px;
+}
+
+.button {
+    width: 100%;
+}
+@media screen and (max-width: 1462px) {
+    .column {
+        float: left;
+        width: 100%;
+        padding-left:13%;
+        padding-top: 60px;
+        padding-right: 13%;
+    }
+}
