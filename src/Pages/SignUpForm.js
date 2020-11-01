@@ -64,7 +64,7 @@ export class SignUpForm extends Component {
 		}
 
 		try {
-			let res = await fetch('http://127.0.0.1:5000/register', {
+			let res = await fetch('http://0.0.0.0:5000/register', {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',

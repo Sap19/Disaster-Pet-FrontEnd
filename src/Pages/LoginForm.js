@@ -53,7 +53,7 @@ class LoginForm extends React.Component {
 			return;
 		}
 		try {
-			let res = await fetch('http://127.0.0.1:5000/login', {
+			let res = await fetch('http://0.0.0.0:5000/login', {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',
