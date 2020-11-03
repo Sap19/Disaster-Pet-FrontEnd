@@ -1,4 +1,4 @@
-import jwt from 'jwt-decode'
+import jwt_decode from 'jwt-decode'
 class Auth {
 	constructor() {
 		this.validateAuth()
@@ -6,7 +6,7 @@ class Auth {
 	validateAuth() {
 		if (localStorage.getItem('token')) {
 			var token = localStorage.getItem('token')
-			var decoded = jwt(token)
+			var decoded = jwt_decode(token)
 			this.authenticated = true;
 			this.user_id = decoded.sub;
 			this.role = decoded.role;

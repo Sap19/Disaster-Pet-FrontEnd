@@ -21,7 +21,7 @@ class App extends Component {
 							<Route exact path="/" component={LandingPage} />
 							<Route exact path="/login" component={LoginForm} />
 							<Route exact path="/signup" component={SignUpForm} />
-							<Route exact path="/dashboard" component={Dashboard} />
+							<ProtectedRoute exact path="/dashboard" component={Dashboard} />
 							<ProtectedRoute exact path="/addPet" component={AddPet} />
 							<AdminProtectedRoute exact path="/adminTools" component={AddPet} />
 							<Route path="*" component={NotFound} />

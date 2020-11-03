@@ -41,7 +41,7 @@ export class NavigationBar extends Component {
                     </Navbar.Collapse>
                 </Navbar>
             </div>
-        )
+        );
     }
 }
 

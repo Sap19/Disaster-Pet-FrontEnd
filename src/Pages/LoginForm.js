@@ -83,7 +83,7 @@ class LoginForm extends React.Component {
 				})
 			}
 			else {
-				localStorage.setItem('token', result.auth_token)
+				localStorage.setItem('token', result.access_token)
 				auth.login(() => {
 					this.props.history.push('/dashboard')
 				})
@@ -122,10 +122,6 @@ class LoginForm extends React.Component {
 								value={this.state.password ? this.state.password : ''}
 								onChange={e => this.setInputValue('password', e.target.value)}
 								onKeyDown={(event) => { if (event.key === "Enter") { this.doLogin() } }}
-								error={this.state.isValid ? false : {
-									content: 'Please enter a valid email address.',
-									pointing: 'below'
-								}}
 							/>
 						</Form.Field>
 					</Form>
