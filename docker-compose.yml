@@ -1,19 +1,19 @@
 version: "3"
 
 services:
-  web:
+  react-ui:
     container_name: pet_front
     build:
       context: .
     volumes:
       - ".:/app"
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
       - CHOKIDAR_USEPOLLING=true
       - CI=true
     stdin_open: true
-  db:
+  flask-app:
     image: puffymcpufpuf/disater_pets_backend
     ports:
       - "5000:5000"
