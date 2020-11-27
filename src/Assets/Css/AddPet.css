@@ -11,8 +11,37 @@
     padding-left:5%;
     padding-right: 5%;
 }
+.column-contact-form {
+	float: left;
+    width: 100%;
+    padding-left:5%;
+    padding-right: 5%;
+}
+.formRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.formRow {
+	padding-bottom: 80px;
+}
+
 .message {
 	padding-left: 25%;
 	padding-right: 25%;
 	width: 100%;
+}
+.contact-form {
+	padding-left: 25%;
+	padding-right: 25%;
+	padding-top: 40px;
+}
+
+@media screen and (max-width: 898px) {
+    .column-form {
+		float: left;
+		width: 100%;
+		padding-left:5%;
+		padding-right: 5%;
+	}
 }

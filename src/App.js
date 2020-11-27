@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LoginForm from './LoginForm';
-import LandingPage from './LandingPage';
-import SignUpForm from './SignUpForm';
-import NavigationBar from '../Component/NavBar/NavBar';
-import NotFound from './NotFound';
-import Dashboard from "./Dashboard"
-import AddPet from "./AddPet";
-import { ProtectedRoute } from "../Component/ProtectedRoutes/protected.route"
-import { AdminProtectedRoute } from "../Component/ProtectedRoutes/AdminProtected.route"
+import LoginForm from './Pages/LoginForm';
+import LandingPage from './Pages/LandingPage';
+import SignUpForm from './Pages/SignUpForm';
+import NavigationBar from './Component/NavBar/NavBar';
+import NotFound from './Pages/NotFound';
+import Dashboard from "./Pages/Dashboard"
+import AddPet from "./Pages/AddPet";
+import { ProtectedRoute } from "./Component/ProtectedRoutes/protected.route"
+import { AdminProtectedRoute } from "./Component/ProtectedRoutes/AdminProtected.route"
 
 class App extends Component {
 	render() {

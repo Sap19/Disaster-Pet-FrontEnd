@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Form, Select, Message } from 'semantic-ui-react'
+import { Form, Select, Message, Tab, FormField, Button, Header, Icon, Segment } from 'semantic-ui-react'
 import Footer from "../Component/Footer/Footer";
 import addPetBanner from "../Assets/Images/addPetBanner.jpg"
 import "../Assets/Css/AddPet.css"
 
+
 class AddPetForm extends Component {
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -22,6 +24,17 @@ class AddPetForm extends Component {
 			breedOption: false,
 			errorMessage: "",
 			successMessage: "",
+			activeIndex: 0,
+			name: "",
+			PhoneNumber1: "",
+			PhoneNumber2: "",
+			email: "",
+			address: "",
+			state: "",
+			city: "",
+			zipcode: "",
+			isEmailValid: true,
+			isPhoneValid: true,
 			dogBreedOptions: [
 				{ key: '1', value: '1', text: 'Bulldog' },
 				{ key: '2', value: '2', text: 'German Shephed' },
@@ -42,6 +55,10 @@ class AddPetForm extends Component {
 			]
 		}
 	}
+
+	fileSelectedHandler = (event) => {
+		console.log(event.target.files[0]);
+	}
 	setInputValue(property, val) {
 		this.setState({
 			[property]: val,
@@ -53,19 +70,17 @@ class AddPetForm extends Component {
 		this.setState({
 			[data.name]: data.value,
 			breedDisabled: false,
-			isAnimalTypeValid: true,
-			isAlteredValid: true,
-			isPrimaryBreedVaild: true
 		})
 	}
 	async addPet() {
 		if (!this.state.petName || !this.state.animalType_id || !this.state.altered_id
-			|| !this.state.primaryBreed_id) {
+			|| !this.state.primaryBreed_id || !this.state.PhoneNumber1) {
 			this.setState({
 				isPetNameValid: this.state.petName,
 				isAnimalTypeValid: this.state.animalType_id,
 				isPrimaryBreedVaild: this.state.primaryBreed_id,
 				isAlteredValid: this.state.altered_id,
+				isPhoneValid: this.state.PhoneNumber1,
 				errorMessage: "Please fill out missing areas "
 			})
 			return;
@@ -89,15 +104,13 @@ class AddPetForm extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result);
 			if (result.message === "successfully added pet") {
 				this.setState({
 					isEmailValid: false,
 					successMessage: "Pet Was Added!"
 				})
 			}
-			else if (result.msg === "Token has expired")
-			{
+			else if (result.msg === "Token has expired") {
 				this.props.history.push('/login')
 			}
 
@@ -107,7 +120,239 @@ class AddPetForm extends Component {
 			})
 		}
 	}
+	handleRangeChange = e => this.setState({ activeIndex: e.target.value });
+	handleTabChange = (e, { activeIndex }) => this.setState({ activeIndex });
 	render() {
+		const panes = [
+			{
+				menuItem: 'Animal Information', render: () =>
+					<Tab.Pane>
+						<div className="formRow">
+							<div className="column-form ">
+								<Form style={{ paddingTop: "40px" }}>
+									<Form.Field error={this.state.isPetNameValid ? false : true}>
+										<label>Pet Name</label>
+										<input
+											name="petName"
+											placeholder="Pet Name"
+											value={this.state.petName ? this.state.petName : ''}
+											onChange={e => this.setInputValue('petName', e.target.value)}
+										/>
+									</Form.Field>
+									<Form.Field error={this.state.isAnimalTypeValid ? false : true}>
+										<label>Animal Type</label>
+										<Select
+											fluid
+											clearable
+											name="animalType_id"
+											onChange={this.setSelectInputValue}
+											label="Animal Type"
+											options={this.state.animalOptions}
+											placeholder="Animal Type">
+										</Select>
+									</Form.Field>
+									{this.state.breedDisabled ?
+										<Form.Field>
+											<label>Primary Breed</label>
+											<Select
+												fluid
+												disabled
+												options={this.state.dogBreedOptions}
+												placeholder="Primary Breed">
+											</Select>
+										</Form.Field> :
+										<Form.Field error={this.state.isPrimaryBreedVaild ? false : true}>
+											<label>Primary Breed</label>
+											<Select
+												fluid
+												clearable
+												name="primaryBreed_id"
+												onChange={this.setSelectInputValue}
+												options={this.state.dogBreedOptions}
+												placeholder="Primary Breed">
+											</Select>
+										</Form.Field>}
+
+									{this.state.breedDisabled ?
+										<Form.Field>
+											<label>Secondary Breed</label>
+											<Select
+												fluid
+												disabled
+												options={this.state.dogBreedOptions}
+												placeholder="Primary Breed">
+											</Select>
+										</Form.Field> :
+										<Form.Field>
+											<label>Secondary Breed</label>
+											<Select
+												fluid
+												clearable
+												name="secondaryBreed_id"
+												onChange={this.setSelectInputValue}
+												options={this.state.dogBreedOptions}
+												placeholder="Primary Breed">
+											</Select>
+										</Form.Field>}
+										<Form.Field>
+										<label>Gender</label>
+										<Select
+											fluid
+											clearable
+											name="gender"
+											onChange={this.setSelectInputValue}
+											options={this.state.genderOptions}
+											placeholder="Gender">
+										</Select>
+									</Form.Field>
+									<Form.Field error={this.state.isAlteredValid ? false : true}>
+										<label>Altered Status</label>
+										<Select
+											fluid
+											clearable
+											name="altered_id"
+											onChange={this.setSelectInputValue}
+											options={this.state.alteredOptions}
+											placeholder="Altered Status">
+										</Select>
+									</Form.Field>
+								</Form>
+							</div>
+							<div className="column-form ">
+								<Form style={{ padding: "40px" }}>
+									<Segment placeholder>
+										<Header icon>
+											<Icon name='images' />
+											<h3>No photos are listed for this pet.</h3>
+										</Header>
+										<input type="file" onChange={this.fileSelectedHandler}/>
+									</Segment>
+									<FormField style={{ paddingLeft: "60%" }}>
+										<Form.Button
+											style={{ width: "100%", }}
+											content="Next Tab"
+											onClick={this.handleRangeChange}
+											value={1}></Form.Button>
+									</FormField>
+								</Form>
+							</div>
+						</div>
+					</Tab.Pane>
+			},
+			{
+				menuItem: 'Contact Information', render: () =>
+					<Tab.Pane>
+						<div className="formRow">
+							<div className="column-contact-form">
+								<Form className="contact-form" >
+									<Form.Field>
+										<label>Name (Optional)</label>
+										<input
+											name="name"
+											placeholder="Name"
+											value={this.state.name ? this.state.name : ''}
+											onChange={e => this.setInputValue('name', e.target.value)}
+										/>
+									</Form.Field>
+									<Form.Field error={this.state.isPhoneValid ? false : true}>
+										<label>Primary Phone Number</label>
+										<input
+											name="PhoneNumber1"
+											maxLength="10"
+											placeholder="Primary Phone Number"
+											value={this.state.PhoneNumber1 ? this.state.PhoneNumber1 : ''}
+											onChange={e => this.setInputValue('PhoneNumber1', e.target.value)}
+										/>
+									</Form.Field>
+									<Form.Field>
+										<label>Secondary Phone Number (Optional)</label>
+										<input
+											name="PhoneNumber2"
+											placeholder="Secondary Phone Number"
+											maxLength="10"
+											value={this.state.PhoneNumber2 ? this.state.PhoneNumber2 : ''}
+											onChange={e => this.setInputValue('PhoneNumber2', e.target.value)}
+										/>
+									</Form.Field>
+									<Form.Field error={this.state.isEmailValid ? false : true}>
+										<label>Email</label>
+										<input
+											name="email"
+											placeholder="Email"
+											value={this.state.email ? this.state.email : ''}
+											onChange={e => this.setInputValue('email', e.target.value)}
+										/>
+									</Form.Field>
+									<FormField style={{ paddingLeft: "70%" }}>
+										<Form.Button
+											style={{ width: "100%", }}
+											content="Next Tab"
+											onClick={this.handleRangeChange}
+											value={2}></Form.Button>
+									</FormField>
+								</Form>
+							</div>
+						</div>
+					</Tab.Pane>
+			},
+			{
+				menuItem: 'Pet Location', render: () =>
+					<Tab.Pane>
+						<div className="formRow">
+							<div className="column-contact-form">
+								<Form className="contact-form" >
+									<Form.Field>
+										<label>Address (Optional)</label>
+										<input
+											name="address"
+											placeholder="Address 1"
+											value={this.state.address ? this.state.address : ''}
+											onChange={e => this.setInputValue('address', e.target.value)}
+										/>
+									</Form.Field>
+									<Form.Field>
+										<label>State (Optional)</label>
+										<Select
+											fluid
+											clearable
+											name="state"
+											onChange={this.setSelectInputValue}
+											options={this.state.genderOptions}
+											placeholder="State">
+										</Select>
+									</Form.Field>
+									<Form.Field>
+										<label>City (Optional)</label>
+										<input
+											name="city"
+											placeholder="City"
+											value={this.state.city ? this.state.city : ''}
+											onChange={e => this.setInputValue('city', e.target.value)}
+										/>
+									</Form.Field>
+									<Form.Field >
+										<label>Zip Code (Optional)</label>
+										<input
+											name="zipcode"
+											placeholder="Zip Code"
+											value={this.state.zipcode ? this.state.zipcode : ''}
+											onChange={e => this.setInputValue('zipcode', e.target.value)}
+										/>
+									</Form.Field>
+									<FormField style={{ paddingLeft: "70%" }}>
+										<Form.Button
+											style={{ width: "100%", }}
+											content="Next Tab"
+											onClick={this.handleRangeChange}
+											value={0}></Form.Button>
+									</FormField>
+									<Form.Button onClick={() => this.addPet()} style={{ background: "#17a3b8" }}>Add Pet</Form.Button>
+								</Form>
+							</div>
+						</div>
+					</Tab.Pane >
+			},
+		]
 		return (
 			<div>
 				<h1 style={{ paddingTop: "60px" }}>Add Pet</h1>
@@ -118,105 +363,11 @@ class AddPetForm extends Component {
 					{this.state.successMessage &&
 						<Message className="success"> {this.state.successMessage} </Message>}
 				</div>
-				<div className="row">
-					<div className="column-form ">
-						<Form style={{ padding: "40px" }}>
-							<Form.Field error={this.state.isPetNameValid ? false : true}>
-								<label>Pet Name</label>
-								<input
-									name="petName"
-									placeholder="Pet Name"
-									value={this.state.petName ? this.state.petName : ''}
-									onChange={e => this.setInputValue('petName', e.target.value)}
-								/>
-							</Form.Field>
-							<Form.Field error={this.state.isAnimalTypeValid ? false : true}>
-								<label>Animal Type</label>
-								<Select
-									fluid
-									clearable
-									name="animalType_id"
-									onChange={this.setSelectInputValue}
-									label="Animal Type"
-									options={this.state.animalOptions}
-									placeholder="Animal Type">
-								</Select>
-							</Form.Field>
-							{this.state.breedDisabled ?
-								<Form.Field>
-									<label>Primary Breed</label>
-									<Select
-										fluid
-										disabled
-										options={this.state.dogBreedOptions}
-										placeholder="Primary Breed">
-									</Select>
-								</Form.Field> :
-								<Form.Field error={this.state.isPrimaryBreedVaild ? false : true}>
-									<label>Primary Breed</label>
-									<Select
-										fluid
-										clearable
-										name="primaryBreed_id"
-										onChange={this.setSelectInputValue}
-										options={this.state.dogBreedOptions}
-										placeholder="Primary Breed">
-									</Select>
-								</Form.Field>}
-
-							{this.state.breedDisabled ?
-								<Form.Field>
-									<label>Secondary Breed</label>
-									<Select
-										fluid
-										disabled
-										options={this.state.dogBreedOptions}
-										placeholder="Primary Breed">
-									</Select>
-								</Form.Field> :
-								<Form.Field>
-									<label>Secondary Breed</label>
-									<Select
-										fluid
-										clearable
-										name="secondaryBreed_id"
-										onChange={this.setSelectInputValue}
-										options={this.state.dogBreedOptions}
-										placeholder="Primary Breed">
-									</Select>
-								</Form.Field>}
-						</Form>
-					</div>
-					<div className="column-form ">
-						<Form style={{ padding: "40px" }}>
-							<Form.Field>
-								<label>Gender</label>
-								<Select
-									fluid
-									clearable
-									name="gender"
-									onChange={this.setSelectInputValue}
-									options={this.state.genderOptions}
-									placeholder="Gender">
-								</Select>
-							</Form.Field>
-							<Form.Field error={this.state.isAlteredValid ? false : true}>
-								<label>Altered Status</label>
-								<Select
-									fluid
-									clearable
-									name="altered_id"
-									onChange={this.setSelectInputValue}
-									options={this.state.alteredOptions}
-									placeholder="Altered Status">
-								</Select>
-							</Form.Field>
-							<Form.Button onClick={() => this.addPet()} style={{ background: "#17a3b8" }}>Add Pet</Form.Button>
-						</Form>
-					</div>
+				<div style={{ padding: "2rem" }}>
+					<Tab panes={panes} activeIndex={this.state.activeIndex} onTabChange={this.handleTabChange} />
 				</div>
 				<Footer />
-			</div>
+			</div >
 		);
 	}
 }
