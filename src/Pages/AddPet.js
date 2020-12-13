@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Select, Message, Tab, FormField, Button, Header, Icon, Segment } from 'semantic-ui-react'
+import { Form, Select, Message, Tab, FormField, List, Header, Icon, Segment } from 'semantic-ui-react'
 import Footer from "../Component/Footer/Footer";
 import addPetBanner from "../Assets/Images/addPetBanner.jpg"
 import "../Assets/Css/AddPet.css"
@@ -52,12 +52,24 @@ class AddPetForm extends Component {
 				{ key: '1', value: '1', text: 'Neutered' },
 				{ key: '2', value: '2', text: 'Spayed' },
 				{ key: '3', value: '3', text: 'Unaltered' },
-			]
+			],
+			selectedFiles: []
 		}
 	}
 
+	removeImage(filename) {
+		console.log(filename);
+		const newList = this.state.selectedFiles.filter((file) => file.name !== filename);
+		this.setState({
+			selectedFiles: newList
+		})
+		console.log(this.state.selectedFiles)
+	}
 	fileSelectedHandler = (event) => {
-		console.log(event.target.files[0]);
+		this.setState({
+			arr: this.state.selectedFiles.push(event.target.files[0])
+		})
+		console.log(this.state.selectedFiles);
 	}
 	setInputValue(property, val) {
 		this.setState({
@@ -73,6 +85,27 @@ class AddPetForm extends Component {
 		})
 	}
 	async addPet() {
+		const formData = new FormData()
+		this.state.selectedFiles.forEach((file, i) => {
+			formData.append(i, file)
+		})
+		try {
+			let res = await fetch('http://127.0.0.1:5000/uploadimage', {
+				method: 'POST',
+				headers: {
+					'Authorization': "Bearer " + localStorage.getItem('token')
+				},
+				body: formData
+			});
+			let result = await res.json();
+			if (result.msg === "Token has expired") {
+				this.props.history.push('/login')
+			}
+		} catch (e) {
+			this.setState({
+				errorMessage: "Server Error. Please Refresh Page"
+			})
+		}
 		if (!this.state.petName || !this.state.animalType_id || !this.state.altered_id
 			|| !this.state.primaryBreed_id || !this.state.PhoneNumber1) {
 			this.setState({
@@ -123,6 +156,7 @@ class AddPetForm extends Component {
 	handleRangeChange = e => this.setState({ activeIndex: e.target.value });
 	handleTabChange = (e, { activeIndex }) => this.setState({ activeIndex });
 	render() {
+		const listItems = []
 		const panes = [
 			{
 				menuItem: 'Animal Information', render: () =>
@@ -194,7 +228,7 @@ class AddPetForm extends Component {
 												placeholder="Primary Breed">
 											</Select>
 										</Form.Field>}
-										<Form.Field>
+									<Form.Field>
 										<label>Gender</label>
 										<Select
 											fluid
@@ -225,7 +259,12 @@ class AddPetForm extends Component {
 											<Icon name='images' />
 											<h3>No photos are listed for this pet.</h3>
 										</Header>
-										<input type="file" onChange={this.fileSelectedHandler}/>
+										<input type="file" onChange={this.fileSelectedHandler} />
+										<List>
+											{this.state.selectedFiles.map((file) =>
+												<List.Item key={file.name} onClick={() => this.removeImage(file.name)}>{file.name} <Icon name='x' /></List.Item>
+											)}
+										</List>
 									</Segment>
 									<FormField style={{ paddingLeft: "60%" }}>
 										<Form.Button

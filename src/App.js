@@ -5,7 +5,8 @@ import LandingPage from './Pages/LandingPage';
 import SignUpForm from './Pages/SignUpForm';
 import NavigationBar from './Component/NavBar/NavBar';
 import NotFound from './Pages/NotFound';
-import Dashboard from "./Pages/Dashboard"
+import Dashboard from "./Pages/Dashboard";
+import Gallery from './Pages/GalleryPage';
 import AddPet from "./Pages/AddPet";
 import { ProtectedRoute } from "./Component/ProtectedRoutes/protected.route"
 import { AdminProtectedRoute } from "./Component/ProtectedRoutes/AdminProtected.route"
@@ -21,6 +22,7 @@ class App extends Component {
 							<Route exact path="/" component={LandingPage} />
 							<Route exact path="/login" component={LoginForm} />
 							<Route exact path="/signup" component={SignUpForm} />
+							<Route exact path="/petGallery" component={Gallery} />
 							<ProtectedRoute exact path="/dashboard" component={Dashboard} />
 							<ProtectedRoute exact path="/addPet" component={AddPet} />
 							<AdminProtectedRoute exact path="/adminTools" component={AddPet} />
