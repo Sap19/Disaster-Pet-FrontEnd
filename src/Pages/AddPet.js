@@ -16,6 +16,7 @@ class AddPetForm extends Component {
 			petName: "",
 			altered_id: "",
 			animalType_id: "",
+			status: '',
 			breedDisabled: true,
 			isPetNameValid: true,
 			isAlteredValid: true,
@@ -35,24 +36,11 @@ class AddPetForm extends Component {
 			zipcode: "",
 			isEmailValid: true,
 			isPhoneValid: true,
-			dogBreedOptions: [
-				{ key: '1', value: '1', text: 'Bulldog' },
-				{ key: '2', value: '2', text: 'German Shephed' },
-				{ key: '3', value: '3', text: 'Beagle' },
-				{ key: '4', value: '4', text: 'Dachshund' },
-			],
-			genderOptions: [
-				{ key: '1', value: 'Male', text: 'Male' },
-				{ key: '2', value: 'Female', text: 'Female' },
-			],
-			animalOptions: [
-				{ key: '1', value: '1', text: 'Dog' },
-			],
-			alteredOptions: [
-				{ key: '1', value: '1', text: 'Neutered' },
-				{ key: '2', value: '2', text: 'Spayed' },
-				{ key: '3', value: '3', text: 'Unaltered' },
-			],
+			primary_breedOption: [],
+			genderOptions: [],
+			alteredOptions: [],
+			animalOptions: [],
+			statusOptions: [],
 			selectedFiles: []
 		}
 	}
@@ -65,12 +53,14 @@ class AddPetForm extends Component {
 		})
 		console.log(this.state.selectedFiles)
 	}
+
 	fileSelectedHandler = (event) => {
 		this.setState({
 			arr: this.state.selectedFiles.push(event.target.files[0])
 		})
 		console.log(this.state.selectedFiles);
 	}
+
 	setInputValue(property, val) {
 		this.setState({
 			[property]: val,
@@ -78,17 +68,82 @@ class AddPetForm extends Component {
 			errorMessage: ""
 		})
 	}
+
 	setSelectInputValue = (event, data) => {
 		this.setState({
 			[data.name]: data.value,
 			breedDisabled: false,
 		})
 	}
+
+	componentDidMount() {
+		this.addPetInit();
+	}
+
+	async addPetInit() {
+		try {
+			let res = await fetch('http://127.0.0.1:5000/addpet', {
+				method: 'GET',
+				headers: {
+					'Authorization': "Bearer " + localStorage.getItem('token')
+				},
+			});
+			let result = await res.json();
+			console.log(result)
+			if (result.msg === "Token has expired") {
+				this.props.history.push('/login')
+			}
+			result.breeds.forEach((breed, i) => {
+				this.setState({
+					arr: this.state.primary_breedOption.push({ 'key': breed.id, 'value': breed.id, 'text': breed.breed })
+				})
+			})
+
+			result.genders.forEach((gender, i) => {
+				this.setState({
+					arr: this.state.genderOptions.push({ 'key': gender.id, 'value': gender.id, 'text': gender.gender })
+				})
+			})
+
+			result.altered.forEach((altered, i) => {
+				this.setState({
+					arr: this.state.alteredOptions.push({ 'key': altered.id, 'value': altered.id, 'text': altered.status })
+				})
+			})
+			result.animal.forEach((animal, i) => {
+				this.setState({
+					arr: this.state.animalOptions.push({ 'key': animal.id, 'value': animal.id, 'text': animal.animal })
+				})
+			})
+			result.status.forEach((status, i) => {
+				this.setState({
+					arr: this.state.statusOptions.push({ 'key': status.id, 'value': status.id, 'text': status.status })
+				})
+			})
+		} catch (e) {
+			this.setState({
+				errorMessage: "Server Error. Please Refresh Page"
+			})
+		}
+		
+	}
 	async addPet() {
+		if (!this.state.petName || !this.state.animalType_id || !this.state.altered_id
+			|| !this.state.primaryBreed_id) {
+			this.setState({
+				isPetNameValid: this.state.petName,
+				isAnimalTypeValid: this.state.animalType_id,
+				isPrimaryBreedVaild: this.state.primaryBreed_id,
+				isAlteredValid: this.state.altered_id,
+				errorMessage: "Please fill out missing areas "
+			})
+			return;
+		}
 		const formData = new FormData()
 		this.state.selectedFiles.forEach((file, i) => {
 			formData.append(i, file)
 		})
+		let imageUrl = '';
 		try {
 			let res = await fetch('http://127.0.0.1:5000/uploadimage', {
 				method: 'POST',
@@ -98,6 +153,7 @@ class AddPetForm extends Component {
 				body: formData
 			});
 			let result = await res.json();
+			imageUrl = result.url;
 			if (result.msg === "Token has expired") {
 				this.props.history.push('/login')
 			}
@@ -106,20 +162,8 @@ class AddPetForm extends Component {
 				errorMessage: "Server Error. Please Refresh Page"
 			})
 		}
-		if (!this.state.petName || !this.state.animalType_id || !this.state.altered_id
-			|| !this.state.primaryBreed_id || !this.state.PhoneNumber1) {
-			this.setState({
-				isPetNameValid: this.state.petName,
-				isAnimalTypeValid: this.state.animalType_id,
-				isPrimaryBreedVaild: this.state.primaryBreed_id,
-				isAlteredValid: this.state.altered_id,
-				isPhoneValid: this.state.PhoneNumber1,
-				errorMessage: "Please fill out missing areas "
-			})
-			return;
-		}
 		try {
-			let res = await fetch('http://0.0.0.0:5000/addpet', {
+			let res = await fetch('http://127.0.0.1:5000/addpet', {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',
@@ -130,13 +174,20 @@ class AddPetForm extends Component {
 					pet_name: this.state.petName,
 					animal_type: this.state.animalType_id,
 					primary_breed: this.state.primaryBreed_id,
-					secondary_breed: this.secondaryBreed_id,
+					secondary_breed: this.state.secondaryBreed_id,
 					gender: this.state.gender,
 					altered_status: this.state.altered_id,
-					trapper_id: 1
+					trapper_id: 1,
+					street_name: this.state.address,
+					state: this.state.state,
+					city: this.state.city,
+					zipcode: this.state.zipcode,
+					pet_status: this.state.status,
+					image_url: imageUrl
 				})
 			});
 			let result = await res.json();
+			console.log(result)
 			if (result.message === "successfully added pet") {
 				this.setState({
 					isEmailValid: false,
@@ -152,11 +203,11 @@ class AddPetForm extends Component {
 				errorMessage: "Server Error. Please Refresh Page"
 			})
 		}
+		
 	}
 	handleRangeChange = e => this.setState({ activeIndex: e.target.value });
 	handleTabChange = (e, { activeIndex }) => this.setState({ activeIndex });
 	render() {
-		const listItems = []
 		const panes = [
 			{
 				menuItem: 'Animal Information', render: () =>
@@ -191,7 +242,7 @@ class AddPetForm extends Component {
 											<Select
 												fluid
 												disabled
-												options={this.state.dogBreedOptions}
+												options={this.state.primary_breedOption}
 												placeholder="Primary Breed">
 											</Select>
 										</Form.Field> :
@@ -202,7 +253,7 @@ class AddPetForm extends Component {
 												clearable
 												name="primaryBreed_id"
 												onChange={this.setSelectInputValue}
-												options={this.state.dogBreedOptions}
+												options={this.state.primary_breedOption}
 												placeholder="Primary Breed">
 											</Select>
 										</Form.Field>}
@@ -213,8 +264,8 @@ class AddPetForm extends Component {
 											<Select
 												fluid
 												disabled
-												options={this.state.dogBreedOptions}
-												placeholder="Primary Breed">
+												options={this.state.primary_breedOption}
+												placeholder="Secondary Breed">
 											</Select>
 										</Form.Field> :
 										<Form.Field>
@@ -224,8 +275,8 @@ class AddPetForm extends Component {
 												clearable
 												name="secondaryBreed_id"
 												onChange={this.setSelectInputValue}
-												options={this.state.dogBreedOptions}
-												placeholder="Primary Breed">
+												options={this.state.primary_breedOption}
+												placeholder="Secondary Breed">
 											</Select>
 										</Form.Field>}
 									<Form.Field>
@@ -250,6 +301,17 @@ class AddPetForm extends Component {
 											placeholder="Altered Status">
 										</Select>
 									</Form.Field>
+									<Form.Field>
+										<label>Status</label>
+										<Select
+											fluid
+											clearable
+											name="status"
+											onChange={this.setSelectInputValue}
+											options={this.state.statusOptions}
+											placeholder="Status">
+										</Select>
+									</Form.Field>
 								</Form>
 							</div>
 							<div className="column-form ">
@@ -257,7 +319,7 @@ class AddPetForm extends Component {
 									<Segment placeholder>
 										<Header icon>
 											<Icon name='images' />
-											<h3>No photos are listed for this pet.</h3>
+											<h3>Upload Images</h3>
 										</Header>
 										<input type="file" onChange={this.fileSelectedHandler} />
 										<List>
@@ -272,62 +334,6 @@ class AddPetForm extends Component {
 											content="Next Tab"
 											onClick={this.handleRangeChange}
 											value={1}></Form.Button>
-									</FormField>
-								</Form>
-							</div>
-						</div>
-					</Tab.Pane>
-			},
-			{
-				menuItem: 'Contact Information', render: () =>
-					<Tab.Pane>
-						<div className="formRow">
-							<div className="column-contact-form">
-								<Form className="contact-form" >
-									<Form.Field>
-										<label>Name (Optional)</label>
-										<input
-											name="name"
-											placeholder="Name"
-											value={this.state.name ? this.state.name : ''}
-											onChange={e => this.setInputValue('name', e.target.value)}
-										/>
-									</Form.Field>
-									<Form.Field error={this.state.isPhoneValid ? false : true}>
-										<label>Primary Phone Number</label>
-										<input
-											name="PhoneNumber1"
-											maxLength="10"
-											placeholder="Primary Phone Number"
-											value={this.state.PhoneNumber1 ? this.state.PhoneNumber1 : ''}
-											onChange={e => this.setInputValue('PhoneNumber1', e.target.value)}
-										/>
-									</Form.Field>
-									<Form.Field>
-										<label>Secondary Phone Number (Optional)</label>
-										<input
-											name="PhoneNumber2"
-											placeholder="Secondary Phone Number"
-											maxLength="10"
-											value={this.state.PhoneNumber2 ? this.state.PhoneNumber2 : ''}
-											onChange={e => this.setInputValue('PhoneNumber2', e.target.value)}
-										/>
-									</Form.Field>
-									<Form.Field error={this.state.isEmailValid ? false : true}>
-										<label>Email</label>
-										<input
-											name="email"
-											placeholder="Email"
-											value={this.state.email ? this.state.email : ''}
-											onChange={e => this.setInputValue('email', e.target.value)}
-										/>
-									</Form.Field>
-									<FormField style={{ paddingLeft: "70%" }}>
-										<Form.Button
-											style={{ width: "100%", }}
-											content="Next Tab"
-											onClick={this.handleRangeChange}
-											value={2}></Form.Button>
 									</FormField>
 								</Form>
 							</div>
@@ -351,14 +357,12 @@ class AddPetForm extends Component {
 									</Form.Field>
 									<Form.Field>
 										<label>State (Optional)</label>
-										<Select
-											fluid
-											clearable
+										<input
 											name="state"
-											onChange={this.setSelectInputValue}
-											options={this.state.genderOptions}
-											placeholder="State">
-										</Select>
+											placeholder="State"
+											value={this.state.state ? this.state.state : ''}
+											onChange={e => this.setInputValue('state', e.target.value)}
+										/>
 									</Form.Field>
 									<Form.Field>
 										<label>City (Optional)</label>

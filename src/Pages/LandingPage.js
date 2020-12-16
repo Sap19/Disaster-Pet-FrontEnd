@@ -45,7 +45,7 @@ export class LandingPage extends Component {
                             Ei nibh rebum imperdiet mei, ne qui tale dicat omnium. Ne prompta molestiae his,
                             recusabo maiestatis mea ex. Quot dictas moderatius his cu.
                         </p>
-                        <Button className="button" href="/" variant="info">Learn More</Button>
+                        <Button className="button" href="/petGallery" variant="info">Learn More</Button>
                     </div>
                     <div className="column" >
                         <h2>How To</h2>

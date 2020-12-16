@@ -1,0 +1,72 @@
+.sidenav {
+	height: 100%;
+	width: 15%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #59656F;
+	overflow-x: hidden;
+	padding-top: 60px;
+}
+
+.sidenav a {
+	padding: 6px 6px 6px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #ffffff;
+	display: block;
+}
+
+.sidenav a:hover {
+	background-color: rgb(143, 143, 143);
+}
+
+.rightsidenav {
+	height: 100%;
+	width: 15%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	float: right;
+	background-color: #59656F;
+	overflow-x: hidden;
+	padding-top: 60px;
+}
+.rightsidenav a {
+	padding: 6px 6px 6px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #ffffff;
+	display: block;
+}
+
+.rightsidenav a:hover {
+	background-color: rgb(143, 143, 143);
+}
+
+.petMatchingRow {
+	width: 80%;
+	float: right;
+	margin: auto;
+	padding-right: 2%;
+}
+.petMatchingColumn {
+	float: left;
+	display: block;
+	margin: 6px;
+	width: 48%;
+	background-color: lightgray;
+	padding-left: 2%;
+
+}
+.searchInput {
+	background-color:#59656F;
+	padding-right: 32%;
+}
+.petMatchingRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}

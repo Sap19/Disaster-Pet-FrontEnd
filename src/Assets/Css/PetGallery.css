@@ -1,8 +1,15 @@
 .column-petGallery {
     float: left;
     width: 16.666%;
+    padding-left:2%;
+    padding-right: 2%;
+}
+.column-petGalleryCard {
+    float: left;
+    width: 20%;
     padding-left:3%;
     padding-right: 3%;
+    padding-bottom: 2%;
 }
 @media screen and (max-width: 1462px) {
     .column-petGallery {
@@ -11,5 +18,12 @@
         padding-left:13%;
         padding-top: 20px;
         padding-right: 13%;
+    }
+    .column-petGalleryCard {
+        float: left;
+        width: 100%;
+        padding-left:20%;
+        padding-right: 3%;
+        padding-bottom: 2%;
     }
 }

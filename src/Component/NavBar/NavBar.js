@@ -12,7 +12,7 @@ export class NavigationBar extends Component {
     render() {
         return (
             <div>
-                <Navbar collapseOnSelect fixed="top" expand="lg" bg="info" variant="dark" >
+                <Navbar collapseOnSelect fixed="top" expand="lg"  variant="dark" style={{backgroundColor: "#3587A4"}} >
                     <Navbar.Brand href="/">Disaster Pets</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
@@ -21,7 +21,6 @@ export class NavigationBar extends Component {
                                 <Nav.Link href="/dashboard">Dashboard</Nav.Link>}
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/petGallery">Pet Gallery</Nav.Link>
-                            <Nav.Link href="/lostPet">Report Lost Pet</Nav.Link>
                             <Nav.Link href="/howTo">How To</Nav.Link>
                             {localStorage.getItem('token') &&
                                 <Nav.Link href="/addPet">Add Pet</Nav.Link>}
