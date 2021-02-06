@@ -47,19 +47,18 @@
 }
 
 .petMatchingRow {
-	width: 80%;
-	float: right;
+	width: 70%;
 	margin: auto;
-	padding-right: 2%;
+	padding-left: 2%;
 }
 .petMatchingColumn {
 	float: left;
 	display: block;
-	margin: 6px;
+	margin-right: 10px;
+	padding-top: 10px;
 	width: 48%;
 	background-color: lightgray;
-	padding-left: 2%;
-
+	padding-left: 1%;
 }
 .searchInput {
 	background-color:#59656F;

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
-import { Dropdown, Card, Icon, Image, Form, Input } from 'semantic-ui-react'
+import { Dropdown, Card, Image, Form, Input, Loader } from 'semantic-ui-react'
 import "../Assets/Css/PetMatchingPage.css"
-import Footer from "../Component/Footer/Footer"
+
 
 export class PetMatching extends Component {
 	constructor(props) {
@@ -15,27 +14,31 @@ export class PetMatching extends Component {
 			statusOptions: [],
 			RightPets: [],
 			LeftPets: [],
-			search: '',
+			DefualtPets: [],
+			searchRight: '',
+			searchLeft: '',
 			gender: '',
 			altered_status: '',
-			animal_type:'',
+			animal_type: '',
 			coat_color: '',
-			primary_breed: ''
+			primary_breed: '',
+			loaded: true
 		}
 	}
 	componentDidMount() {
 		this.MatchingInit();
 	}
 	handleSearchChange(event) {
+
 		this.setState({
-			search: event.target.value.substr(0, 20)
+			[event.target.name]: event.target.value.substr(0, 20),
 		})
 	}
 	setDropDownInputValue = (event, data) => {
 		let optionText = event.target.textContent;
-		
+
 		const newList = this.state.RightPets.filter((pet) => pet[data.name] === optionText)
-		if(this.state[data.name] === '') {
+		if (this.state[data.name] === '') {
 			this.setState({
 				RightPets: newList
 			})
@@ -43,7 +46,7 @@ export class PetMatching extends Component {
 		this.setState({
 			[data.name]: data.value,
 		})
-		if(this.state[data.name] !== '') {
+		if (this.state[data.name] !== '') {
 			this.setState({
 				RightPets: this.state.LeftPets
 			})
@@ -51,28 +54,41 @@ export class PetMatching extends Component {
 	}
 	addFilter = (event, data) => {
 		let optionText = event.target.textContent;
-		
+
 		const newList = this.state.RightPets.filter((pet) => pet[data.name] === optionText)
 		this.setState({
 			RightPets: newList
 		})
 	}
-	selectPet(event) {
+	leftSelectPet(event) {
+		console.log(event.target)
 		const NewRightPet = this.state.RightPets.filter((pet) => pet.pet_id.toString().indexOf(event.target.getAttribute('value')) !== -1)
 		console.log(NewRightPet);
-		const newLeftPet = this.state.LeftPets.filter((pet) => 
+		const newLeftPet = this.state.RightPets.filter((pet) =>
 			pet.altered_status === NewRightPet[0].altered_status &&
 			pet.animal_type === NewRightPet[0].animal_type &&
 			pet.gender === NewRightPet[0].gender &&
-			pet.primary_breed === NewRightPet[0].primary_breed 
+			pet.primary_breed === NewRightPet[0].primary_breed
 		)
 		this.setState({
 			RightPets: NewRightPet,
-			gender: NewRightPet[0].gender,
-			altered_status: NewRightPet[0].altered_status,
-			pet_type: NewRightPet[0].animal_type,
-			breed: NewRightPet[0].primary_breed,
+			//gender: NewRightPet[0].gender,
+			//altered_status: NewRightPet[0].altered_status,
+			//pet_type: NewRightPet[0].animal_type,
+			//breed: NewRightPet[0].primary_breed,
 			LeftPets: newLeftPet
+		})
+	}
+	rightSelectPet(event) {
+		console.log(event.target)
+		const newLeftPet = this.state.LeftPets.filter((pet) => pet.pet_id.toString().indexOf(event.target.getAttribute('value')) !== -1)
+		this.setState({
+			LeftPets: newLeftPet
+		})
+	}
+	resetSearch(event) {
+		this.setState({
+			[event.target.name]: this.state.DefualtPets
 		})
 	}
 	async MatchingInit() {
@@ -81,7 +97,7 @@ export class PetMatching extends Component {
 				method: 'GET',
 			});
 			let result = await res.json();
-			if (result.message == "successfully Pulled!") {
+			if (result.message === "successfully Pulled!") {
 				console.log(result)
 				result.breeds.forEach((breed, i) => {
 					this.setState({
@@ -113,6 +129,8 @@ export class PetMatching extends Component {
 				this.setState({
 					RightPets: result.pets,
 					LeftPets: result.pets,
+					DefualtPets: result.pets,
+					loaded: false
 				})
 				console.log(this.state.RightPets)
 			}
@@ -125,174 +143,277 @@ export class PetMatching extends Component {
 	}
 
 	render() {
-		let filteredPets = this.state.RightPets.filter(
+		let rightFilteredPets = this.state.RightPets.filter(
 			(pet) => {
-				return pet.pet_id.toString().indexOf(this.state.search) !== -1
+				return pet.pet_id.toString().indexOf(this.state.searchRight) !== -1
+			}
+		)
+		let leftFilteredPets = this.state.LeftPets.filter(
+			(pet) => {
+				return pet.pet_id.toString().indexOf(this.state.searchLeft) !== -1
 			}
 		)
 		return (
 			<div style={{ paddingTop: "60px" }}>
-				<h1 style={{ paddingLeft: "15%" }}>Pet Matching</h1>
-				<div className="sidenav">
-					<Form.Field style={{ padding: "10px" }}>
-						<Input
-							className="searchInput"
-							type="text"
-							value={this.state.search}
-							onChange={this.handleSearchChange.bind(this)}
-							placeholder="Pet ID Search"
-						/>
-					</Form.Field>
-					<Form.Field style={{ padding: "10px" }}>
-						<Dropdown
-							placeholder='Gender'
-							name="gender"
-							fluid
-							search
-							clearable
-							selection
-							onChange={this.setDropDownInputValue}
-							options={this.state.genderOptions}
-						/>
-					</Form.Field>
-					<Form.Field style={{ padding: "10px" }}>
-						<Dropdown
-							placeholder='AlterStatus'
-							name="altered_status"
-							fluid
-							clearable
-							search
-							selection
-							onChange={this.setDropDownInputValue}
-							options={this.state.alteredOptions}
-						/>
-					</Form.Field>
-					<Form.Field style={{ padding: "10px" }}>
-						<Dropdown
-							placeholder='Pet Type'
-							name="animal_type"
-							fluid
-							clearable
-							search
-							selection
-							onChange={this.setDropDownInputValue}
-							options={this.state.animalOptions}
-						/>
-					</Form.Field>
-					<Form.Field style={{ padding: "10px" }}>
-						<Dropdown
-							placeholder='Coat Color'
-							name="coat_color"
-							fluid
-							clearable
-							search
-							selection
-							onChange={this.setDropDownInputValue}
-							options={[]}
-						/>
-					</Form.Field>
-					<Form.Field style={{ padding: "10px" }}>
-						<Dropdown
-							placeholder='Breed'
-							name="primary_breed"
-							fluid
-							clearable
-							search
-							selection
-							onChange={this.setDropDownInputValue}
-							options={this.state.primary_breedOption}
-						/>
-					</Form.Field>
-				</div>
-
-				<div className="petMatchingRow" >
-					<div className="petMatchingColumn">
-						{filteredPets ? filteredPets.map((pet, i) =>
-							<div className="petMatchingColumn" key={i}>
-								<Card onClick={this.selectPet.bind(this)} value={pet.pet_id}>
-									<Image value={pet.pet_id} src={pet.pet_image} ui={false} />
-									<Card.Content>
-										<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
-										<Card.Meta>
-											<span value={pet.pet_id} className='date'>Breed: {pet.primary_breed}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span value={pet.pet_id} className='date'>Gender: {pet.gender}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span value={pet.pet_id} className='date'>Altered: {pet.altered_status}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span value={pet.pet_id} className='date'>Status: {pet.pet_status}</span>
-										</Card.Meta>
-										<Card.Description value={pet.pet_id}>
-											{pet.animal_type}
-										</Card.Description>
-										<Card.Description value={pet.pet_id}>
-											<span className='date'>ID: {pet.pet_id}</span>
-										</Card.Description>
-									</Card.Content>
-								</Card>
-							</div>
-						): this.stateRightPets.map((pet, i) =>
-							<div className="petMatchingColumn" key={i}>
-								<Card onClick={this.selectPet.bind(this)} value={pet.pet_id}>
-									<Image value={pet.pet_id} src={pet.pet_image} ui={false} />
-									<Card.Content>
-										<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
-										<Card.Meta>
-											<span value={pet.pet_id} className='date'>Breed: {pet.primary_breed}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span value={pet.pet_id} className='date'>Gender: {pet.gender}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span value={pet.pet_id} className='date'>Altered: {pet.altered_status}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span value={pet.pet_id} className='date'>Status: {pet.pet_status}</span>
-										</Card.Meta>
-										<Card.Description value={pet.pet_id}>
-											{pet.animal_type}
-										</Card.Description>
-										<Card.Description value={pet.pet_id}>
-											<span className='date'>ID: {pet.pet_id}</span>
-										</Card.Description>
-									</Card.Content>
-								</Card>
-							</div>
-						)}
+				<h1>Pet Matching</h1>
+				<div className="row">
+					<div className="sidenav">
+						<Form.Field style={{ padding: "10px" }}>
+							<Input
+								className="searchInput"
+								type="text"
+								name="searchRight"
+								value={this.state.searchRight}
+								onChange={this.handleSearchChange.bind(this)}
+								placeholder="Pet ID Search"
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='Gender'
+								name="gender"
+								fluid
+								search
+								clearable
+								selection
+								onChange={this.setDropDownInputValue}
+								options={this.state.genderOptions}
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='AlterStatus'
+								name="altered_status"
+								fluid
+								clearable
+								search
+								selection
+								onChange={this.setDropDownInputValue}
+								options={this.state.alteredOptions}
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='Pet Type'
+								name="animal_type"
+								fluid
+								clearable
+								search
+								selection
+								onChange={this.setDropDownInputValue}
+								options={this.state.animalOptions}
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='Coat Color'
+								name="coat_color"
+								fluid
+								clearable
+								search
+								selection
+								onChange={this.setDropDownInputValue}
+								options={[]}
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='Breed'
+								name="primary_breed"
+								fluid
+								clearable
+								search
+								selection
+								onChange={this.setDropDownInputValue}
+								options={this.state.primary_breedOption}
+							/>
+						</Form.Field>
+						<Form.Field style={{ paddingRight: "20%", paddingLeft: "20%" }}>
+							<Form.Button
+								style={{ width: "100%", }}
+								name="RightPets"
+								content="Reset Search"
+								onClick={this.resetSearch.bind(this)}
+							></Form.Button>
+						</Form.Field>
 					</div>
+					<div className="rightsidenav">
+						<Form.Field style={{ padding: "10px" }}>
+							<Input
+								className="searchInput"
+								type="text"
+								name="searchLeft"
+								value={this.state.searchLeft}
+								onChange={this.handleSearchChange.bind(this)}
+								placeholder="Pet ID Search"
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='Gender'
+								name="gender"
+								fluid
+								search
+								clearable
+								selection
+								onChange={this.setDropDownInputValue}
+								options={this.state.genderOptions}
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='AlterStatus'
+								name="altered_status"
+								fluid
+								clearable
+								search
+								selection
+								onChange={this.setDropDownInputValue}
+								options={this.state.alteredOptions}
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='Pet Type'
+								name="animal_type"
+								fluid
+								clearable
+								search
+								selection
+								onChange={this.setDropDownInputValue}
+								options={this.state.animalOptions}
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='Coat Color'
+								name="coat_color"
+								fluid
+								clearable
+								search
+								selection
+								onChange={this.setDropDownInputValue}
+								options={[]}
+							/>
+						</Form.Field>
+						<Form.Field style={{ padding: "10px" }}>
+							<Dropdown
+								placeholder='Breed'
+								name="primary_breed"
+								fluid
+								clearable
+								search
+								selection
+								onChange={this.setDropDownInputValue}
+								options={this.state.primary_breedOption}
+							/>
+						</Form.Field>
+						<Form.Field style={{ paddingRight: "20%", paddingLeft: "20%" }}>
+							<Form.Button
+								style={{ width: "100%", }}
+								name="LeftPets"
+								content="Reset Search"
+								onClick={this.resetSearch.bind(this)}
+							></Form.Button>
+						</Form.Field>
+					</div>
+					<div className="petMatchingRow" >
+						<div className="petMatchingColumn">
+						{this.state.loaded ?
+						<Loader active inline='centered' /> : 
+							rightFilteredPets ? rightFilteredPets.map((pet, i) =>
+								<div className="petMatchingColumn" key={i}>
+									<Card onClick={this.leftSelectPet.bind(this)} name="LeftPets" value={pet.pet_id}>
+										<Image name="LeftPets" value={pet.pet_id} src={pet.pet_image} ui={false} />
+										<Card.Content name="LeftPets" value={pet.pet_id}>
+											<Card.Header name="LeftPets" value={pet.pet_id}>{pet.pet_name}</Card.Header>
+											<Card.Meta name="LeftPets" value={pet.pet_id}>
+												<span name="LeftPets" value={pet.pet_id} className='date'>Breed: {pet.primary_breed}</span>
+											</Card.Meta>
+											<Card.Meta name="LeftPets" value={pet.pet_id}>
+												<span name="LeftPets" value={pet.pet_id} className='date'>Gender: {pet.gender}</span>
+											</Card.Meta>
+											<Card.Meta name="LeftPets" value={pet.pet_id}>
+												<span name="LeftPets" value={pet.pet_id} className='date'>Altered: {pet.altered_status}</span>
+											</Card.Meta>
+											<Card.Meta name="LeftPets" value={pet.pet_id}>
+												<span name="LeftPets" value={pet.pet_id} className='date'>Status: {pet.pet_status}</span>
+											</Card.Meta>
+											<Card.Description name="LeftPets" value={pet.pet_id}>
+												{pet.animal_type}
+											</Card.Description>
+											<Card.Description name="LeftPets" value={pet.pet_id}>
+												<span name="LeftPets" value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
+											</Card.Description>
+										</Card.Content>
+									</Card>
+								</div>
+							) : this.state.LeftPets.map((pet, i) =>
+								<div key={i}>
 
-					<div className="petMatchingColumn">
-						{this.state.LeftPets.map((pet, i) =>
-							<div className="petMatchingColumn" key={i}>
-								<Card>
-									<Image src={pet.pet_image} ui={false} />
-									<Card.Content>
-										<Card.Header>{pet.pet_name}</Card.Header>
-										<Card.Meta>
-											<span className='date'>Breed: {pet.primary_breed}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span className='date'>Gender: {pet.gender}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span className='date'>Altered: {pet.altered_status}</span>
-										</Card.Meta>
-										<Card.Meta>
-											<span className='date'>Status: {pet.pet_status}</span>
-										</Card.Meta>
-										<Card.Description>
-											{pet.animal_type}
-										</Card.Description>
-										<Card.Description>
-											<span className='date'>ID: {pet.pet_id}</span>
-										</Card.Description>
-									</Card.Content>
-								</Card>
-							</div>
-						)}
+								</div>
+							)}
+						</div>
+
+						<div className="petMatchingColumn">
+						{this.state.loaded ?
+						<Loader active inline='centered' /> : 
+							leftFilteredPets ? leftFilteredPets.map((pet, i) =>
+								<div className="petMatchingColumn" key={i}>
+									<Card onClick={this.rightSelectPet.bind(this)} value={pet.pet_id}>
+										<Image value={pet.pet_id} src={pet.pet_image} ui={false} />
+										<Card.Content value={pet.pet_id}>
+											<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
+											<Card.Meta value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>Breed: {pet.primary_breed}</span>
+											</Card.Meta>
+											<Card.Meta value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>Gender: {pet.gender}</span>
+											</Card.Meta>
+											<Card.Meta value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>Altered: {pet.altered_status}</span>
+											</Card.Meta>
+											<Card.Meta value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>Status: {pet.pet_status}</span>
+											</Card.Meta>
+											<Card.Description value={pet.pet_id}>
+												{pet.animal_type}
+											</Card.Description>
+											<Card.Description value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
+											</Card.Description>
+										</Card.Content>
+									</Card>
+								</div>
+							) : this.state.RightPets.map((pet, i) =>
+								<div className="petMatchingColumn" key={i}>
+									<Card onClick={this.selectPet.bind(this)} value={pet.pet_id}>
+										<Image value={pet.pet_id} src={pet.pet_image} ui={false} />
+										<Card.Content>
+											<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
+											<Card.Meta value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>Breed: {pet.primary_breed}</span>
+											</Card.Meta>
+											<Card.Meta value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>Gender: {pet.gender}</span>
+											</Card.Meta>
+											<Card.Meta value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>Altered: {pet.altered_status}</span>
+											</Card.Meta>
+											<Card.Meta value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>Status: {pet.pet_status}</span>
+											</Card.Meta>
+											<Card.Description value={pet.pet_id}>
+												{pet.animal_type}
+											</Card.Description>
+											<Card.Description value={pet.pet_id}>
+												<span value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
+											</Card.Description>
+										</Card.Content>
+									</Card>
+								</div>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>

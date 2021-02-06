@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import '../Assets/Css/PetGallery.css'
-import { Dropdown, Card, Image, Loader} from 'semantic-ui-react'
+import { Dropdown, Card, Image, Loader } from 'semantic-ui-react'
 import Footer from "../Component/Footer/Footer"
+import rainbowPup from "../Assets/Images/RainbowBridgePup.jpg"
 
-export class Gallery extends Component {
+export class RainbowGallery extends Component {
 
 	constructor(props) {
 		super(props);
@@ -32,7 +33,7 @@ export class Gallery extends Component {
 	}
 	async Pets() {
 		try {
-			let res = await fetch('http://127.0.0.1:5000/petgallery', {
+			let res = await fetch('http://127.0.0.1:5000/rainbowgallery', {
 				method: 'GET',
 			});
 			let result = await res.json();
@@ -54,7 +55,7 @@ export class Gallery extends Component {
 
 	async PetsInit() {
 		try {
-			let res = await fetch('http://127.0.0.1:5000/petgallery', {
+			let res = await fetch('http://127.0.0.1:5000/rainbowgallery', {
 				method: 'GET',
 			});
 			let result = await res.json();
@@ -98,7 +99,7 @@ export class Gallery extends Component {
 	render() {
 		return (
 			<div style={{ paddingTop: "60px" }}>
-				<h1>Pet Gallery</h1>
+				<img className="gallery-image" src={rainbowPup} alt="Rainbow Bridge Pup"></img>
 				<div className="row" >
 					<div className="column-petGallery">
 						<Dropdown
@@ -162,32 +163,31 @@ export class Gallery extends Component {
 				<div className="row" >
 					{this.state.loaded ?
 						<Loader active inline='centered' /> :
-							this.state.Pets.map((pet, i) =>
-								<div className="column-petGalleryCard" key={i}>
-										<Card>
-											<Image src={pet.pet_image} ui={false} />
-											<Card.Content>
-												<Card.Header>{pet.pet_name}</Card.Header>
-												<Card.Meta>
-													<span className='date'>Breed: {pet.primary_breed}</span>
-												</Card.Meta>
-												<Card.Meta>
-													<span className='date'>Gender: {pet.gender}</span>
-												</Card.Meta>
-												<Card.Meta>
-													<span className='date'>Altered: {pet.altered_status}</span>
-												</Card.Meta>
-												<Card.Meta>
-													<span className='date'>Status: {pet.pet_status}</span>
-												</Card.Meta>
-												<Card.Description>
-													{pet.animal_type}
-												</Card.Description>
-											</Card.Content>
-										</Card>
-								</div>
-							)
-					}
+						this.state.Pets.map((pet, i) =>
+							<div className="column-petGalleryCard" key={i}>
+								<Card>
+									<Image src={pet.pet_image} ui={false} />
+									<Card.Content>
+										<Card.Header>{pet.pet_name}</Card.Header>
+										<Card.Meta>
+											<span className='date'>Breed: {pet.primary_breed}</span>
+										</Card.Meta>
+										<Card.Meta>
+											<span className='date'>Gender: {pet.gender}</span>
+										</Card.Meta>
+										<Card.Meta>
+											<span className='date'>Altered: {pet.altered_status}</span>
+										</Card.Meta>
+										<Card.Meta>
+											<span className='date'>Status: {pet.pet_status}</span>
+										</Card.Meta>
+										<Card.Description>
+											{pet.animal_type}
+										</Card.Description>
+									</Card.Content>
+								</Card>
+							</div>
+						)}
 				</div>
 				<Footer />
 			</div>
@@ -195,4 +195,4 @@ export class Gallery extends Component {
 	}
 }
 
-export default Gallery
+export default RainbowGallery

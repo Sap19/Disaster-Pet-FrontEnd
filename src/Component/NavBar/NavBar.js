@@ -21,7 +21,9 @@ export class NavigationBar extends Component {
                                 <Nav.Link href="/dashboard">Dashboard</Nav.Link>}
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/petGallery">Pet Gallery</Nav.Link>
+                            <Nav.Link href="/rainbowGallery">Rainbow Gallery</Nav.Link>
                             <Nav.Link href="/howTo">How To</Nav.Link>
+                            
                             {localStorage.getItem('token') &&
                                 <Nav.Link href="/addPet">Add Pet</Nav.Link>}
                             {localStorage.getItem('token') &&

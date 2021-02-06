@@ -8,7 +8,7 @@ class Auth {
 			var token = localStorage.getItem('token')
 			var decoded = jwt_decode(token)
 			this.authenticated = true;
-			this.user_id = decoded.sub;
+			this.user_id = decoded.identity;
 			this.role = decoded.role;
 			if (this.role === 2) {
 				this.isAdmin = true;
@@ -45,6 +45,10 @@ class Auth {
 	isAuthenticated() {
 		this.validateAuth()
 		return this.authenticated;
+	}
+	getUserId() {
+		this.validateAuth()
+		return this.role;
 	}
 
 }
