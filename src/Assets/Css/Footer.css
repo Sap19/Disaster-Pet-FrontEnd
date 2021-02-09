@@ -1,9 +1,9 @@
 .main-footer {
     background-color: #232222;
     padding-top: .5em;
-    position: relative;
     bottom: 0;
-    width: 100%;
+	width: 100%;
+	
 }
 
 .col {

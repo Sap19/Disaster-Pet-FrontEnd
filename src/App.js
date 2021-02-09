@@ -10,9 +10,30 @@ import Gallery from './Pages/GalleryPage'
 import AddPet from "./Pages/AddPet"
 import PetMatching from './Pages/PetMatchingPage'
 import RainbowGallery from './Pages/RainbowGallery'
+import PetDetails from './Pages/PetDetails'
 import AdminTools from './Pages/AdminTools'
 import ManageUsers from './Pages/AdminTools/User/ManageUser'
-import PetDetails from './Pages/PetDetails'
+import ManagePets from './Pages/AdminTools/Pets/ManagePets'
+import ManageRoles from './Pages/AdminTools/User/ManageRoles'
+import ManageAlteredStatus from './Pages/AdminTools/Pets/ManageAlteredStatus'
+import ManageAnimalTypes from './Pages/AdminTools/Pets/ManageAnimalTypes'
+import ManageBreeds from './Pages/AdminTools/Pets/ManageBreeds'
+import ManageGenders from './Pages/AdminTools/Pets/ManagerGenders'
+import ManageStatus from './Pages/AdminTools/Pets/ManageStatus'
+import UserEdit from './Pages/AdminTools/User/EditPages/UserEdit'
+import PetEdit from './Pages/AdminTools/Pets/EditPages/PetEdit'
+import AlteredStatusEdit from './Pages/AdminTools/Pets/EditPages/AlteredStatusEdit'
+import AnimalTypesEdit from './Pages/AdminTools/Pets/EditPages/AnimalTypesEdit'
+import BreedEdit from './Pages/AdminTools/Pets/EditPages/BreedEdit'
+import GenderEdit from './Pages/AdminTools/Pets/EditPages/GenderEdit'
+import StatusEdit from './Pages/AdminTools/Pets/EditPages/StatusEdit'
+import RoleEdit from './Pages/AdminTools/User/EditPages/RoleEdit'
+import NewAlteredStatus from './Pages/AdminTools/Pets/NewPages/NewAlteredStatus'
+import NewAnimalTypes from './Pages/AdminTools/Pets/NewPages/NewAnimalType'
+import NewBreed from './Pages/AdminTools/Pets/NewPages/NewBreed'
+import NewGender from './Pages/AdminTools/Pets/NewPages/NewGender'
+import NewStatus from './Pages/AdminTools/Pets/NewPages/NewStatus'
+import NewRole from './Pages/AdminTools/User/NewPages/NewRole'
 import { ProtectedRoute } from "./Component/ProtectedRoutes/protected.route"
 import { AdminProtectedRoute } from "./Component/ProtectedRoutes/AdminProtected.route"
 
@@ -32,10 +53,34 @@ class App extends Component {
 							<ProtectedRoute exact path="/dashboard" component={Dashboard} />
 							<ProtectedRoute exact path="/addPet" component={AddPet} />
 							<ProtectedRoute exact path="/matchPets" component={PetMatching} />
-							<Route exact path="/adminTools" component={AdminTools} />
-							<Route exact path="/manageUsers" component={ManageUsers} />
-							<Route path="/petDetails/:id" component={PetDetails} />
+							<ProtectedRoute path="/petDetails/:id" component={PetDetails} />
+							<AdminProtectedRoute exact path="/manageUsers" component={ManageUsers} />
+							<AdminProtectedRoute exact path="/managePets" component={ManagePets} />
+
+							<AdminProtectedRoute exact path="/manageRoles" component={ManageRoles} />
+							<AdminProtectedRoute exact path="/manageBreeds" component={ManageBreeds} />
+							<AdminProtectedRoute exact path="/manageAnimalTypes" component={ManageAnimalTypes} />
+							<AdminProtectedRoute exact path="/manageGenders" component={ManageGenders} />
+							<AdminProtectedRoute exact path="/manageStatus" component={ManageStatus} />
+							<AdminProtectedRoute exact path="/manageAlteredStatus" component={ManageAlteredStatus} />
+
 							<AdminProtectedRoute exact path="/adminTools" component={AdminTools} />
+							<AdminProtectedRoute path="/userEdit/:id" component={UserEdit} />
+							<AdminProtectedRoute path="/petEdit/:id" component={PetEdit} />
+
+							<AdminProtectedRoute path="/breedEdit/:id" component={BreedEdit} />
+							<AdminProtectedRoute path="/animalTypeEdit/:id" component={AnimalTypesEdit} />
+							<AdminProtectedRoute path="/genderEdit/:id" component={GenderEdit} />
+							<AdminProtectedRoute path="/statusEdit/:id" component={StatusEdit} />
+							<AdminProtectedRoute path="/alteredStatusEdit/:id" component={AlteredStatusEdit} />
+							<AdminProtectedRoute path="/roleEdit/:id" component={RoleEdit} />
+
+							<AdminProtectedRoute path="/newBreed" component={NewBreed} />
+							<AdminProtectedRoute path="/newAnimalType" component={NewAnimalTypes} />
+							<AdminProtectedRoute path="/newGender" component={NewGender} />
+							<AdminProtectedRoute path="/newStatus" component={NewStatus} />
+							<AdminProtectedRoute path="/newAlteredStatus" component={NewAlteredStatus} />
+							<AdminProtectedRoute path="/newRole" component={NewRole} />
 							<Route path="*" component={NotFound} />
 						</Switch>
 					</div>

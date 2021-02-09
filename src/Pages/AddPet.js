@@ -382,13 +382,13 @@ class AddPetForm extends Component {
 											onChange={e => this.setInputValue('zipcode', e.target.value)}
 										/>
 									</Form.Field>
-									<FormField style={{ paddingLeft: "70%" }}>
+									<Form.Field style={{ paddingLeft: "70%" }}>
 										<Form.Button
 											style={{ width: "100%", }}
 											content="Next Tab"
 											onClick={this.handleRangeChange}
 											value={0}></Form.Button>
-									</FormField>
+									</Form.Field>
 									<Form.Button onClick={() => this.addPet()} style={{ background: "#17a3b8" }}>Add Pet</Form.Button>
 								</Form>
 							</div>

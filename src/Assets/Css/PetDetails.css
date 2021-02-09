@@ -1,0 +1,21 @@
+.modal {
+	position:unset
+}
+.ui.modal {
+	position:unset
+}
+.ui.dimmer {
+	padding-top: 5%;
+}
+.petPhotoRow {
+	width: 100%;
+	padding-left: 2%;
+	overflow:hidden
+}
+.petPhotoColumn {
+	float: left;
+	display: block;
+	margin-right: 10px;
+	width: 50%;
+	padding-left: 1%;
+}

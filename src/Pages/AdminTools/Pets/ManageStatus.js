@@ -3,18 +3,16 @@ import { Button, Dropdown, Form, Input, Table, Loader } from 'semantic-ui-react'
 import '../../../Assets/Css/AdminTools/ManageUsers.css'
 import { Link } from "react-router-dom"
 
-export class ManageUser extends Component {
+export class ManageStatus extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			Users: [],
+			Status: [],
 			search: '',
 			filter: 'id',
 			filterOptions: [
 				{ 'key': 1, 'value': 'id', 'text': 'ID' },
-				{ 'key': 2, 'value': 'fname', 'text': 'First Name' },
-				{ 'key': 3, 'value': 'lname', 'text': 'Last Name' },
-				{ 'key': 4, 'value': 'email', 'text': 'Email' },
+				{ 'key': 2, 'value': 'status', 'text': 'Name' },
 			],
 			loaded: true
 		}
@@ -27,6 +25,9 @@ export class ManageUser extends Component {
 		})
 
 	}
+	changeRoute() {
+		this.props.history.push('/newStatus')
+	}
 	handleSearchChange(event) {
 
 		this.setState({
@@ -34,27 +35,24 @@ export class ManageUser extends Component {
 		})
 	}
 	componentDidMount() {
-		this.Users();
+		this.Status();
 	}
 
-	async Users() {
+	async Status() {
 		try {
-			let res = await fetch('http://127.0.0.1:5000/manageuser', {
-				method: 'POST',
+			let res = await fetch('http://127.0.0.1:5000/managepetstatus', {
+				method: 'GET',
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
 					'Authorization': "Bearer " + localStorage.getItem('token')
 				},
-				body: JSON.stringify({
-
-				})
 			});
 			let result = await res.json();
-			if (result.message === "all users returned") {
-				console.log(result.Users)
+			if (result.message === "All Pet Status Have Been Returned") {
+				console.log(result.Status)
 				this.setState({
-					Users: result.Users,
+					Status: result.Status,
 					loaded: false
 				})
 			}
@@ -66,9 +64,9 @@ export class ManageUser extends Component {
 		}
 	}
 	render() {
-		let userSearch = this.state.Users.filter(
-			(user) => {
-				return user[this.state.filter].toString().toLowerCase().indexOf(this.state.search) !== -1
+		let statusSearch = this.state.Status.filter(
+			(status) => {
+				return status[this.state.filter].toString().toLowerCase().indexOf(this.state.search) !== -1
 			}
 		)
 		return (
@@ -77,7 +75,7 @@ export class ManageUser extends Component {
 					<Button className="backButton" href="/adminTools"> &#8592; Back to Admin Tools </Button>
 				</div>
 				<div style={{ paddingRight: "20%", paddingLeft: "20%", paddingTop: '1%' }}>
-					<h1 style={{ border: "1px solid", borderRadius: "16px" }}>Manage Users</h1>
+					<h1 style={{ border: "1px solid", borderRadius: "16px" }}>Manage Status</h1>
 				</div>
 				<div style={{ paddingLeft: "5%", paddingRight: "5%", paddingTop: "3%" }}>
 					<div classname="row">
@@ -101,6 +99,15 @@ export class ManageUser extends Component {
 								options={this.state.filterOptions}
 							/>
 						</Form.Field>
+						<Form.Field className="optionColumn" style={{paddingLeft: "1%"}}>
+							<Form.Button
+								content="Add New Status"
+								color="green"
+								onClick={() => this.changeRoute()}
+							//value={0}
+							>
+							</Form.Button>
+						</Form.Field>
 					</div>
 					<div style={{ paddingBottom: "5%" }}>
 						<Table striped>
@@ -108,27 +115,23 @@ export class ManageUser extends Component {
 								<Table.Row>
 									<Table.HeaderCell>ID</Table.HeaderCell>
 									<Table.HeaderCell>Name</Table.HeaderCell>
-									<Table.HeaderCell>E-Mail</Table.HeaderCell>
-									<Table.HeaderCell>Role</Table.HeaderCell>
 								</Table.Row>
 							</Table.Header>
 
 							<Table.Body>
 								{this.state.loaded ? <Loader active /> :
-									userSearch.map((user, i) =>
+									statusSearch.map((status, i) =>
 										<Table.Row key={i}>
 											<Table.Cell>
-												<Link to={`/userEdit/${user.id}`}>
-													{user.id}
+												<Link to={`/statusEdit/${status.id}`}>
+													{status.id}
 												</Link>
 											</Table.Cell>
 											<Table.Cell>
-												<Link to={`/userEdit/${user.id}`}>
-													{user.fname} {user.lname}
+												<Link to={`/statusEdit/${status.id}`}>
+													{status.status}
 												</Link>
 											</Table.Cell>
-											<Table.Cell>{user.email}</Table.Cell>
-											<Table.Cell>{user.role_id}</Table.Cell>
 										</Table.Row>
 									)}
 							</Table.Body>
@@ -140,4 +143,4 @@ export class ManageUser extends Component {
 	}
 }
 
-export default ManageUser
+export default ManageStatus

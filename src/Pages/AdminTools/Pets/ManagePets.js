@@ -3,18 +3,22 @@ import { Button, Dropdown, Form, Input, Table, Loader } from 'semantic-ui-react'
 import '../../../Assets/Css/AdminTools/ManageUsers.css'
 import { Link } from "react-router-dom"
 
-export class ManageUser extends Component {
+export class ManagePets extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			Users: [],
+			Pets: [],
 			search: '',
-			filter: 'id',
+			filter: 'pet_id',
 			filterOptions: [
-				{ 'key': 1, 'value': 'id', 'text': 'ID' },
-				{ 'key': 2, 'value': 'fname', 'text': 'First Name' },
-				{ 'key': 3, 'value': 'lname', 'text': 'Last Name' },
-				{ 'key': 4, 'value': 'email', 'text': 'Email' },
+				{ 'key': 1, 'value': 'pet_id', 'text': 'ID' },
+				{ 'key': 2, 'value': 'pet_name', 'text': 'Name' },
+				{ 'key': 3, 'value': 'gender', 'text': 'Gender' },
+				{ 'key': 4, 'value': 'pet_status', 'text': 'Status' },
+				{ 'key': 5, 'value': 'primary_breed', 'text': 'Primary Breed' },
+				{ 'key': 6, 'value': 'secondary_breed', 'text': 'Secondary Breed' },
+				{ 'key': 7, 'value': 'animal_type', 'text': 'Animal Type' },
+				{ 'key': 8, 'value': 'altered_status', 'text': 'Altered Status' },
 			],
 			loaded: true
 		}
@@ -34,41 +38,30 @@ export class ManageUser extends Component {
 		})
 	}
 	componentDidMount() {
-		this.Users();
+		this.Pets();
 	}
 
-	async Users() {
+	async Pets() {
 		try {
-			let res = await fetch('http://127.0.0.1:5000/manageuser', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json',
-					'Authorization': "Bearer " + localStorage.getItem('token')
-				},
-				body: JSON.stringify({
-
-				})
+			let res = await fetch('http://127.0.0.1:5000/petmatching', {
+				method: 'GET',
 			});
 			let result = await res.json();
-			if (result.message === "all users returned") {
-				console.log(result.Users)
+			if (result.message === "successfully Pulled!") {
+				console.log(result)
 				this.setState({
-					Users: result.Users,
+					Pets: result.pets,
 					loaded: false
 				})
 			}
 		} catch (e) {
-			console.log(e)
-			this.setState({
-				errorMessage: "Server Error. Please Refresh Page"
-			})
+			console.log("Server Error. Please Refresh Page")
 		}
 	}
 	render() {
-		let userSearch = this.state.Users.filter(
-			(user) => {
-				return user[this.state.filter].toString().toLowerCase().indexOf(this.state.search) !== -1
+		let petSearch = this.state.Pets.filter(
+			(pet) => {
+				return pet[this.state.filter].toString().toLowerCase().indexOf(this.state.search) !== -1
 			}
 		)
 		return (
@@ -77,7 +70,7 @@ export class ManageUser extends Component {
 					<Button className="backButton" href="/adminTools"> &#8592; Back to Admin Tools </Button>
 				</div>
 				<div style={{ paddingRight: "20%", paddingLeft: "20%", paddingTop: '1%' }}>
-					<h1 style={{ border: "1px solid", borderRadius: "16px" }}>Manage Users</h1>
+					<h1 style={{ border: "1px solid", borderRadius: "16px" }}>Manage Pets</h1>
 				</div>
 				<div style={{ paddingLeft: "5%", paddingRight: "5%", paddingTop: "3%" }}>
 					<div classname="row">
@@ -95,7 +88,7 @@ export class ManageUser extends Component {
 								placeholder='Filter'
 								name="filter"
 								fluid
-								defaultValue='id'
+								defaultValue='pet_id'
 								selection
 								onChange={this.setDropDownInputValue}
 								options={this.state.filterOptions}
@@ -108,27 +101,37 @@ export class ManageUser extends Component {
 								<Table.Row>
 									<Table.HeaderCell>ID</Table.HeaderCell>
 									<Table.HeaderCell>Name</Table.HeaderCell>
-									<Table.HeaderCell>E-Mail</Table.HeaderCell>
-									<Table.HeaderCell>Role</Table.HeaderCell>
+									<Table.HeaderCell>Animal Type</Table.HeaderCell>
+									<Table.HeaderCell>Gender</Table.HeaderCell>
+									<Table.HeaderCell>Status</Table.HeaderCell>
+									<Table.HeaderCell>Primary Breed</Table.HeaderCell>
+									<Table.HeaderCell>Secondary Breed</Table.HeaderCell>
+									<Table.HeaderCell>Altered Status</Table.HeaderCell>
+									<Table.HeaderCell>Date Added</Table.HeaderCell>
 								</Table.Row>
 							</Table.Header>
 
 							<Table.Body>
 								{this.state.loaded ? <Loader active /> :
-									userSearch.map((user, i) =>
+									petSearch.map((pet, i) =>
 										<Table.Row key={i}>
 											<Table.Cell>
-												<Link to={`/userEdit/${user.id}`}>
-													{user.id}
+												<Link to={`/petEdit/${pet.pet_id}`}>
+													{pet.pet_id}
 												</Link>
 											</Table.Cell>
 											<Table.Cell>
-												<Link to={`/userEdit/${user.id}`}>
-													{user.fname} {user.lname}
+												<Link to={`/petEdit/${pet.pet_id}`}>
+													{pet.pet_name}
 												</Link>
 											</Table.Cell>
-											<Table.Cell>{user.email}</Table.Cell>
-											<Table.Cell>{user.role_id}</Table.Cell>
+											<Table.Cell>{pet.animal_type}</Table.Cell>
+											<Table.Cell>{pet.gender}</Table.Cell>
+											<Table.Cell>{pet.pet_status}</Table.Cell>
+											<Table.Cell>{pet.primary_breed}</Table.Cell>
+											<Table.Cell>{pet.secondary_breed}</Table.Cell>
+											<Table.Cell>{pet.altered_status}</Table.Cell>
+											<Table.Cell>{pet.date_created.slice(0, 16)}</Table.Cell>
 										</Table.Row>
 									)}
 							</Table.Body>
@@ -140,4 +143,4 @@ export class ManageUser extends Component {
 	}
 }
 
-export default ManageUser
+export default ManagePets

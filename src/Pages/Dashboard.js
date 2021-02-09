@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import auth from '../Component/Auth/auth'
 import { Dropdown, Card, Image, Loader } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
+import Footer from "../Component/Footer/Footer"
 
 export class Dashboard extends Component {
     constructor(props) {
@@ -51,7 +52,8 @@ export class Dashboard extends Component {
 						<div className="column-petGalleryCard" key={i}>
 							<Link to={`/petDetails/${pet[0].pet_id}`}>
 							<Card onClick={this.imageFloat.bind(this)}>
-								<Image src={pet[0].pet_image}  ui={false} />
+								<Image src={pet[0].pet_image}  ui={false} 
+								style={{ height: "400px" }}/>
 								<Card.Content>
 									<Card.Header>{pet[0].pet_name}</Card.Header>
 									<Card.Meta>
@@ -75,6 +77,7 @@ export class Dashboard extends Component {
 						</div>
 					)}
 				</div>
+				<Footer />
             </div>
         )
     }

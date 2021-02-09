@@ -166,7 +166,8 @@ export class RainbowGallery extends Component {
 						this.state.Pets.map((pet, i) =>
 							<div className="column-petGalleryCard" key={i}>
 								<Card>
-									<Image src={pet.pet_image} ui={false} />
+									<Image src={pet.pet_image} ui={false} 
+									style={{ height: "400px" }}/>
 									<Card.Content>
 										<Card.Header>{pet.pet_name}</Card.Header>
 										<Card.Meta>

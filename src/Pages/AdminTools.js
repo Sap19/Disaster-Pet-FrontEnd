@@ -12,6 +12,8 @@ export class AdminTools extends Component {
                     <div className="column" >
                         <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>Users</h2>
                         <a href="/manageUsers">Manage Users</a> 
+						<br/>
+						<a href="/manageRoles">Manage Roles</a> 
                     </div>
                     <div className="column" >
                         <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>Disaster</h2>
@@ -19,7 +21,17 @@ export class AdminTools extends Component {
                     </div>
                     <div className="column" >
                         <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>Pets</h2>
-                        <a href="/">Manage Pets</a>
+                        <a href="/managePets">Manage Pets</a>
+						<br/>
+						<a href="/manageBreeds">Manage Breeds</a>
+						<br/>
+						<a href="/manageAnimalTypes">Manage Animal Types</a>
+						<br/>
+						<a href="/manageGenders">Manage Genders</a>
+						<br/>
+						<a href="/manageStatus">Manage Status</a>
+						<br/>
+						<a href="/manageAlteredStatus">Manage Altered Status</a>
                     </div>
                 </div>
             </div>
