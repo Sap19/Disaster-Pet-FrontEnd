@@ -32,7 +32,7 @@ export class UserEdit extends Component {
 	
 	newDropDownValue = (event, data) => {
 		console.log(event, data)
-		let newSelectedID = data.options.filter((option) => option.value == data.value)
+		let newSelectedID = data.options.filter((option) => option.value === data.value)
 		console.log(newSelectedID)
 		this.setState({
 			[data.name]: newSelectedID[0].key,
@@ -183,7 +183,7 @@ export class UserEdit extends Component {
 							</Form.Field>
 							<Form.Field>
 								<label>Animal Type</label>
-								{this.state.animal_type != '' ?
+								{this.state.animal_type !== '' ?
 									<Dropdown
 										placeholder='Animal Type'
 										name="animal_type"
@@ -197,7 +197,7 @@ export class UserEdit extends Component {
 							</Form.Field>
 							<Form.Field>
 								<label>Gender</label>
-								{this.state.gender != '' ?
+								{this.state.gender !== '' ?
 									<Dropdown
 										placeholder='Gender'
 										name="gender"
@@ -211,7 +211,7 @@ export class UserEdit extends Component {
 							</Form.Field>
 							<Form.Field>
 								<label>Status</label>
-								{this.state.pet_status != '' ?
+								{this.state.pet_status !== '' ?
 									<Dropdown
 										placeholder='Status'
 										name="pet_status"
@@ -225,7 +225,7 @@ export class UserEdit extends Component {
 							</Form.Field>
 							<Form.Field>
 								<label>Primary Breed</label>
-								{this.state.primary_breed != '' ?
+								{this.state.primary_breed !== '' ?
 									<Dropdown
 										placeholder='Primary Breed'
 										name="primary_breed"
@@ -239,7 +239,7 @@ export class UserEdit extends Component {
 							</Form.Field>
 							<Form.Field>
 								<label>Secondary Breed</label>
-								{this.state.secondary_breed != '' ?
+								{this.state.secondary_breed !== '' ?
 									<Dropdown
 										placeholder='Secondary Breed'
 										name="secondary_breed"
@@ -253,7 +253,7 @@ export class UserEdit extends Component {
 							</Form.Field>
 							<Form.Field>
 								<label>Altered Status</label>
-								{this.state.altered_status != '' ?
+								{this.state.altered_status !== '' ?
 									<Dropdown
 										placeholder='Altered Status'
 										name="altered_status"

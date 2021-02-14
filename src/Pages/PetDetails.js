@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Dropdown, Form, Input, Table, Image, Modal, Header } from 'semantic-ui-react'
+import { Button,Image, Modal } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import '../Assets/Css/PetDetails.css'
 import Footer from "../Component/Footer/Footer"

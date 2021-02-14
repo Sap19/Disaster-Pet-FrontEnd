@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import auth from '../Component/Auth/auth'
-import { Dropdown, Card, Image, Loader } from 'semantic-ui-react'
+import { Card, Image, Loader } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import Footer from "../Component/Footer/Footer"
 

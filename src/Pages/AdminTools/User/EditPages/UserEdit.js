@@ -168,7 +168,7 @@ export class UserEdit extends Component {
 						</Form.Field>
 						<Form.Field>
 						<label>Role</label>
-						{this.state.role != '' ?
+						{this.state.role !== '' ?
 							<Dropdown
 								placeholder='Role'
 								name="role"
