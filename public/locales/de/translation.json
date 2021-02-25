@@ -1,7 +1,217 @@
 {
-	"title": "Willkommen zu react und react-i18next",
-	"description": {
-	  "part1": "Um loszulegen, ändere <1>src/App.js</1> speicheren und neuladen.",
-	  "part2": "Ändere die Sprachen zwischen deutsch und englisch mit Hilfe der beiden Schalter."
+	"landingPage": {
+		"mission": "Unsere Aufgabe",
+		"aboutUs": "Über uns",
+		"petGallery": "Haustiergalerie",
+		"howTo": "Wie man",
+		"learnMore": "Erfahren Sie mehr"
+	},
+	"footer" : {
+		"contact": "Kontakt",
+		"email": "Email",
+		"phone": "Telefon",
+		"fax": "Fax",
+		"needHelp": "Brauchen Sie Hilfe? Schauen Sie sich diese Links an",
+		"HowtoView": "So zeigen Sie die Haustiergalerie an",
+		"HowtoReportL": "Wie man ein verlorenes Haustier meldet",
+		"HowtoReportF": "So melden Sie ein gefundenes Haustier"
+	},
+	"navBar" : {
+		"dashboard": "Instrumententafel",
+		"home": "Zuhause",
+		"petGallery": "Haustiergalerie",
+		"rainbow": "Regenbogen Galerie",
+		"howTo": "Wie man",
+		"addPet": "Haustier hinzufügen",
+		"matchPet": "Match Haustiere",
+		"admin": "Admin-Tools",
+		"logout": "Ausloggen",
+		"login": "Anmeldung",
+		"signup": "Anmelden"
+	},
+	"login": {
+		"login": "Anmeldung",
+		"email": "Email",
+		"password": "Passwort",
+		"forgot": "Passwort vergessen?"
+	},
+	"signUp": {
+		"signUp": "Anmelden", 
+		"email": "Email", 
+		"firstN": "Vorname", 
+		"lastN": "Nachname", 
+		"phone": "Telefonnummer", 
+		"password": "Passwort", 
+		"alreadyHave": "Sie haben bereits ein Konto?"
+	},
+	"petGallery": {
+		"title": "Haustiergalerie",
+		"breed": "Rasse",
+		"coat": "Fellfarbe",
+		"petType": "Haustiertyp",
+		"alterStatus": "Status ändern",
+		"gender": "Geschlecht",
+		"altered": "Geändert",
+		"status": "die Stellung"
+	},
+	"rainbowGallery": {
+		"title": "Regenbogen Galerie",
+		"breed": "Rasse",
+		"coat": "Fellfarbe",
+		"petType": "Haustiertyp",
+		"alterStatus": "Status ändern",
+		"gender": "Geschlecht",
+		"altered": "Geändert",
+		"status": "die Stellung"
+	},
+	"dashboard": {
+		"title": "Instrumententafel",
+		"myPets": "Meine Haustiere",
+		"breed": "Rasse",
+		"gender": "Geschlecht",
+		"altered": "Geändert",
+		"status": "die Stellung"
+	},
+	"addPet": {
+		"petName": "Haustiername",
+		"animalType": "Tierart",
+		"primary": "Primärrasse",
+		"secondary": "Sekundärrasse",
+		"gender": "Geschlecht",
+		"alteredStatus": "Geänderter Status",
+		"status": "Status",
+		"upload": "Bilder hochladen",
+		"chooseFile": "Choose File",
+		"noFile": "Keine Datei ausgewählt",
+		"next": "Nächste Registerkarte",
+		"address": "Adresse",
+		"state": "Zustand",
+		"city": "Stadt",
+		"zip": "Postleitzahl",
+		"title": "Haustier hinzufügen",
+		"animalInfo": "Tierinformation",
+		"petLocation": "Haustierstandort",
+		"optional": "(freiwillig)"
+	},
+	"matchPet": {
+		"title": "Haustier passend",
+		"breed": "Rasse",
+		"search": "Suche nach Haustier-ID",
+		"gender": "Geschlecht",
+		"altered": "Geändert",
+		"status": "die Stellung",
+		"alterStatus": "Status ändern",
+		"petType": "Haustiertyp",
+		"coat": "Fellfarbe",
+		"reset": "Suche zurücksetzen"
+	},
+	"adminTools": {
+		"title": "Admin Tools",
+		"users": "Benutzer",
+		"manageUsers": "Benutzer verwalten",
+		"manageRoles": "Rollen verwalten",
+		"disaster": "Katastrophe",
+		"manageDisasters": "Katastrophen verwalten",
+		"pets": "Haustiere",
+		"managePets": "Haustiere verwalten",
+		"manageBreeds": "Rassen verwalten",
+		"manageAnimalT": "Verwalten von Tiertypen",
+		"manageGender": "Geschlechter verwalten",
+		"manageStatus": "Status verwalten",
+		"manageAltered": "Geänderten Status verwalten",
+		"backToAdmin": "Zurück zu den Admin-Tools"
+	},
+	"manageUsers": {
+		"name": "Name",
+		"email": "Email",
+		"role": "Rolle",
+		"search": "Suche",
+		"title": "Benutzer verwalten",
+		"fName": "Vorname",
+		"lName": "Nachname",
+		"phone": "Telefonnummer",
+		"edit": "Bearbeiten",
+		"back": "Zurück zu Benutzer verwalten"
+	},
+	"manageRoles": {
+		"title": "Rollen verwalten",
+		"search": "Suche",
+		"name": "Name",
+		"addRole": "Neue Rolle hinzufügen",
+		"roleName": "Rollenname",
+		"editTitle": "Rollen bearbeiten",
+		"addTitle": "Neue Rolle",
+		"back": "Zurück zum Verwalten von Rollen",
+		"edit": "Bearbeiten"
+	},
+	"managePets": {
+		"title": "Haustiere verwalten",
+		"search": "Suche",
+		"name": "Name",
+		"animalType": "Tierart",
+		"gender": "Geschlecht",
+		"status": "die Stellung",
+		"primary": "Primärrasse",
+		"secondary": "Sekundärrasse",
+		"altered": "Geänderter Status",
+		"dateAdded": "Datum hinzugefügt",
+		"editTitle": "Haustier bearbeiten",
+		"edit": "Haustier bearbeiten",
+		"back": "Zurück zum Verwalten von Haustieren"
+	},
+	"manageBreeds": {
+		"title": "Rassen verwalten",
+		"search": "Suche",
+		"name": "Name",
+		"addBreed": "Neue Rasse hinzufügen",
+		"breedName": "Rassenname",
+		"newBreed": "Neue Rasse",
+		"back": "Zurück zu Rassen verwalten",
+		"editTitle": "Rasse bearbeiten",
+		"edit":"Rasse bearbeiten"
+	},
+	"manageAnimalTypes": {
+		"title": "Verwalten von Tiertypen",
+		"search": "Suche",
+		"name": "Name",
+		"addAnimalType": "Neuen Tiertyp hinzufügen",
+		"addtitle": "Neuer Tiertyp",
+		"animalTypeName": "Tierartname",
+		"back": "Zurück zum Verwalten von Tiertypen",
+		"editTitle": "Tierart bearbeiten",
+		"edit": "Tierart bearbeiten"
+	},
+	"manageGenders": {
+		"title": "Geschlechter verwalten",
+		"search": "Suche",
+		"name": "Name",
+		"add": "Neues Geschlecht hinzufügen",
+		"genderName": "Geschlechtsname",
+		"addTitle": "Neues Geschlecht",
+		"back": "Zurück zum Verwalten der Geschlechter",
+		"editTitle":"Geschlecht bearbeiten",
+		"edit": "Geschlecht bearbeiten"
+	},
+	"manageStatus": {
+		"title": "Status verwalten",
+		"search": "Suche",
+		"name": "Name",
+		"add": "Neuen Status hinzufügen",
+		"statusName": "Statusname",
+		"addTitle": "Neuer Status",
+		"back": "Zurück zum Verwalten des Status",
+		"editTitle": "Status bearbeiten",
+		"edit": "Status bearbeiten"
+	},
+	"manageAltered": {
+		"title": "Geänderten Status verwalten",
+		"name": "Name",
+		"search": "Suche",
+		"add": "Neuen Status hinzufügen",
+		"addTitle": "Neuer geänderter Status",
+		"alteredName": "Geänderter Statusname",
+		"back": "Zurück zum Verwalten des geänderten Status",
+		"editTitle": "Geänderten Status bearbeiten",
+		"edit": "Geänderten Status bearbeiten"
 	}
-  }
+}

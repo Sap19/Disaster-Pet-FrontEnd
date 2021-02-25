@@ -3,7 +3,7 @@ import { Form, Select, Message, Tab, FormField, List, Header, Icon, Segment } fr
 import Footer from "../Component/Footer/Footer";
 import addPetBanner from "../Assets/Images/addPetBanner.jpg"
 import "../Assets/Css/AddPet.css"
-
+import i18n from '../Component/i18n/i18n';
 
 class AddPetForm extends Component {
 
@@ -210,106 +210,106 @@ class AddPetForm extends Component {
 	render() {
 		const panes = [
 			{
-				menuItem: 'Animal Information', render: () =>
+				menuItem: i18n.t("addPet.animalInfo"), render: () =>
 					<Tab.Pane>
 						<div className="formRow">
 							<div className="column-form ">
 								<Form style={{ paddingTop: "40px" }}>
 									<Form.Field error={this.state.isPetNameValid ? false : true}>
-										<label>Pet Name</label>
+										<label>{i18n.t("addPet.petName")}</label>
 										<input
 											name="petName"
-											placeholder="Pet Name"
+											placeholder={i18n.t("addPet.petName")}
 											value={this.state.petName ? this.state.petName : ''}
 											onChange={e => this.setInputValue('petName', e.target.value)}
 										/>
 									</Form.Field>
 									<Form.Field error={this.state.isAnimalTypeValid ? false : true}>
-										<label>Animal Type</label>
+										<label>{i18n.t("addPet.animalType")}</label>
 										<Select
 											fluid
 											clearable
 											name="animalType_id"
 											onChange={this.setSelectInputValue}
-											label="Animal Type"
+											label={i18n.t("addPet.animalType")}
 											options={this.state.animalOptions}
-											placeholder="Animal Type">
+											placeholder={i18n.t("addPet.animalType")}>
 										</Select>
 									</Form.Field>
 									{this.state.breedDisabled ?
 										<Form.Field>
-											<label>Primary Breed</label>
+											<label>{i18n.t("addPet.primary")}</label>
 											<Select
 												fluid
 												disabled
 												options={this.state.primary_breedOption}
-												placeholder="Primary Breed">
+												placeholder={i18n.t("addPet.primary")}>
 											</Select>
 										</Form.Field> :
 										<Form.Field error={this.state.isPrimaryBreedVaild ? false : true}>
-											<label>Primary Breed</label>
+											<label>{i18n.t("addPet.primary")}</label>
 											<Select
 												fluid
 												clearable
 												name="primaryBreed_id"
 												onChange={this.setSelectInputValue}
 												options={this.state.primary_breedOption}
-												placeholder="Primary Breed">
+												placeholder={i18n.t("addPet.primary")}>
 											</Select>
 										</Form.Field>}
 
 									{this.state.breedDisabled ?
 										<Form.Field>
-											<label>Secondary Breed</label>
+											<label>{i18n.t("addPet.secondary")}</label>
 											<Select
 												fluid
 												disabled
 												options={this.state.primary_breedOption}
-												placeholder="Secondary Breed">
+												placeholder={i18n.t("addPet.secondary")}>
 											</Select>
 										</Form.Field> :
 										<Form.Field>
-											<label>Secondary Breed</label>
+											<label>{i18n.t("addPet.secondary")}</label>
 											<Select
 												fluid
 												clearable
 												name="secondaryBreed_id"
 												onChange={this.setSelectInputValue}
 												options={this.state.primary_breedOption}
-												placeholder="Secondary Breed">
+												placeholder={i18n.t("addPet.secondary")}>
 											</Select>
 										</Form.Field>}
 									<Form.Field>
-										<label>Gender</label>
+										<label>{i18n.t("addPet.gender")}</label>
 										<Select
 											fluid
 											clearable
 											name="gender"
 											onChange={this.setSelectInputValue}
 											options={this.state.genderOptions}
-											placeholder="Gender">
+											placeholder={i18n.t("addPet.gender")}>
 										</Select>
 									</Form.Field>
 									<Form.Field error={this.state.isAlteredValid ? false : true}>
-										<label>Altered Status</label>
+										<label>{i18n.t("addPet.alteredStatus")}</label>
 										<Select
 											fluid
 											clearable
 											name="altered_id"
 											onChange={this.setSelectInputValue}
 											options={this.state.alteredOptions}
-											placeholder="Altered Status">
+											placeholder={i18n.t("addPet.alteredStatus")}>
 										</Select>
 									</Form.Field>
 									<Form.Field>
-										<label>Status</label>
+										<label>{i18n.t("addPet.status")}</label>
 										<Select
 											fluid
 											clearable
 											name="status"
 											onChange={this.setSelectInputValue}
 											options={this.state.statusOptions}
-											placeholder="Status">
+											placeholder={i18n.t("addPet.status")}>
 										</Select>
 									</Form.Field>
 								</Form>
@@ -319,9 +319,9 @@ class AddPetForm extends Component {
 									<Segment placeholder>
 										<Header icon>
 											<Icon name='images' />
-											<h3>Upload Images</h3>
+											<h3>{i18n.t("addPet.upload")}</h3>
 										</Header>
-										<input type="file" onChange={this.fileSelectedHandler} />
+										<input type="file" onChange={this.fileSelectedHandler} multiple />
 										<List>
 											{this.state.selectedFiles.map((file) =>
 												<List.Item key={file.name} onClick={() => this.removeImage(file.name)}>{file.name} <Icon name='x' /></List.Item>
@@ -331,7 +331,7 @@ class AddPetForm extends Component {
 									<FormField style={{ paddingLeft: "60%" }}>
 										<Form.Button
 											style={{ width: "100%", }}
-											content="Next Tab"
+											content={i18n.t("addPet.next")}
 											onClick={this.handleRangeChange}
 											value={1}></Form.Button>
 									</FormField>
@@ -341,43 +341,43 @@ class AddPetForm extends Component {
 					</Tab.Pane>
 			},
 			{
-				menuItem: 'Pet Location', render: () =>
+				menuItem: i18n.t("addPet.petLocation"), render: () =>
 					<Tab.Pane>
 						<div className="formRow">
 							<div className="column-contact-form">
 								<Form className="contact-form" >
 									<Form.Field>
-										<label>Address (Optional)</label>
+										<label>{i18n.t("addPet.address")} {i18n.t("addPet.optional")}</label>
 										<input
 											name="address"
-											placeholder="Address 1"
+											placeholder={i18n.t("addPet.address")}
 											value={this.state.address ? this.state.address : ''}
 											onChange={e => this.setInputValue('address', e.target.value)}
 										/>
 									</Form.Field>
 									<Form.Field>
-										<label>State (Optional)</label>
+										<label>{i18n.t("addPet.state")} {i18n.t("addPet.optional")}</label>
 										<input
 											name="state"
-											placeholder="State"
+											placeholder={i18n.t("addPet.state")}
 											value={this.state.state ? this.state.state : ''}
 											onChange={e => this.setInputValue('state', e.target.value)}
 										/>
 									</Form.Field>
 									<Form.Field>
-										<label>City (Optional)</label>
+										<label>{i18n.t("addPet.city")} {i18n.t("addPet.optional")}</label>
 										<input
 											name="city"
-											placeholder="City"
+											placeholder={i18n.t("addPet.city")}
 											value={this.state.city ? this.state.city : ''}
 											onChange={e => this.setInputValue('city', e.target.value)}
 										/>
 									</Form.Field>
 									<Form.Field >
-										<label>Zip Code (Optional)</label>
+										<label>{i18n.t("addPet.zip")} {i18n.t("addPet.optional")}</label>
 										<input
 											name="zipcode"
-											placeholder="Zip Code"
+											placeholder={i18n.t("addPet.zip")}
 											value={this.state.zipcode ? this.state.zipcode : ''}
 											onChange={e => this.setInputValue('zipcode', e.target.value)}
 										/>
@@ -385,11 +385,11 @@ class AddPetForm extends Component {
 									<Form.Field style={{ paddingLeft: "70%" }}>
 										<Form.Button
 											style={{ width: "100%", }}
-											content="Next Tab"
+											content={i18n.t("addPet.next")}
 											onClick={this.handleRangeChange}
 											value={0}></Form.Button>
 									</Form.Field>
-									<Form.Button onClick={() => this.addPet()} style={{ background: "#17a3b8" }}>Add Pet</Form.Button>
+									<Form.Button onClick={() => this.addPet()} style={{ background: "#17a3b8" }}>{i18n.t("addPet.title")}</Form.Button>
 								</Form>
 							</div>
 						</div>
@@ -398,7 +398,7 @@ class AddPetForm extends Component {
 		]
 		return (
 			<div>
-				<h1 style={{ paddingTop: "60px" }}>Add Pet</h1>
+				<h1 style={{ paddingTop: "60px" }}>{i18n.t("addPet.title")}</h1>
 				<img className="add-pet-image" src={addPetBanner} alt="Add Pet Banner"></img>
 				<div className="message">
 					{this.state.errorMessage &&

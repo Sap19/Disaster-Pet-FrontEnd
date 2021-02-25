@@ -3,6 +3,7 @@ import SubmitButton from '../Component/SubmitButton/SubmitButton';
 import { Form, Message } from 'semantic-ui-react';
 import '../Assets/Css/LoginForm.css'
 import auth from "../Component/Auth/auth";
+import i18n from '../Component/i18n/i18n';
 
 class LoginForm extends React.Component {
 	constructor(props) {
@@ -99,25 +100,25 @@ class LoginForm extends React.Component {
 		return (
 			<div className="wrapper">
 				<div className="form-wrapper">
-					<h1>Log in</h1>
+					<h1>{i18n.t("login.login")}</h1>
 					{this.state.errorMessage &&
 						<Message className="error"> {this.state.errorMessage} </Message>}
 					<Form >
 						<Form.Field error={this.state.isEmailValid ? false : true}>
-							<label>Email</label>
+							<label>{i18n.t("login.email")}</label>
 							<input
 								name="email"
-								placeholder="Email"
+								placeholder={i18n.t("login.email")}
 								value={this.state.email ? this.state.email : ''}
 								onKeyDown={(event) => { if (event.key === "Enter") { this.doLogin() } }}
 								onChange={e => this.setInputValue('email', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field error={this.state.isPasswordValid ? false : true}>
-							<label>Password</label>
+							<label>{i18n.t("login.password")}</label>
 							<input
 								name="password"
-								placeholder="Password"
+								placeholder={i18n.t("login.password")}
 								type="password"
 								value={this.state.password ? this.state.password : ''}
 								onChange={e => this.setInputValue('password', e.target.value)}
@@ -126,12 +127,12 @@ class LoginForm extends React.Component {
 						</Form.Field>
 					</Form>
 					<SubmitButton
-						text='Log in'
+						text={i18n.t("login.login")}
 						disabled={this.state.buttonDisabled}
 						onClick={() => this.doLogin()}
 						className="createAccount"
 					/>
-					<a className="forgotPassword" href="/forgotPassword"><small>Forgot Password?</small></a>
+					<a className="forgotPassword" href="/forgotPassword"><small>{i18n.t("login.forgot")}</small></a>
 				</div>
 			</div>
 		);

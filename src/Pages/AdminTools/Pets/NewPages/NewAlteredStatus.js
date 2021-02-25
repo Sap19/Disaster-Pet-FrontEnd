@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Message, } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import i18n from '../../../../Component/i18n/i18n';
 
 export class NewAlteredStatus extends Component {
 
@@ -53,9 +54,9 @@ export class NewAlteredStatus extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<div style={{ paddingLeft: '2%' }}>
-					<Button className="backButton" href="/manageAlteredStatus"> &#8592; Back to Manage Altered Status </Button>
+					<Button className="backButton" href="/manageAlteredStatus"> &#8592; {i18n.t("manageAltered.back")} </Button>
 				</div>
-				<h2>New Altered Status</h2>
+				<h2>{i18n.t("manageAltered.add")}</h2>
 				<div className="message">
 					{this.state.errorMessage &&
 						<Message className="error"> {this.state.errorMessage} </Message>}
@@ -65,10 +66,10 @@ export class NewAlteredStatus extends Component {
 				<div style={{ paddingLeft: "35%", paddingRight: "35%" }}>
 					<Form>
 						<Form.Field >
-							<label>Altered Status Name</label>
+							<label>{i18n.t("manageAltered.alteredName")}</label>
 							<input
 								name="status"
-								placeholder="Altered Status Name"
+								placeholder={i18n.t("manageAltered.alteredName")}
 								value={this.state.status}
 								onChange={e => this.setInputValue('status', e.target.value)}
 							/>
@@ -76,7 +77,7 @@ export class NewAlteredStatus extends Component {
 						<Form.Field>
 							<Form.Button
 								style={{ width: "100%", }}
-								content="Add New Altered Status"
+								content={i18n.t("manageAltered.add")}
 								onClick={this.updateAlteredInfo.bind(this)}
 							//value={0}
 							>

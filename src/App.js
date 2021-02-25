@@ -36,8 +36,29 @@ import NewStatus from './Pages/AdminTools/Pets/NewPages/NewStatus'
 import NewRole from './Pages/AdminTools/User/NewPages/NewRole'
 import { ProtectedRoute } from "./Component/ProtectedRoutes/protected.route"
 import { AdminProtectedRoute } from "./Component/ProtectedRoutes/AdminProtected.route"
+import i18n from './Component/i18n/i18n';
 
 class App extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			lng: 'en'
+		}
+		this.onLanguageChanged = this.onLanguageChanged.bind(this)
+	}
+
+	componentDidMount() {
+		i18n.on('languageChanged', this.onLanguageChanged)
+	}
+
+	componentWillUnmount() {
+		i18n.off('languageChanged', this.onLanguageChanged)
+	}
+	onLanguageChanged(lng) {
+		this.setState({
+			lng: lng
+		})
+	}
 	render() {
 		return (
 			<React.Fragment>

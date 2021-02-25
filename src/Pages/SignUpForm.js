@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SubmitButton from '../Component/SubmitButton/SubmitButton';
 import '../Assets/Css/SignUpForm.css';
 import { Form, Message } from 'semantic-ui-react'
+import i18n from '../Component/i18n/i18n';
 
 export class SignUpForm extends Component {
 
@@ -110,51 +111,51 @@ export class SignUpForm extends Component {
 		return (
 			<div className="wrapper">
 				<div className="form-wrapper">
-					<h1>Sign Up</h1>
+					<h1>{i18n.t("signUp.signUp")}</h1>
 					{this.state.errorMessage &&
 						<Message className="error"> {this.state.errorMessage} </Message>}
 					<Form >
 						<Form.Field error={this.state.isEmailValid ? false : true}>
-							<label>Email</label>
+							<label>{i18n.t("signUp.email")}</label>
 							<input
 								name="email"
-								placeholder="Email"
+								placeholder={i18n.t("signUp.email")}
 								value={this.state.email ? this.state.email : ''}
 								onChange={e => this.setInputValue('email', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field error={this.state.isFNameValid ? false : true}>
-							<label>First Name</label>
+							<label>{i18n.t("signUp.firstN")}</label>
 							<input
 								name="first_name"
-								placeholder="First Name"
+								placeholder={i18n.t("signUp.firstN")}
 								value={this.state.first_name ? this.state.first_name : ''}
 								onChange={e => this.setInputValue('first_name', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field error={this.state.isLNameValid ? false : true}>
-							<label>Last Name</label>
+							<label>{i18n.t("signUp.lastN")}</label>
 							<input
 								name="last_name"
-								placeholder="Last Name"
+								placeholder={i18n.t("signUp.lastN")}
 								value={this.state.last_name ? this.state.last_name : ''}
 								onChange={e => this.setInputValue('last_name', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field error={this.state.isPhoneValid ? false : true}>
-							<label>Phone Number</label>
+							<label>{i18n.t("signUp.phone")}</label>
 							<input
 								name="phone"
-								placeholder="Phone Number"
+								placeholder={i18n.t("signUp.phone")}
 								value={this.state.phone ? this.state.phone : ''}
 								onChange={e => this.setInputValue('phone', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field error={this.state.isPasswordValid ? false : true}>
-							<label>Password</label>
+							<label>{i18n.t("signUp.password")}</label>
 							<input
 								name="password"
-								placeholder="Password"
+								placeholder={i18n.t("signUp.password")}
 								type="password"
 								value={this.state.password ? this.state.password : ''}
 								onChange={e => this.setInputValue('password', e.target.value)}
@@ -163,12 +164,12 @@ export class SignUpForm extends Component {
 					</Form>
 
 					<SubmitButton
-						text='Sign Up'
+						text={i18n.t("signUp.signUp")}
 						disabled={this.state.buttonDisabled}
 						onClick={() => this.signUp()}
 						className="createAccount"
 					/>
-					<a className="haveAccount" href="/login"><small>Already Have an Account?</small></a>
+					<a className="haveAccount" href="/login"><small>{i18n.t("signUp.alreadyHave")}</small></a>
 				</div>
 			</div>
 		)

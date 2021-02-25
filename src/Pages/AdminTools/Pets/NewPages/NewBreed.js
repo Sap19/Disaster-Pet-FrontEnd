@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Message, } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import i18n from '../../../../Component/i18n/i18n';
 
 export class NewBreed extends Component {
 
@@ -53,9 +54,9 @@ export class NewBreed extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<div style={{ paddingLeft: '2%' }}>
-					<Button className="backButton" href="/manageBreeds"> &#8592; Back to Manage Breeds </Button>
+					<Button className="backButton" href="/manageBreeds"> &#8592; {i18n.t("manageBreeds.back")} </Button>
 				</div>
-				<h2>New Breed </h2>
+				<h2>{i18n.t("manageBreeds.newBreed")} </h2>
 				<div className="message">
 					{this.state.errorMessage &&
 						<Message className="error"> {this.state.errorMessage} </Message>}
@@ -65,10 +66,10 @@ export class NewBreed extends Component {
 				<div style={{ paddingLeft: "35%", paddingRight: "35%" }}>
 					<Form>
 						<Form.Field >
-							<label>Breed Name</label>
+							<label>{i18n.t("manageBreeds.breedName")}</label>
 							<input
 								name="breed"
-								placeholder="Breed Name"
+								placeholder={i18n.t("manageBreeds.breedName")}
 								value={this.state.breed}
 								onChange={e => this.setInputValue('breed', e.target.value)}
 							/>
@@ -76,9 +77,8 @@ export class NewBreed extends Component {
 						<Form.Field>
 							<Form.Button
 								style={{ width: "100%", }}
-								content="Add New Breed"
+								content={i18n.t("manageBreeds.addBreed")}
 								onClick={this.newBreedInfo.bind(this)}
-							//value={0}
 							>
 							</Form.Button>
 						</Form.Field>

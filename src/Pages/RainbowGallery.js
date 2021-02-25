@@ -3,6 +3,7 @@ import '../Assets/Css/PetGallery.css'
 import { Dropdown, Card, Image, Loader } from 'semantic-ui-react'
 import Footer from "../Component/Footer/Footer"
 import rainbowPup from "../Assets/Images/RainbowBridgePup.jpg"
+import i18n from '../Component/i18n/i18n';
 
 export class RainbowGallery extends Component {
 
@@ -103,7 +104,7 @@ export class RainbowGallery extends Component {
 				<div className="row" >
 					<div className="column-petGallery">
 						<Dropdown
-							placeholder='Breed'
+							placeholder={i18n.t("rainbowGallery.breed")}
 							name="primary_breed"
 							fluid
 							multiple
@@ -115,7 +116,7 @@ export class RainbowGallery extends Component {
 					</div>
 					<div className="column-petGallery">
 						<Dropdown
-							placeholder='Coat Color'
+							placeholder={i18n.t("rainbowGallery.coat")}
 							name="color"
 							fluid
 							multiple
@@ -126,7 +127,7 @@ export class RainbowGallery extends Component {
 					</div>
 					<div className="column-petGallery">
 						<Dropdown
-							placeholder='Pet Type'
+							placeholder={i18n.t("rainbowGallery.petType")}
 							name="animal_type"
 							fluid
 							multiple
@@ -138,7 +139,7 @@ export class RainbowGallery extends Component {
 					</div>
 					<div className="column-petGallery">
 						<Dropdown
-							placeholder='AlterStatus'
+							placeholder={i18n.t("rainbowGallery.alterStatus")}
 							name="altered"
 							fluid
 							multiple
@@ -149,7 +150,7 @@ export class RainbowGallery extends Component {
 					</div>
 					<div className="column-petGallery">
 						<Dropdown
-							placeholder='Gender'
+							placeholder={i18n.t("rainbowGallery.gender")}
 							name="gender"
 							fluid
 							multiple
@@ -171,16 +172,16 @@ export class RainbowGallery extends Component {
 									<Card.Content>
 										<Card.Header>{pet.pet_name}</Card.Header>
 										<Card.Meta>
-											<span className='date'>Breed: {pet.primary_breed}</span>
+											<span className='date'>{i18n.t("rainbowGallery.breed")}: {pet.primary_breed}</span>
 										</Card.Meta>
 										<Card.Meta>
-											<span className='date'>Gender: {pet.gender}</span>
+											<span className='date'>{i18n.t("rainbowGallery.gender")}: {pet.gender}</span>
 										</Card.Meta>
 										<Card.Meta>
-											<span className='date'>Altered: {pet.altered_status}</span>
+											<span className='date'>{i18n.t("rainbowGallery.altered")}: {pet.altered_status}</span>
 										</Card.Meta>
 										<Card.Meta>
-											<span className='date'>Status: {pet.pet_status}</span>
+											<span className='date'>{i18n.t("rainbowGallery.status")}: {pet.pet_status}</span>
 										</Card.Meta>
 										<Card.Description>
 											{pet.animal_type}

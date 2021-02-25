@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Dropdown, Form, Message, Loader } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import i18n from '../../../../Component/i18n/i18n';
 
 export class UserEdit extends Component {
 
@@ -160,9 +161,9 @@ export class UserEdit extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<div style={{ paddingLeft: '2%' }}>
-					<Button className="backButton" href="/managePets"> &#8592; Back to Manage Pets </Button>
+					<Button className="backButton" href="/managePets"> &#8592; {i18n.t("managePets.back")} </Button>
 				</div>
-				<h2>Pet</h2>
+				<h2>{i18n.t("managePets.editTitle")}</h2>
 				<div className="message">
 					{this.state.errorMessage &&
 						<Message className="error"> {this.state.errorMessage} </Message>}
@@ -173,19 +174,19 @@ export class UserEdit extends Component {
 					{this.state.loaded ? <Loader active /> :
 						<Form>
 							<Form.Field >
-								<label>Name</label>
+								<label>{i18n.t("managePets.name")}</label>
 								<input
-									placeholder="Name"
+									placeholder={i18n.t("managePets.name")}
 									name="pet_name"
 									value={this.state.pet_name}
 									onChange={e => this.setInputValue('pet_name', e.target.value)}
 								/>
 							</Form.Field>
 							<Form.Field>
-								<label>Animal Type</label>
+								<label>{i18n.t("managePets.animalType")}</label>
 								{this.state.animal_type !== '' ?
 									<Dropdown
-										placeholder='Animal Type'
+										placeholder={i18n.t("managePets.animalType")}
 										name="animal_type"
 										fluid
 										defaultValue={this.state.animal_type}
@@ -196,10 +197,10 @@ export class UserEdit extends Component {
 									<div></div>}
 							</Form.Field>
 							<Form.Field>
-								<label>Gender</label>
+								<label>{i18n.t("managePets.gender")}</label>
 								{this.state.gender !== '' ?
 									<Dropdown
-										placeholder='Gender'
+										placeholder={i18n.t("managePets.gender")}
 										name="gender"
 										fluid
 										defaultValue={this.state.gender}
@@ -210,10 +211,10 @@ export class UserEdit extends Component {
 									<div></div>}
 							</Form.Field>
 							<Form.Field>
-								<label>Status</label>
+								<label>{i18n.t("managePets.status")}</label>
 								{this.state.pet_status !== '' ?
 									<Dropdown
-										placeholder='Status'
+										placeholder={i18n.t("managePets.status")}
 										name="pet_status"
 										fluid
 										defaultValue={this.state.pet_status}
@@ -224,10 +225,10 @@ export class UserEdit extends Component {
 									<div></div>}
 							</Form.Field>
 							<Form.Field>
-								<label>Primary Breed</label>
+								<label>{i18n.t("managePets.primary")}</label>
 								{this.state.primary_breed !== '' ?
 									<Dropdown
-										placeholder='Primary Breed'
+										placeholder={i18n.t("managePets.primary")}
 										name="primary_breed"
 										fluid
 										defaultValue={this.state.primary_breed}
@@ -238,10 +239,10 @@ export class UserEdit extends Component {
 									<div></div>}
 							</Form.Field>
 							<Form.Field>
-								<label>Secondary Breed</label>
+								<label>{i18n.t("managePets.secondary")}</label>
 								{this.state.secondary_breed !== '' ?
 									<Dropdown
-										placeholder='Secondary Breed'
+										placeholder={i18n.t("managePets.secondary")}
 										name="secondary_breed"
 										fluid
 										defaultValue={this.state.secondary_breed}
@@ -252,10 +253,10 @@ export class UserEdit extends Component {
 									<div></div>}
 							</Form.Field>
 							<Form.Field>
-								<label>Altered Status</label>
+								<label>{i18n.t("managePets.altered")}</label>
 								{this.state.altered_status !== '' ?
 									<Dropdown
-										placeholder='Altered Status'
+										placeholder={i18n.t("managePets.altered")}
 										name="altered_status"
 										fluid
 										defaultValue={this.state.altered_status}
@@ -268,9 +269,8 @@ export class UserEdit extends Component {
 							<Form.Field>
 								<Form.Button
 									style={{ width: "100%", }}
-									content="Edit"
+									content={i18n.t("managePets.edit")}
 									onClick={this.updatePetInfo.bind(this)}
-								//value={0}
 								>
 								</Form.Button>
 							</Form.Field>

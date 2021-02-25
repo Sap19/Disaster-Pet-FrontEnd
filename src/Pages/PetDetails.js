@@ -3,7 +3,7 @@ import { Button,Image, Modal } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import '../Assets/Css/PetDetails.css'
 import Footer from "../Component/Footer/Footer"
-
+import i18n from '../Component/i18n/i18n';
 
 function PetDetails({ match }) {
 	useEffect(() => {
@@ -43,6 +43,7 @@ function PetDetails({ match }) {
 		const pet = await fetchPet.json();
 		pet.pets[0].date_created = pet.pets[0].date_created.slice(0, 16)
 		setPet(pet.pets[0])
+		console.log(pet.pets[0])
 		pet.images.map((image, i) => {
 			petImagesArray.push(image[0])
 		})
@@ -70,31 +71,31 @@ function PetDetails({ match }) {
 						<h2 style={{ textAlign: "left", display: 'inline' }}>{pet.id}</h2>
 					</div>
 					<div>
-					<h1 style={{ textAlign: "left", display: 'inline' }}>Gender: </h1>
+					<h1 style={{ textAlign: "left", display: 'inline' }}>{i18n.t("managePets.gender")}: </h1>
 					<h2 style={{ textAlign: "left", display: 'inline' }}>{pet.gender}</h2>
 					</div>
 					<div>
-					<h1 style={{ textAlign: "left", display: 'inline' }}>Primary Breed: </h1>
+					<h1 style={{ textAlign: "left", display: 'inline' }}>{i18n.t("managePets.primary")}: </h1>
 					<h2 style={{ textAlign: "left", display: 'inline' }}>{pet.primary_breed}</h2>
 					</div>
 					<div>
-					<h1 style={{ textAlign: "left", display: 'inline' }}>Secondary Breed: </h1>
+					<h1 style={{ textAlign: "left", display: 'inline' }}>{i18n.t("managePets.secondary")}: </h1>
 					<h2 style={{ textAlign: "left", display: 'inline' }}>{pet.secondary_breed}</h2>
 					</div>
 					<div>
-					<h1 style={{ textAlign: "left", display: 'inline' }}>Status: </h1>
+					<h1 style={{ textAlign: "left", display: 'inline' }}>{i18n.t("managePets.status")}: </h1>
 					<h2 style={{ textAlign: "left", display: 'inline' }}>{pet.pet_status}</h2>
 					</div>
 					<div>
-					<h1 style={{ textAlign: "left", display: 'inline' }}>Altered Status: </h1>
+					<h1 style={{ textAlign: "left", display: 'inline' }}>{i18n.t("managePets.altered")}: </h1>
 					<h2 style={{ textAlign: "left", display: 'inline' }}>{pet.altered_status}</h2>
 					</div>
 					<div>
-					<h1 style={{ textAlign: "left", display: 'inline' }}>Animal Type: </h1>
+					<h1 style={{ textAlign: "left", display: 'inline' }}>{i18n.t("managePets.animalType")}: </h1>
 					<h2 style={{ textAlign: "left", display: 'inline' }}>{pet.animal_type}</h2>
 					</div>
 					<div>
-					<h1 style={{ textAlign: "left", display: 'inline' }}>Date Added: </h1>
+					<h1 style={{ textAlign: "left", display: 'inline' }}>{i18n.t("managePets.dateAdded")}: </h1>
 					<h2 style={{ textAlign: "left", display: 'inline' }}>{pet.date_created}</h2>
 					</div>
 				</div>

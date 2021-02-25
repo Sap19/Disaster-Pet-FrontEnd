@@ -1,36 +1,37 @@
 import React, { Component } from 'react'
+import i18n from '../Component/i18n/i18n';
 
 export class AdminTools extends Component {
     render() {
         return (
             <div style={{paddingTop: "60px"}}>
 				<div style={{paddingRight: "20%", paddingLeft: "20%", paddingTop: '1%'}}>
-					<h1 style={{border:"1px solid",borderRadius: "16px" }}>AdminTools</h1>
+					<h1 style={{border:"1px solid",borderRadius: "16px" }}>{i18n.t("adminTools.title")}</h1>
 				</div>
                 <div className="row" style={{paddingLeft:'15%'}}>
                     <div className="column" >
-                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>Users</h2>
-                        <a href="/manageUsers">Manage Users</a> 
+                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>{i18n.t("adminTools.users")}</h2>
+                        <a href="/manageUsers">{i18n.t("adminTools.manageUsers")}</a> 
 						<br/>
-						<a href="/manageRoles">Manage Roles</a> 
+						<a href="/manageRoles">{i18n.t("adminTools.manageRoles")}</a> 
                     </div>
                     <div className="column" >
-                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>Disaster</h2>
-						<a href="/">Manage Disasters</a>
+                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>{i18n.t("adminTools.disaster")}</h2>
+						<a href="/">{i18n.t("adminTools.manageDisasters")}</a>
                     </div>
                     <div className="column" >
-                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>Pets</h2>
-                        <a href="/managePets">Manage Pets</a>
+                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>{i18n.t("adminTools.pets")}</h2>
+                        <a href="/managePets">{i18n.t("adminTools.managePets")}</a>
 						<br/>
-						<a href="/manageBreeds">Manage Breeds</a>
+						<a href="/manageBreeds">{i18n.t("adminTools.manageBreeds")}</a>
 						<br/>
-						<a href="/manageAnimalTypes">Manage Animal Types</a>
+						<a href="/manageAnimalTypes">{i18n.t("adminTools.manageAnimalT")}</a>
 						<br/>
-						<a href="/manageGenders">Manage Genders</a>
+						<a href="/manageGenders">{i18n.t("adminTools.manageGender")}</a>
 						<br/>
-						<a href="/manageStatus">Manage Status</a>
+						<a href="/manageStatus">{i18n.t("adminTools.manageStatus")}</a>
 						<br/>
-						<a href="/manageAlteredStatus">Manage Altered Status</a>
+						<a href="/manageAlteredStatus">{i18n.t("adminTools.manageAltered")}</a>
                     </div>
                 </div>
             </div>

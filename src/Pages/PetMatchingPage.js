@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Dropdown, Card, Image, Form, Input, Loader } from 'semantic-ui-react'
 import "../Assets/Css/PetMatchingPage.css"
-
+import i18n from '../Component/i18n/i18n';
 
 export class PetMatching extends Component {
 	constructor(props) {
@@ -155,7 +155,7 @@ export class PetMatching extends Component {
 		)
 		return (
 			<div style={{ paddingTop: "60px" }}>
-				<h1>Pet Matching</h1>
+				<h1>{i18n.t("matchPet.title")}</h1>
 				<div className="row">
 					<div className="sidenav">
 						<Form.Field style={{ padding: "10px" }}>
@@ -165,12 +165,12 @@ export class PetMatching extends Component {
 								name="searchRight"
 								value={this.state.searchRight}
 								onChange={this.handleSearchChange.bind(this)}
-								placeholder="Pet ID Search"
+								placeholder={i18n.t("matchPet.search")}
 							/>
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='Gender'
+								placeholder={i18n.t("matchPet.gender")}
 								name="gender"
 								fluid
 								search
@@ -182,7 +182,7 @@ export class PetMatching extends Component {
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='AlterStatus'
+								placeholder={i18n.t("matchPet.alterStatus")}
 								name="altered_status"
 								fluid
 								clearable
@@ -194,7 +194,7 @@ export class PetMatching extends Component {
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='Pet Type'
+								placeholder={i18n.t("matchPet.petType")}
 								name="animal_type"
 								fluid
 								clearable
@@ -206,7 +206,7 @@ export class PetMatching extends Component {
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='Coat Color'
+								placeholder={i18n.t("matchPet.coat")}
 								name="coat_color"
 								fluid
 								clearable
@@ -218,7 +218,7 @@ export class PetMatching extends Component {
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='Breed'
+								placeholder={i18n.t("matchPet.breed")}
 								name="primary_breed"
 								fluid
 								clearable
@@ -232,7 +232,7 @@ export class PetMatching extends Component {
 							<Form.Button
 								style={{ width: "100%", }}
 								name="RightPets"
-								content="Reset Search"
+								content={i18n.t("matchPet.reset")}
 								onClick={this.resetSearch.bind(this)}
 							></Form.Button>
 						</Form.Field>
@@ -245,12 +245,12 @@ export class PetMatching extends Component {
 								name="searchLeft"
 								value={this.state.searchLeft}
 								onChange={this.handleSearchChange.bind(this)}
-								placeholder="Pet ID Search"
+								placeholder={i18n.t("matchPet.search")}
 							/>
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='Gender'
+								placeholder={i18n.t("matchPet.gender")}
 								name="gender"
 								fluid
 								search
@@ -262,7 +262,7 @@ export class PetMatching extends Component {
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='AlterStatus'
+								placeholder={i18n.t("matchPet.alterStatus")}
 								name="altered_status"
 								fluid
 								clearable
@@ -274,7 +274,7 @@ export class PetMatching extends Component {
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='Pet Type'
+								placeholder={i18n.t("matchPet.petType")}
 								name="animal_type"
 								fluid
 								clearable
@@ -286,7 +286,7 @@ export class PetMatching extends Component {
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='Coat Color'
+								placeholder={i18n.t("matchPet.coat")}
 								name="coat_color"
 								fluid
 								clearable
@@ -298,7 +298,7 @@ export class PetMatching extends Component {
 						</Form.Field>
 						<Form.Field style={{ padding: "10px" }}>
 							<Dropdown
-								placeholder='Breed'
+								placeholder={i18n.t("matchPet.breed")}
 								name="primary_breed"
 								fluid
 								clearable
@@ -312,7 +312,7 @@ export class PetMatching extends Component {
 							<Form.Button
 								style={{ width: "100%", }}
 								name="LeftPets"
-								content="Reset Search"
+								content={i18n.t("matchPet.reset")}
 								onClick={this.resetSearch.bind(this)}
 							></Form.Button>
 						</Form.Field>
@@ -328,16 +328,16 @@ export class PetMatching extends Component {
 										<Card.Content name="LeftPets" value={pet.pet_id}>
 											<Card.Header name="LeftPets" value={pet.pet_id}>{pet.pet_name}</Card.Header>
 											<Card.Meta name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>Breed: {pet.primary_breed}</span>
+												<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
 											</Card.Meta>
 											<Card.Meta name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>Gender: {pet.gender}</span>
+												<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
 											</Card.Meta>
 											<Card.Meta name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>Altered: {pet.altered_status}</span>
+												<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
 											</Card.Meta>
 											<Card.Meta name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>Status: {pet.pet_status}</span>
+												<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
 											</Card.Meta>
 											<Card.Description name="LeftPets" value={pet.pet_id}>
 												{pet.animal_type}
@@ -365,16 +365,16 @@ export class PetMatching extends Component {
 										<Card.Content value={pet.pet_id}>
 											<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
 											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>Breed: {pet.primary_breed}</span>
+												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
 											</Card.Meta>
 											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>Gender: {pet.gender}</span>
+												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
 											</Card.Meta>
 											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>Altered: {pet.altered_status}</span>
+												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
 											</Card.Meta>
 											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>Status: {pet.pet_status}</span>
+												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
 											</Card.Meta>
 											<Card.Description value={pet.pet_id}>
 												{pet.animal_type}
@@ -392,16 +392,16 @@ export class PetMatching extends Component {
 										<Card.Content>
 											<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
 											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>Breed: {pet.primary_breed}</span>
+												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
 											</Card.Meta>
 											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>Gender: {pet.gender}</span>
+												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
 											</Card.Meta>
 											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>Altered: {pet.altered_status}</span>
+												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
 											</Card.Meta>
 											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>Status: {pet.pet_status}</span>
+												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
 											</Card.Meta>
 											<Card.Description value={pet.pet_id}>
 												{pet.animal_type}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Message, } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import i18n from '../../../../Component/i18n/i18n';
 
 export class NewRole extends Component {
 
@@ -53,9 +54,9 @@ export class NewRole extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<div style={{ paddingLeft: '2%' }}>
-					<Button className="backButton" href="/manageRoles"> &#8592; Back to Manage Roles </Button>
+					<Button className="backButton" href="/manageRoles"> &#8592; {i18n.t("manageRoles.back")} </Button>
 				</div>
-				<h2>New Role</h2>
+				<h2>{i18n.t("manageRoles.addTitle")}</h2>
 				<div className="message">
 					{this.state.errorMessage &&
 						<Message className="error"> {this.state.errorMessage} </Message>}
@@ -65,10 +66,10 @@ export class NewRole extends Component {
 				<div style={{ paddingLeft: "35%", paddingRight: "35%" }}>
 					<Form>
 						<Form.Field >
-							<label>Role Name</label>
+							<label>{i18n.t("manageRoles.roleName")}</label>
 							<input
 								name="role_name"
-								placeholder="Role Name"
+								placeholder={i18n.t("manageRoles.roleName")}
 								value={this.state.role_name}
 								onChange={e => this.setInputValue('role_name', e.target.value)}
 							/>
@@ -76,7 +77,7 @@ export class NewRole extends Component {
 						<Form.Field>
 							<Form.Button
 								style={{ width: "100%", }}
-								content="Add New Role"
+								content={i18n.t("manageRoles.addRole")}
 								onClick={this.updateRoleInfo.bind(this)}
 							//value={0}
 							>

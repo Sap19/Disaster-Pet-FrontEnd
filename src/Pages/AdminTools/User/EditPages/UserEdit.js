@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Dropdown, Form, Message, } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
-
+import i18n from '../../../../Component/i18n/i18n';
 export class UserEdit extends Component {
 
 	constructor(props) {
@@ -110,9 +110,9 @@ export class UserEdit extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<div style={{ paddingLeft: '2%' }}>
-					<Button className="backButton" href="/manageUsers"> &#8592; Back to Manage Users </Button>
+					<Button className="backButton" href="/manageUsers"> &#8592; {i18n.t("manageUsers.back")} </Button>
 				</div>
-				<h2>User</h2>
+				<h2>{i18n.t("manageUsers.edit")}</h2>
 				<div className="message">
 					{this.state.errorMessage &&
 						<Message className="error"> {this.state.errorMessage} </Message>}
@@ -122,55 +122,55 @@ export class UserEdit extends Component {
 				<div style={{ paddingLeft: "35%", paddingRight: "35%" }}>
 					<Form>
 						<Form.Field >
-							<label>Email</label>
+							<label>{i18n.t("manageUsers.email")}</label>
 							<input
 								name="email"
-								placeholder="Email"
+								placeholder={i18n.t("manageUsers.email")}
 								value={this.state.email}
 								onChange={e => this.setInputValue('email', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field>
-							<label>First Name</label>
+							<label>{i18n.t("manageUsers.fName")}</label>
 							<input
 								name="fname"
-								placeholder="First Name"
+								placeholder={i18n.t("manageUsers.fName")}
 								value={this.state.fname}
 								onChange={e => this.setInputValue('fname', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field >
-							<label>Last Name</label>
+							<label>{i18n.t("manageUsers.lName")}</label>
 							<input
 								name="lname"
-								placeholder="Last Name"
+								placeholder={i18n.t("manageUsers.lName")}
 								value={this.state.lname}
 								onChange={e => this.setInputValue('lname', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field >
-							<label>Phone Number 1</label>
+							<label>{i18n.t("manageUsers.phone")}1</label>
 							<input
 								name="phone"
-								placeholder="Phone Number"
+								placeholder={i18n.t("manageUsers.phone")}
 								value={this.state.phone}
 								onChange={e => this.setInputValue('phone', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field >
-							<label>Phone Number 2</label>
+							<label>{i18n.t("manageUsers.phone")}2</label>
 							<input
 								name="phone2"
-								placeholder="Phone Number"
+								placeholder={i18n.t("manageUsers.phone")}
 								value={this.state.phone2}
 								onChange={e => this.setInputValue('phone2', e.target.value)}
 							/>
 						</Form.Field>
 						<Form.Field>
-						<label>Role</label>
+						<label>{i18n.t("manageUsers.role")}</label>
 						{this.state.role !== '' ?
 							<Dropdown
-								placeholder='Role'
+								placeholder={i18n.t("manageUsers.role")}
 								name="role"
 								fluid
 								defaultValue={this.state.role}
@@ -183,7 +183,7 @@ export class UserEdit extends Component {
 						<Form.Field>
 							<Form.Button
 								style={{ width: "100%", }}
-								content="Edit"
+								content={i18n.t("manageUsers.edit")}
 								onClick={this.updateUserInfo.bind(this)}
 							//value={0}
 							>

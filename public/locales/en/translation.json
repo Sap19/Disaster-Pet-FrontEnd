@@ -1,7 +1,219 @@
 {
-	"title": "Welcome to react using react-i18next",
-	"description": {
-	  "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-	  "part2": "Switch language between english and german using buttons above."
+	"landingPage": {
+		"mission": "Our Mission",
+		"aboutUs": "About Us",
+		"petGallery": "Pet Gallery",
+		"howTo": " How To",
+		"learnMore": "Learn More"
+	},
+	"footer" : {
+		"petDisaster": "Pet Disaster",
+		"contact": "Contact",
+		"email": "Email",
+		"phone": "Phone",
+		"fax": "Fax",
+		"needHelp": "Need Help? Check Out These Links",
+		"HowtoView": "How To View Pet Gallery",
+		"HowtoReportL": "How to Report Lost Pet",
+		"HowtoReportF": "How to Report Found Pet"
+	},
+	"navBar" : {
+		"DisasterPets": "Disaster Pets",
+		"dashboard": "Dashboard",
+		"home": "Home",
+		"petGallery": "Pet Gallery",
+		"rainbow": "Rainbow Gallery",
+		"howTo": "How To",
+		"addPet": "Add Pet",
+		"matchPet": "Match Pets",
+		"admin": "Admin Tools",
+		"logout": "Logout",
+		"login": "Login",
+		"signup": "Sign Up"
+	},
+	"login": {
+		"login": "Login",
+		"email": "Email",
+		"password": "Password",
+		"forgot": "Forgot Password?"
+	},
+	"signUp": {
+		"signUp": "Signup", 
+		"email": "Email", 
+		"firstN": "First Name", 
+		"lastN": "Last Name", 
+		"phone": "Phone Number", 
+		"password": "Password", 
+		"alreadyHave": "Already Have an Account?"
+	},
+	"petGallery": {
+		"title": "Pet Gallery",
+		"breed": "Breed",
+		"coat": "Coat Color",
+		"petType": "Pet Type",
+		"alterStatus": "Alter Status",
+		"gender": "Gender",
+		"altered": "Altered",
+		"status": "Status"
+	},
+	"rainbowGallery": {
+		"title": "Pet Gallery",
+		"breed": "Breed",
+		"coat": "Coat Color",
+		"petType": "Pet Type",
+		"alterStatus": "Alter Status",
+		"gender": "Gender",
+		"altered": "Altered",
+		"status": "Status"
+	},
+	"dashboard": {
+		"title": "Dashboard",
+		"myPets": "My Pets",
+		"breed": "Breed",
+		"gender": "Gender",
+		"altered": "Altered",
+		"status": "Status"
+	},
+	"addPet": {
+		"petName": "Pet Name",
+		"animalType": "Animal Type",
+		"primary": "Primary Breed",
+		"secondary": "Secondary Breed",
+		"gender": "Gender",
+		"alteredStatus": "Altered Status",
+		"status": "Status",
+		"upload": "Upload Images",
+		"chooseFile": "Choose File",
+		"noFile": "No File Chosen",
+		"next": "Next Tab",
+		"address": "Address",
+		"state": "State",
+		"city": "City",
+		"zip": "Zip Code",
+		"title": "Add Pet",
+		"animalInfo": "Animal Information",
+		"petLocation": "Pet Location",
+		"optional": "(Optional)"
+	},
+	"matchPet": {
+		"title": "Pet Matching",
+		"breed": "Breed",
+		"search": "Pet ID Search",
+		"gender": "Gender",
+		"altered": "Altered",
+		"status": "Status",
+		"alterStatus": "Alter Status",
+		"petType": "Pet Type",
+		"coat": "Coat Color",
+		"reset": "Reset Search"
+	},
+	"adminTools": {
+		"title": "Admin Tools",
+		"users": "Users",
+		"manageUsers": "Manage Users",
+		"manageRoles": "Manage Roles",
+		"disaster": "Disaster",
+		"manageDisasters": "Manage Disasters",
+		"pets": "Pets",
+		"managePets": "Manage Pets",
+		"manageBreeds": "Manage Breeds",
+		"manageAnimalT": "Manage Animal Types",
+		"manageGender": "Manage Genders",
+		"manageStatus": "Manage Status",
+		"manageAltered": "Manage Altered Status",
+		"backToAdmin": "Back to Admin Tools"
+	},
+	"manageUsers": {
+		"name": "Name",
+		"email": "Email",
+		"role": "Role",
+		"search": "Search",
+		"title": "Manage Users",
+		"fName": "First Name",
+		"lName": "Last Name",
+		"phone": "Phone Number",
+		"edit": "Edit",
+		"back": "Back to Manage Users"
+	},
+	"manageRoles": {
+		"title": "Manage Roles",
+		"search": "Search",
+		"name": "Name",
+		"addRole": "Add New Role",
+		"roleName": "Role Name",
+		"editTitle": "Role Edit",
+		"addTitle": "New Role",
+		"back": "Back to Manage Roles",
+		"edit": "Edit"
+	},
+	"managePets": {
+		"title": "Manage Pets",
+		"search": "Search",
+		"name": "Name",
+		"animalType": "Animal Type",
+		"gender": "Gender",
+		"status": "Status",
+		"primary": "Primary Breed",
+		"secondary": "Secondary Breed",
+		"altered": "Altered Status",
+		"dateAdded": "Date Added",
+		"editTitle": "Pet Edit",
+		"edit": "Edit Pet",
+		"back": "Back to Manage Pets"
+	},
+	"manageBreeds": {
+		"title": "Manage Breeds",
+		"search": "Search",
+		"name": "Name",
+		"addBreed": "Add New Breed",
+		"breedName": "Breed Name",
+		"newBreed": "New Breed",
+		"back": "Back to Manage Breeds",
+		"editTitle": "Breed Edit",
+		"edit":"Edit Breed"
+	},
+	"manageAnimalTypes": {
+		"title": "Manage Animal Types",
+		"search": "Search",
+		"name": "Name",
+		"addAnimalType": "Add New Animal Type",
+		"addtitle": "New Animal Type",
+		"animalTypeName": "Animal Type Name",
+		"back": "Back to Manage Animal Types",
+		"editTitle": "Animal Type Edit",
+		"edit": "Edit Animal Type"
+	},
+	"manageGenders": {
+		"title": "Manage Genders",
+		"search": "Search",
+		"name": "Name",
+		"add": "Add New Gender",
+		"genderName": "Gender Name",
+		"addTitle": "New Gender",
+		"back": "Back To Manage Genders",
+		"editTitle":"Gender Edit",
+		"edit": "Edit Gender"
+	},
+	"manageStatus": {
+		"title": "Manage Status",
+		"search": "Search",
+		"name": "Name",
+		"add": "Add New Status",
+		"statusName": "Status Name",
+		"addTitle": "New Status",
+		"back": "Back To Manage Status",
+		"editTitle": "Status Edit",
+		"edit": "Edit Status"
+	},
+	"manageAltered": {
+		"title": "Manage Altered Status",
+		"name": "Name",
+		"search": "Search",
+		"add": "Add New Status",
+		"addTitle": "New Altered Status",
+		"alteredName": "Altered Status Name",
+		"back": "Back To Manage Altered Status",
+		"editTitle": "Edit Altered Status",
+		"edit": "Edit Altered Status"
 	}
-  }
+}

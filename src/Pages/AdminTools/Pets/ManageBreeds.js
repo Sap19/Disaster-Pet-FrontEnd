@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Dropdown, Form, Input, Table, Loader } from 'semantic-ui-react'
 import '../../../Assets/Css/AdminTools/ManageUsers.css'
 import { Link } from "react-router-dom"
+import i18n from '../../../Component/i18n/i18n';
 
 export class ManageBreed extends Component {
 	constructor(props) {
@@ -72,10 +73,10 @@ export class ManageBreed extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<div style={{ paddingLeft: '2%' }}>
-					<Button className="backButton" href="/adminTools"> &#8592; Back to Admin Tools </Button>
+					<Button className="backButton" href="/adminTools"> &#8592; {i18n.t("adminTools.backToAdmin")} </Button>
 				</div>
 				<div style={{ paddingRight: "20%", paddingLeft: "20%", paddingTop: '1%' }}>
-					<h1 style={{ border: "1px solid", borderRadius: "16px" }}>Manage Breeds</h1>
+					<h1 style={{ border: "1px solid", borderRadius: "16px" }}>{i18n.t("manageBreeds.title")}</h1>
 				</div>
 				<div style={{ paddingLeft: "5%", paddingRight: "5%", paddingTop: "3%" }}>
 					<div classname="row">
@@ -85,7 +86,7 @@ export class ManageBreed extends Component {
 								name="search"
 								value={this.state.search}
 								onChange={this.handleSearchChange.bind(this)}
-								placeholder="Search"
+								placeholder={i18n.t("manageBreeds.search")}
 							/>
 						</Form.Field>
 						<Form.Field className="optionColumn">
@@ -101,7 +102,7 @@ export class ManageBreed extends Component {
 						</Form.Field>
 						<Form.Field className="optionColumn" style={{paddingLeft: "1%"}}>
 							<Form.Button
-								content="Add New Breed"
+								content={i18n.t("manageBreeds.addBreed")}
 								color="green"
 								onClick={() => this.changeRoute()}
 							//value={0}
@@ -114,7 +115,7 @@ export class ManageBreed extends Component {
 							<Table.Header>
 								<Table.Row>
 									<Table.HeaderCell>ID</Table.HeaderCell>
-									<Table.HeaderCell>Name</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("manageBreeds.name")}</Table.HeaderCell>
 								</Table.Row>
 							</Table.Header>
 

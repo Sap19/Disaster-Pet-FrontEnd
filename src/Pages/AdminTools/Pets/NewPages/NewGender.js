@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Message, } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import i18n from '../../../../Component/i18n/i18n';
 
 export class NewGender extends Component {
 
@@ -53,9 +54,9 @@ export class NewGender extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<div style={{ paddingLeft: '2%' }}>
-					<Button className="backButton" href="/manageGenders"> &#8592; Back to Manage Genders </Button>
+					<Button className="backButton" href="/manageGenders"> &#8592; {i18n.t("manageGenders.back")} </Button>
 				</div>
-				<h2>New Gender </h2>
+				<h2>{i18n.t("manageGenders.addTitle")} </h2>
 				<div className="message">
 					{this.state.errorMessage &&
 						<Message className="error"> {this.state.errorMessage} </Message>}
@@ -65,10 +66,10 @@ export class NewGender extends Component {
 				<div style={{ paddingLeft: "35%", paddingRight: "35%" }}>
 					<Form>
 						<Form.Field >
-							<label>Gender Name</label>
+							<label>{i18n.t("manageGenders.genderName")}</label>
 							<input
 								name="gender"
-								placeholder="Gender Name"
+								placeholder={i18n.t("manageGenders.genderName")}
 								value={this.state.gender}
 								onChange={e => this.setInputValue('gender', e.target.value)}
 							/>
@@ -76,9 +77,8 @@ export class NewGender extends Component {
 						<Form.Field>
 							<Form.Button
 								style={{ width: "100%", }}
-								content="Add New Gender"
+								content={i18n.t("manageGenders.add")}
 								onClick={this.updateGenderInfo.bind(this)}
-							//value={0}
 							>
 							</Form.Button>
 						</Form.Field>

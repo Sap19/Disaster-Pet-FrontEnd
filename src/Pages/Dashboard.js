@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, Image, Loader } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import Footer from "../Component/Footer/Footer"
+import i18n from '../Component/i18n/i18n';
 
 export class Dashboard extends Component {
     constructor(props) {
@@ -40,9 +41,9 @@ export class Dashboard extends Component {
     render() {
         return (
             <div style={{paddingTop: "60px"}}>
-                <h1>Dashboard</h1>
+                <h1>{i18n.t("dashboard.title")}</h1>
                 <div>
-                    <h2 style={{textAlign: "left", padding: "1%"}}>My Pets</h2>
+                    <h2 style={{textAlign: "left", padding: "1%"}}>{i18n.t("dashboard.myPets")}</h2>
                 </div>
 				<div className="row" >
 				{this.state.loaded ?
@@ -56,16 +57,16 @@ export class Dashboard extends Component {
 								<Card.Content>
 									<Card.Header>{pet[0].pet_name}</Card.Header>
 									<Card.Meta>
-										<span className='date'>Breed: {pet[0].primary_breed}</span>
+										<span className='date'>{i18n.t("dashboard.myPets")}: {pet[0].primary_breed}</span>
 									</Card.Meta>
 									<Card.Meta>
-										<span className='date'>Gender: {pet[0].gender}</span>
+										<span className='date'>{i18n.t("dashboard.gender")}: {pet[0].gender}</span>
 									</Card.Meta>
 									<Card.Meta>
-										<span className='date'>Altered: {pet[0].altered_status}</span>
+										<span className='date'>{i18n.t("dashboard.altered")}: {pet[0].altered_status}</span>
 									</Card.Meta>
 									<Card.Meta>
-										<span className='date'>Status: {pet[0].pet_status}</span>
+										<span className='date'>{i18n.t("dashboard.status")}: {pet[0].pet_status}</span>
 									</Card.Meta>
 									<Card.Description>
 										{pet[0].animal_type}

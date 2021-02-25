@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Dropdown, Form, Input, Table, Loader } from 'semantic-ui-react'
 import '../../../Assets/Css/AdminTools/ManageUsers.css'
 import { Link } from "react-router-dom"
+import i18n from '../../../Component/i18n/i18n';
 
 export class ManagePets extends Component {
 	constructor(props) {
@@ -67,10 +68,10 @@ export class ManagePets extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<div style={{ paddingLeft: '2%' }}>
-					<Button className="backButton" href="/adminTools"> &#8592; Back to Admin Tools </Button>
+					<Button className="backButton" href="/adminTools"> &#8592; {i18n.t("adminTools.backToAdmin")} </Button>
 				</div>
 				<div style={{ paddingRight: "20%", paddingLeft: "20%", paddingTop: '1%' }}>
-					<h1 style={{ border: "1px solid", borderRadius: "16px" }}>Manage Pets</h1>
+					<h1 style={{ border: "1px solid", borderRadius: "16px" }}>{i18n.t("managePets.title")}</h1>
 				</div>
 				<div style={{ paddingLeft: "5%", paddingRight: "5%", paddingTop: "3%" }}>
 					<div classname="row">
@@ -80,7 +81,7 @@ export class ManagePets extends Component {
 								name="search"
 								value={this.state.search}
 								onChange={this.handleSearchChange.bind(this)}
-								placeholder="Search"
+								placeholder={i18n.t("managePets.search")}
 							/>
 						</Form.Field>
 						<Form.Field className="optionColumn">
@@ -100,14 +101,14 @@ export class ManagePets extends Component {
 							<Table.Header>
 								<Table.Row>
 									<Table.HeaderCell>ID</Table.HeaderCell>
-									<Table.HeaderCell>Name</Table.HeaderCell>
-									<Table.HeaderCell>Animal Type</Table.HeaderCell>
-									<Table.HeaderCell>Gender</Table.HeaderCell>
-									<Table.HeaderCell>Status</Table.HeaderCell>
-									<Table.HeaderCell>Primary Breed</Table.HeaderCell>
-									<Table.HeaderCell>Secondary Breed</Table.HeaderCell>
-									<Table.HeaderCell>Altered Status</Table.HeaderCell>
-									<Table.HeaderCell>Date Added</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("managePets.name")}</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("managePets.animalType")}</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("managePets.gender")}</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("managePets.status")}</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("managePets.primary")}</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("managePets.secondary")}</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("managePets.altered")}</Table.HeaderCell>
+									<Table.HeaderCell>{i18n.t("managePets.dateAdded")}</Table.HeaderCell>
 								</Table.Row>
 							</Table.Header>
 
