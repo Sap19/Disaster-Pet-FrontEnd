@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from './Pages/LoginForm';
 import LandingPage from './Pages/LandingPage';
 import SignUpForm from './Pages/SignUpForm';
+import ForgotPassword from './Pages/ForgotPassword'
+import ResetPassword from './Pages/ResetPassword'
 import NavigationBar from './Component/NavBar/NavBar'
 import NotFound from './Pages/NotFound'
 import Dashboard from "./Pages/Dashboard"
@@ -70,6 +72,8 @@ class App extends Component {
 							<Route exact path="/login" component={LoginForm} />
 							<Route exact path="/signup" component={SignUpForm} />
 							<Route exact path="/petGallery" component={Gallery} />
+							<Route exact path="/forgotPassword" component={ForgotPassword} />
+							<Route exact path="/resetPassword/:token" component={ResetPassword} />
 							<Route exact path="/rainbowGallery" component={RainbowGallery} />
 							<ProtectedRoute exact path="/dashboard" component={Dashboard} />
 							<ProtectedRoute exact path="/addPet" component={AddPet} />

@@ -31,11 +31,33 @@
 		"login": "Acceso",
 		"signup": "Inscribirse"
 	},
+	"error": "Error del Servidor. Actualizar página",
+	"emailValidation" : {
+		"pleaseEnterValid": "Por favor ingrese su correo electrónico",
+		"invalid": "El correo electrónico es invalido"
+	},
 	"login": {
 		"login": "Acceso",
 		"email": "Correo electrónico",
 		"password": "Contraseña",
-		"forgot": "¿Has olvidado tu contraseña?"
+		"forgot": "¿Has olvidado tu contraseña?",
+		"emailOrPassword": "Correo electrónico o contraseña Inncorect.",
+		"pleaseFillOut": "Por favor complete las áreas que faltan"
+	},
+	"forgot": {
+        "forgot": "Has olvidado tu contraseña",
+        "email": "Correo electrónico",
+        "send": "Enviar correo electrónico de restablecimiento de contraseña",
+		"userEmailDoesntExisit" : "El usuario con ese correo electrónico no existe.",
+		"emailSent": "Se ha enviado un correo electrónico para restablecer la contraseña"
+    },
+	"resetPass": {
+		"reset": "Restablecer la Contraseña",
+		"password": "Contraseña",
+		"change": "Cambiar la Contraseña",
+		"enterPassword": "Por favor, ingrese contraseña",
+		"passwordChanged": "¡La contraseña ha sido cambiada!",
+		"tokenExpired": "El token de reinicio ha caducado Vuelva a enviar un correo electrónico con la contraseña olvidada"
 	},
 	"signUp": {
 		"signUp": "Inscribirse", 
@@ -93,7 +115,8 @@
 		"title": "Agregar mascota",
 		"animalInfo": "Información animal",
 		"petLocation": "Ubicación de mascotas",
-		"optional": "(Opcional)"
+		"optional": "(Opcional)",
+		"petWasAdded": "¡Se agregó la mascota!"
 	},
 	"matchPet": {
 		"title": "Coincidencia de mascotas",

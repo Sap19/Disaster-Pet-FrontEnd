@@ -31,11 +31,33 @@
 		"login": "Login",
 		"signup": "Sign Up"
 	},
+	"error": "Server Error. Please Refresh Page",
+	"emailValidation" : {
+		"pleaseEnterValid": "Please Enter Email",
+		"invalid": "Email is Invalid"
+	},
 	"login": {
 		"login": "Login",
 		"email": "Email",
 		"password": "Password",
-		"forgot": "Forgot Password?"
+		"forgot": "Forgot Password?",
+		"emailOrPassword": "Email or Password Inncorect.",
+		"pleaseFillOut": "Please fill out missing areas"
+	},
+	"forgot": {
+		"forgot": "Forgot Password",
+		"email": "Email",
+		"send": "Send Reset Password Email",
+		"userEmailDoesntExisit" : "User with that email does not exist.",
+		"emailSent": "A reset password email has been sent"
+	},
+	"resetPass": {
+		"reset": "Reset Password",
+		"password": "Password",
+		"change": "Change Password",
+		"enterPassword": "Please Enter Password",
+		"passwordChanged": "Password has been chnaged!",
+		"tokenExpired": "Reset Token Has Expired Please Resend a Forgot Password Email"
 	},
 	"signUp": {
 		"signUp": "Signup", 
@@ -93,7 +115,8 @@
 		"title": "Add Pet",
 		"animalInfo": "Animal Information",
 		"petLocation": "Pet Location",
-		"optional": "(Optional)"
+		"optional": "(Optional)",
+		"petWasAdded": "Pet Was Added!"
 	},
 	"matchPet": {
 		"title": "Pet Matching",

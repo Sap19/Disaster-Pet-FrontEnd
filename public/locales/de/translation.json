@@ -29,11 +29,33 @@
 		"login": "Anmeldung",
 		"signup": "Anmelden"
 	},
+	"error": "Serverfehler. Bitte Seite aktualisieren",
+	"emailValidation" : {
+		"pleaseEnterValid": "Bitte geben Sie eine E-Mail-Adresse ein",
+		"invalid": "E-Mail ist ungültig"
+	},
 	"login": {
 		"login": "Anmeldung",
 		"email": "Email",
 		"password": "Passwort",
-		"forgot": "Passwort vergessen?"
+		"forgot": "Passwort vergessen?",
+		"emailOrPassword": "E-Mail oder Passwort Inncorect.",
+		"pleaseFillOut": "Bitte füllen Sie fehlende Bereiche aus"
+	},
+	"forgot": {
+        "forgot": "Passwort vergessen",
+        "email": "Correo electrónico",
+        "send": "E-Mail zum Zurücksetzen des Passworts senden",
+		"userEmailDoesntExisit" : "Benutzer mit dieser E-Mail existiert nicht.",
+		"emailSent": "Eine E-Mail zum Zurücksetzen des Passworts wurde gesendet"
+    },
+	"resetPass": {
+		"reset": "Passwort zurücksetzen",
+		"password": "Passwort",
+		"change": "Passwort ändern",
+		"enterPassword": "Bitte Passwort eingeben",
+		"passwordChanged": "Passwort wurde geändert!",
+		"tokenExpired": "Token zurücksetzen ist abgelaufen Bitte senden Sie eine E-Mail mit vergessenem Passwort erneut"
 	},
 	"signUp": {
 		"signUp": "Anmelden", 
@@ -91,7 +113,8 @@
 		"title": "Haustier hinzufügen",
 		"animalInfo": "Tierinformation",
 		"petLocation": "Haustierstandort",
-		"optional": "(freiwillig)"
+		"optional": "(freiwillig)",
+		"petWasAdded": "Haustier wurde hinzugefügt!"
 	},
 	"matchPet": {
 		"title": "Haustier passend",

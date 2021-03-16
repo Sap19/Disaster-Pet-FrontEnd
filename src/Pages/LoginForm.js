@@ -42,14 +42,14 @@ class LoginForm extends React.Component {
 			this.setState({
 				isEmailValid: this.state.email,
 				isPasswordValid: this.state.password,
-				errorMessage: "Please fill out missing areas"
+				errorMessage: i18n.t("login.pleaseFillOut")
 			})
 			return;
 		}
 		if (!this.state.email.includes('.') || !this.state.email.includes('@')) {
 			this.setState({
 				isEmailValid: this.state.email,
-				errorMessage: "Email is Invalid"
+				errorMessage: i18n.t("emailValidation.invalid")
 			})
 			return;
 		}
@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
 				this.setState({
 					isEmailValid: false,
 					isPasswordValid: false,
-					errorMessage: "Email or Password Inncorect."
+					errorMessage: i18n.t("login.emailOrPassword")
 				})
 
 			}
@@ -80,7 +80,7 @@ class LoginForm extends React.Component {
 				this.resetPasswordForm()
 				this.setState({
 					isEmailValid: false,
-					errorMessage: "User with that email does not exist."
+					errorMessage: i18n.t("forgot.userEmailDoesntExisit")
 				})
 			}
 			else {
@@ -91,7 +91,7 @@ class LoginForm extends React.Component {
 			}
 		} catch (e) {
 			this.setState({
-				errorMessage: "Server Error. Please Refresh Page"
+				errorMessage: i18n.t("error")
 			})
 		}
 

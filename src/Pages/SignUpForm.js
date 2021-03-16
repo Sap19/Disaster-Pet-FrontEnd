@@ -59,7 +59,7 @@ export class SignUpForm extends Component {
 				isFNameValid: this.state.first_name,
 				isLNameValid: this.state.last_name,
 				isPhoneValid: this.state.phone,
-				errorMessage: "Please fill out missing areas"
+				errorMessage: i18n.t("login.pleaseFillOut")
 			})
 			return;
 		}
@@ -85,7 +85,7 @@ export class SignUpForm extends Component {
 			if (result.message === "User already exists") {
 				this.resetForm()
 				this.setState({
-					errorMessage: "User with that email already exists"
+					errorMessage: i18n.t("forgot.userEmailDoesntExisit")
 				})
 
 			}
@@ -93,7 +93,7 @@ export class SignUpForm extends Component {
 				this.resetPasswordForm()
 				this.setState({
 					isEmailValid: false,
-					errorMessage: "Server Error. Please Refresh Page"
+					errorMessage: i18n.t("error")
 				})
 			}
 			else {
@@ -102,7 +102,7 @@ export class SignUpForm extends Component {
 		} catch (e) {
 			this.setState({
 				isEmailValid: false,
-				errorMessage: "Server Error. Please Refresh Page"
+				errorMessage: i18n.t("error")
 			})
 		}
 	}

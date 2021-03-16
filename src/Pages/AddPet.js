@@ -122,7 +122,7 @@ class AddPetForm extends Component {
 			})
 		} catch (e) {
 			this.setState({
-				errorMessage: "Server Error. Please Refresh Page"
+				errorMessage: i18n.t("error")
 			})
 		}
 		
@@ -135,7 +135,7 @@ class AddPetForm extends Component {
 				isAnimalTypeValid: this.state.animalType_id,
 				isPrimaryBreedVaild: this.state.primaryBreed_id,
 				isAlteredValid: this.state.altered_id,
-				errorMessage: "Please fill out missing areas "
+				errorMessage: i18n.t("login.pleaseFillOut")
 			})
 			return;
 		}
@@ -159,7 +159,7 @@ class AddPetForm extends Component {
 			}
 		} catch (e) {
 			this.setState({
-				errorMessage: "Server Error. Please Refresh Page"
+				errorMessage: i18n.t("error")
 			})
 		}
 		try {
@@ -191,7 +191,7 @@ class AddPetForm extends Component {
 			if (result.message === "successfully added pet") {
 				this.setState({
 					isEmailValid: false,
-					successMessage: "Pet Was Added!"
+					successMessage: i18n.t("addPet.petWasAdded")
 				})
 			}
 			else if (result.msg === "Token has expired") {
@@ -200,7 +200,7 @@ class AddPetForm extends Component {
 
 		} catch (e) {
 			this.setState({
-				errorMessage: "Server Error. Please Refresh Page"
+				errorMessage: i18n.t("error")
 			})
 		}
 		
