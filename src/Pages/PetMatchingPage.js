@@ -22,7 +22,9 @@ export class PetMatching extends Component {
 			animal_type: '',
 			coat_color: '',
 			primary_breed: '',
-			loaded: true
+			loaded: true,
+			rightFeatures: [],
+			leftFeatures: []
 		}
 	}
 	componentDidMount() {
@@ -52,12 +54,38 @@ export class PetMatching extends Component {
 			})
 		}
 	}
+	setRightDropDownInputValue = (event, data) => {
+		let optionText = event.target.textContent;
+
+		const newList = this.state.LeftPets.filter((pet) => pet[data.name] === optionText)
+		if (this.state[data.name] === '') {
+			this.setState({
+				LeftPets: newList
+			})
+		}
+		this.setState({
+			[data.name]: data.value,
+		})
+		if (this.state[data.name] !== '') {
+			this.setState({
+				LeftPets: this.state.RightPets
+			})
+		}
+	}
 	addFilter = (event, data) => {
 		let optionText = event.target.textContent;
 
 		const newList = this.state.RightPets.filter((pet) => pet[data.name] === optionText)
 		this.setState({
 			RightPets: newList
+		})
+	}
+	LeftAddFilter = (event, data) => {
+		let optionText = event.target.textContent;
+
+		const newList = this.state.LeftPets.filter((pet) => pet[data.name] === optionText)
+		this.setState({
+			LeftPets: newList
 		})
 	}
 	leftSelectPet(event) {
@@ -90,6 +118,53 @@ export class PetMatching extends Component {
 		this.setState({
 			[event.target.name]: this.state.DefualtPets
 		})
+	}
+	addRightFeatureGroup(event) {
+		console.log(event);
+		this.setState({
+			arr: this.state.rightFeatures.push({
+				'color': '', 'part': '', 'feature': '', 'position': ''
+			})
+		})
+	}
+
+	rightFeatureGroupChange(event, index) {
+		console.log(event, index)
+	}
+	addLeftFeatureGroup(event) {
+		console.log(event);
+		this.setState({
+			arr: this.state.leftFeatures.push({
+				'color': '', 'part': '', 'feature': '', 'position': ''
+			})
+		})
+	}
+
+	leftFeatureGroupChange(event, index) {
+		console.log(event, index)
+	}
+	removeRightFeature(event) {
+		var i = parseInt(event.target.name)
+		console.log(i)
+		const values = this.state.rightFeatures
+		values.splice(i,1)
+		this.setState({
+			rightFeatures: values
+		})
+	}
+	removeLeftFeature(event) {
+		var i = parseInt(event.target.name)
+		const values = this.state.leftFeatures
+		values.splice(i,1)
+		this.setState({
+			leftFeatures: values
+		})
+	}
+	async searchLeftFeatures() {
+
+	}
+	async searchRightFeatures() {
+
 	}
 	async MatchingInit() {
 		try {
@@ -228,12 +303,89 @@ export class PetMatching extends Component {
 								options={this.state.primary_breedOption}
 							/>
 						</Form.Field>
+						<Form.Field style={{ paddingBottom: "10px", paddingRight: "20%", paddingLeft: "20%" }}>
+							<Form.Button
+								style={{ width: "100%", }}
+								name="LeftSearchFeatures"
+								content={i18n.t("matchPet.searchBtn")}
+								onClick={this.searchLeftFeatures.bind(this)}
+							></Form.Button>
+						</Form.Field>
 						<Form.Field style={{ paddingRight: "20%", paddingLeft: "20%" }}>
 							<Form.Button
 								style={{ width: "100%", }}
 								name="RightPets"
 								content={i18n.t("matchPet.reset")}
 								onClick={this.resetSearch.bind(this)}
+							></Form.Button>
+						</Form.Field>
+						{this.state.leftFeatures.map((feature, index) =>
+							<div key={index}>
+								<div className="flex-container" style={{ paddingTop: "10px" }}>
+									<h1 style={{ color: "White", paddingTop: "15px" }}>{i18n.t("matchPet.feature")} {index + 1}</h1>
+									<Form.Button
+										style={{ color: "Red", paddingTop: "10px", paddingLeft: "10px" }}
+										content="x"
+										name={index}
+										onClick={this.removeLeftFeature.bind(this)}
+									></Form.Button>
+								</div>
+								<Form.Field style={{ padding: "10px" }}>
+									<Dropdown
+										placeholder={i18n.t("matchPet.position")}
+										name="position"
+										fluid
+										clearable
+										search
+										selection
+										onChange={e => this.leftFeatureGroupChange(e, index)}
+										options={this.state.alteredOptions}
+									/>
+								</Form.Field>
+								<Form.Field style={{ padding: "10px" }}>
+									<Dropdown
+										placeholder={i18n.t("matchPet.part")}
+										name="part"
+										fluid
+										clearable
+										search
+										selection
+										onChange={e => this.leftFeatureGroupChange(e, index)}
+										options={this.state.animalOptions}
+									/>
+								</Form.Field>
+								<Form.Field style={{ padding: "10px" }}>
+									<Dropdown
+										placeholder={i18n.t("matchPet.feature")}
+										name="feature"
+										fluid
+										clearable
+										search
+										selection
+										onChange={e => this.leftFeatureGroupChange(e, index)}
+										options={[]}
+									/>
+								</Form.Field>
+								<Form.Field style={{ padding: "10px" }}>
+									<Dropdown
+										placeholder={i18n.t("matchPet.color")}
+										name="color"
+										fluid
+										clearable
+										search
+										selection
+										onChange={e => this.leftFeatureGroupChange(e, index)}
+										options={this.state.primary_breedOption}
+									/>
+								</Form.Field>
+							</div>
+						)}
+						<Form.Field style={{ paddingTop: "10px", paddingRight: "20%", paddingLeft: "20%" }}>
+							<Form.Button
+								style={{ width: "100%", paddingBottom: "10px" }}
+								name="LeftPets"
+								content={i18n.t("matchPet.addFeature")}
+								onClick={this.addLeftFeatureGroup.bind(this)}
 							></Form.Button>
 						</Form.Field>
 					</div>
@@ -256,7 +408,7 @@ export class PetMatching extends Component {
 								search
 								clearable
 								selection
-								onChange={this.setDropDownInputValue}
+								onChange={this.setRightDropDownInputValue}
 								options={this.state.genderOptions}
 							/>
 						</Form.Field>
@@ -268,7 +420,7 @@ export class PetMatching extends Component {
 								clearable
 								search
 								selection
-								onChange={this.setDropDownInputValue}
+								onChange={this.setRightDropDownInputValue}
 								options={this.state.alteredOptions}
 							/>
 						</Form.Field>
@@ -280,7 +432,7 @@ export class PetMatching extends Component {
 								clearable
 								search
 								selection
-								onChange={this.setDropDownInputValue}
+								onChange={this.setRightDropDownInputValue}
 								options={this.state.animalOptions}
 							/>
 						</Form.Field>
@@ -292,7 +444,7 @@ export class PetMatching extends Component {
 								clearable
 								search
 								selection
-								onChange={this.setDropDownInputValue}
+								onChange={this.setRightDropDownInputValue}
 								options={[]}
 							/>
 						</Form.Field>
@@ -304,9 +456,17 @@ export class PetMatching extends Component {
 								clearable
 								search
 								selection
-								onChange={this.setDropDownInputValue}
+								onChange={this.setRightDropDownInputValue}
 								options={this.state.primary_breedOption}
 							/>
+						</Form.Field>
+						<Form.Field style={{ paddingBottom: "10px", paddingRight: "20%", paddingLeft: "20%" }}>
+							<Form.Button
+								style={{ width: "100%", }}
+								name="RightSearchFeatures"
+								content={i18n.t("matchPet.searchBtn")}
+								onClick={this.searchRightFeatures.bind(this)}
+							></Form.Button>
 						</Form.Field>
 						<Form.Field style={{ paddingRight: "20%", paddingLeft: "20%" }}>
 							<Form.Button
@@ -316,103 +476,173 @@ export class PetMatching extends Component {
 								onClick={this.resetSearch.bind(this)}
 							></Form.Button>
 						</Form.Field>
+						{this.state.rightFeatures.map((feature, index) =>
+							<div key={index}>
+								<div className="flex-container" style={{ paddingTop: "10px" }}>
+									<h1 style={{ color: "White", paddingTop: "15px" }}>{i18n.t("matchPet.feature")} {index + 1}</h1>
+									<Form.Button
+										style={{ color: "Red", paddingTop: "10px", paddingLeft: "10px" }}
+										content="x"
+										name={index}
+										onClick={this.removeRightFeature.bind(this)}
+									></Form.Button>
+								</div>
+
+								<Form.Field style={{ padding: "10px" }}>
+									<Dropdown
+										placeholder={i18n.t("matchPet.position")}
+										name="position"
+										fluid
+										clearable
+										search
+										selection
+										onChange={e => this.rightFeatureGroupChange(e, index)}
+										options={this.state.alteredOptions}
+									/>
+								</Form.Field>
+								<Form.Field style={{ padding: "10px" }}>
+									<Dropdown
+										placeholder={i18n.t("matchPet.part")}
+										name="part"
+										fluid
+										clearable
+										search
+										selection
+										onChange={e => this.rightFeatureGroupChange(e, index)}
+										options={this.state.animalOptions}
+									/>
+								</Form.Field>
+								<Form.Field style={{ padding: "10px" }}>
+									<Dropdown
+										placeholder={i18n.t("matchPet.feature")}
+										name="feature"
+										fluid
+										clearable
+										search
+										selection
+										onChange={e => this.rightFeatureGroupChange(e, index)}
+										options={[]}
+									/>
+								</Form.Field>
+								<Form.Field style={{ padding: "10px" }}>
+									<Dropdown
+										placeholder={i18n.t("matchPet.color")}
+										name="color"
+										fluid
+										clearable
+										search
+										selection
+										onChange={e => this.rightFeatureGroupChange(e, index)}
+										options={this.state.primary_breedOption}
+									/>
+								</Form.Field>
+							</div>
+						)}
+						<Form.Field style={{ paddingTop: "10px", paddingRight: "20%", paddingLeft: "20%" }}>
+							<Form.Button
+								style={{ width: "100%", paddingBottom: "10px"}}
+								name="LeftPets"
+								content={i18n.t("matchPet.addFeature")}
+								onClick={this.addRightFeatureGroup.bind(this)}
+							></Form.Button>
+						</Form.Field>
 					</div>
 					<div className="petMatchingRow" >
 						<div className="petMatchingColumn">
-						{this.state.loaded ?
-						<Loader active inline='centered' /> : 
-							rightFilteredPets ? rightFilteredPets.map((pet, i) =>
-								<div className="petMatchingColumn" key={i}>
-									<Card onClick={this.leftSelectPet.bind(this)} name="LeftPets" value={pet.pet_id}>
-										<Image name="LeftPets" value={pet.pet_id} src={pet.pet_image} ui={false} />
-										<Card.Content name="LeftPets" value={pet.pet_id}>
-											<Card.Header name="LeftPets" value={pet.pet_id}>{pet.pet_name}</Card.Header>
-											<Card.Meta name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
-											</Card.Meta>
-											<Card.Meta name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
-											</Card.Meta>
-											<Card.Meta name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
-											</Card.Meta>
-											<Card.Meta name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
-											</Card.Meta>
-											<Card.Description name="LeftPets" value={pet.pet_id}>
-												{pet.animal_type}
-											</Card.Description>
-											<Card.Description name="LeftPets" value={pet.pet_id}>
-												<span name="LeftPets" value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
-											</Card.Description>
-										</Card.Content>
-									</Card>
-								</div>
-							) : this.state.LeftPets.map((pet, i) =>
-								<div key={i}>
+							{this.state.loaded ?
+								<Loader active inline='centered' /> :
+								rightFilteredPets ? rightFilteredPets.map((pet, i) =>
+									<div className="petMatchingColumn" key={i}>
+										<Card onClick={this.leftSelectPet.bind(this)} name="LeftPets" value={pet.pet_id}>
+											<Image name="LeftPets" value={pet.pet_id} src={pet.pet_image} ui={false} style={{ height: "400px" }} />
+											<Card.Content name="LeftPets" value={pet.pet_id}>
+												<Card.Header name="LeftPets" value={pet.pet_id}>{pet.pet_name}</Card.Header>
+												<Card.Meta name="LeftPets" value={pet.pet_id}>
+													<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
+												</Card.Meta>
+												<Card.Meta name="LeftPets" value={pet.pet_id}>
+													<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
+												</Card.Meta>
+												<Card.Meta name="LeftPets" value={pet.pet_id}>
+													<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
+												</Card.Meta>
+												<Card.Meta name="LeftPets" value={pet.pet_id}>
+													<span name="LeftPets" value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
+												</Card.Meta>
+												<Card.Description name="LeftPets" value={pet.pet_id}>
+													{pet.animal_type}
+												</Card.Description>
+												<Card.Description name="LeftPets" value={pet.pet_id}>
+													<span name="LeftPets" value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
+												</Card.Description>
+											</Card.Content>
+										</Card>
+									</div>
+								) : this.state.LeftPets.map((pet, i) =>
+									<div key={i}>
 
-								</div>
-							)}
+									</div>
+								)}
 						</div>
 
 						<div className="petMatchingColumn">
-						{this.state.loaded ?
-						<Loader active inline='centered' /> : 
-							leftFilteredPets ? leftFilteredPets.map((pet, i) =>
-								<div className="petMatchingColumn" key={i}>
-									<Card onClick={this.rightSelectPet.bind(this)} value={pet.pet_id}>
-										<Image value={pet.pet_id} src={pet.pet_image} ui={false} />
-										<Card.Content value={pet.pet_id}>
-											<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
-											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
-											</Card.Meta>
-											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
-											</Card.Meta>
-											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
-											</Card.Meta>
-											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
-											</Card.Meta>
-											<Card.Description value={pet.pet_id}>
-												{pet.animal_type}
-											</Card.Description>
-											<Card.Description value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
-											</Card.Description>
-										</Card.Content>
-									</Card>
-								</div>
-							) : this.state.RightPets.map((pet, i) =>
-								<div className="petMatchingColumn" key={i}>
-									<Card onClick={this.selectPet.bind(this)} value={pet.pet_id}>
-										<Image value={pet.pet_id} src={pet.pet_image} ui={false} />
-										<Card.Content>
-											<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
-											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
-											</Card.Meta>
-											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
-											</Card.Meta>
-											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
-											</Card.Meta>
-											<Card.Meta value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
-											</Card.Meta>
-											<Card.Description value={pet.pet_id}>
-												{pet.animal_type}
-											</Card.Description>
-											<Card.Description value={pet.pet_id}>
-												<span value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
-											</Card.Description>
-										</Card.Content>
-									</Card>
-								</div>
-							)}
+							{this.state.loaded ?
+								<Loader active inline='centered' /> :
+								leftFilteredPets ? leftFilteredPets.map((pet, i) =>
+									<div className="petMatchingColumn" key={i}>
+										<Card onClick={this.rightSelectPet.bind(this)} value={pet.pet_id} >
+											<Image value={pet.pet_id} src={pet.pet_image} ui={false} style={{ height: "400px" }} />
+											<Card.Content value={pet.pet_id}>
+												<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
+												<Card.Meta value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
+												</Card.Meta>
+												<Card.Meta value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
+												</Card.Meta>
+												<Card.Meta value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
+												</Card.Meta>
+												<Card.Meta value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
+												</Card.Meta>
+												<Card.Description value={pet.pet_id}>
+													{pet.animal_type}
+												</Card.Description>
+												<Card.Description value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
+												</Card.Description>
+											</Card.Content>
+										</Card>
+									</div>
+								) : this.state.RightPets.map((pet, i) =>
+									<div className="petMatchingColumn" key={i}>
+										<Card onClick={this.selectPet.bind(this)} value={pet.pet_id}>
+											<Image value={pet.pet_id} src={pet.pet_image} ui={false} style={{ height: "400px" }} />
+											<Card.Content>
+												<Card.Header value={pet.pet_id}>{pet.pet_name}</Card.Header>
+												<Card.Meta value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>{i18n.t("matchPet.breed")}: {pet.primary_breed}</span>
+												</Card.Meta>
+												<Card.Meta value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>{i18n.t("matchPet.gender")}: {pet.gender}</span>
+												</Card.Meta>
+												<Card.Meta value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>{i18n.t("matchPet.altered")}: {pet.altered_status}</span>
+												</Card.Meta>
+												<Card.Meta value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>{i18n.t("matchPet.status")}: {pet.pet_status}</span>
+												</Card.Meta>
+												<Card.Description value={pet.pet_id}>
+													{pet.animal_type}
+												</Card.Description>
+												<Card.Description value={pet.pet_id}>
+													<span value={pet.pet_id} className='date'>ID: {pet.pet_id}</span>
+												</Card.Description>
+											</Card.Content>
+										</Card>
+									</div>
+								)}
 						</div>
 					</div>
 				</div>

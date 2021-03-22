@@ -17,7 +17,7 @@ export class AdminTools extends Component {
                     </div>
                     <div className="column" >
                         <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>{i18n.t("adminTools.disaster")}</h2>
-						<a href="/">{i18n.t("adminTools.manageDisasters")}</a>
+						<a href="/manageDisasters">{i18n.t("adminTools.manageDisasters")}</a>
                     </div>
                     <div className="column" >
                         <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>{i18n.t("adminTools.pets")}</h2>
@@ -32,6 +32,24 @@ export class AdminTools extends Component {
 						<a href="/manageStatus">{i18n.t("adminTools.manageStatus")}</a>
 						<br/>
 						<a href="/manageAlteredStatus">{i18n.t("adminTools.manageAltered")}</a>
+                    </div>
+					<div className="column" >
+                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>{i18n.t("adminTools.feature")}</h2>
+						<a href="/manageColors">{i18n.t("adminTools.color")}</a>
+						<br/>
+                        <a href="/manageFeatures">{i18n.t("adminTools.manageFeature")}</a>
+						<br/>
+						<a href="/manageParts">{i18n.t("adminTools.part")}</a>
+						<br/>
+						<a href="/managePositions">{i18n.t("adminTools.position")}</a>
+						<br/>
+						<a href="/manageUniquefeatures">{i18n.t("adminTools.unique")}</a>
+						<br/>
+                    </div>
+					<div className="column" >
+                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>{i18n.t("adminTools.location")}</h2>
+						<a href="/manageCounty">{i18n.t("adminTools.county")}</a>
+						<br/>
                     </div>
                 </div>
             </div>

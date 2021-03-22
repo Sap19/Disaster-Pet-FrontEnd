@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Form, Select, Message, Tab, FormField, List, Header, Icon, Segment } from 'semantic-ui-react'
+import { Form, Select, Message, Tab, FormField, List, Header, Icon, Segment, Dropdown } from 'semantic-ui-react'
 import Footer from "../Component/Footer/Footer";
 import addPetBanner from "../Assets/Images/addPetBanner.jpg"
 import "../Assets/Css/AddPet.css"
 import i18n from '../Component/i18n/i18n';
+import auth from '../Component/Auth/auth';
 
 class AddPetForm extends Component {
 
@@ -41,7 +42,17 @@ class AddPetForm extends Component {
 			alteredOptions: [],
 			animalOptions: [],
 			statusOptions: [],
-			selectedFiles: []
+			selectedFiles: [],
+			FeaturesGroups: [],
+			partOptions: [],
+			colorOptions: [],
+			featureOptions: [],
+			positionOptions: [],
+			animal: "",
+			part: "",
+			color: "",
+			feature: "",
+			position: "",
 		}
 	}
 
@@ -78,6 +89,7 @@ class AddPetForm extends Component {
 
 	componentDidMount() {
 		this.addPetInit();
+		this.getDropdownInfo()
 	}
 
 	async addPetInit() {
@@ -125,9 +137,62 @@ class AddPetForm extends Component {
 				errorMessage: i18n.t("error")
 			})
 		}
-		
+
+	}
+	async getDropdownInfo() {
+		try {
+			let res = await fetch('http://127.0.0.1:5000/uniquefeaturesinfo', {
+				method: 'GET',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+					'Authorization': "Bearer " + localStorage.getItem('token')
+				},
+			});
+			let result = await res.json();
+			console.log(result);
+			result.animal.forEach((animal, i) => {
+				this.setState({
+					arr: this.state.animalOptions.push({ 'key': animal.id, 'value': animal.id, 'text': animal.animal })
+				})
+			})
+
+			result.BodyPart.forEach((bodyPart, i) => {
+				this.setState({
+					arr: this.state.partOptions.push({ 'key': bodyPart.id, 'value': bodyPart.id, 'text': bodyPart.bodypart })
+				})
+			})
+
+			result.color.forEach((color, i) => {
+				this.setState({
+					arr: this.state.colorOptions.push({ 'key': color.id, 'value': color.id, 'text': color.color })
+				})
+			})
+			result.feature.forEach((feature, i) => {
+				this.setState({
+					arr: this.state.featureOptions.push({ 'key': feature.id, 'value': feature.id, 'text': feature.feature })
+				})
+			})
+			result.position.forEach((position, i) => {
+				this.setState({
+					arr: this.state.positionOptions.push({ 'key': position.id, 'value': position.id, 'text': position.position })
+				})
+			})
+			this.setState({
+				loaded: false
+			})
+
+		} catch (e) {
+			this.setState({
+				errorMessage: i18n.t("error")
+			})
+		}
 	}
 	async addPet() {
+		this.setState({
+			errorMessage: '',
+			successMessage: ""
+		})
 		if (!this.state.petName || !this.state.animalType_id || !this.state.altered_id
 			|| !this.state.primaryBreed_id) {
 			this.setState({
@@ -153,15 +218,18 @@ class AddPetForm extends Component {
 				body: formData
 			});
 			let result = await res.json();
-			imageUrl = result.url;
+			if(result.message == "successfully added photo") {
+				imageUrl = result.url
+			}
 			if (result.msg === "Token has expired") {
 				this.props.history.push('/login')
 			}
 		} catch (e) {
 			this.setState({
-				errorMessage: i18n.t("error")
+				//errorMessage: i18n.t("error")
 			})
 		}
+		let userID = auth.getUser()
 		try {
 			let res = await fetch('http://127.0.0.1:5000/addpet', {
 				method: 'POST',
@@ -183,7 +251,9 @@ class AddPetForm extends Component {
 					city: this.state.city,
 					zipcode: this.state.zipcode,
 					pet_status: this.state.status,
-					image_url: imageUrl
+					image_url: imageUrl,
+					features: this.state.FeaturesGroups,
+					user_id: userID
 				})
 			});
 			let result = await res.json();
@@ -203,7 +273,33 @@ class AddPetForm extends Component {
 				errorMessage: i18n.t("error")
 			})
 		}
-		
+	}
+	addFeatureGroup(event) {
+		console.log(event);
+		this.setState({
+			arr: this.state.FeaturesGroups.push({
+				'animal': this.state.animalType_id, 'position': '', 'bodyPart': '', 'color': '', 'feature': ''
+			})
+		})
+	}
+	removeFeature(event) {
+		var i = parseInt(event.target.name)
+		const values = this.state.FeaturesGroups
+		values.splice(i, 1)
+		this.setState({
+			FeaturesGroups: values
+		})
+	}
+	featureGroupChange(event, data) {
+		console.log("feature change",event.target, data)
+		var tempFeature = this.state.FeaturesGroups
+		console.log(tempFeature[data.noResultsMessage])
+		tempFeature[data.noResultsMessage][data.name] = data.value
+		this.setState({
+			FeaturesGroups: tempFeature,
+			breedDisabled: false,
+		})
+		console.log(this.state.FeaturesGroups);
 	}
 	handleRangeChange = e => this.setState({ activeIndex: e.target.value });
 	handleTabChange = (e, { activeIndex }) => this.setState({ activeIndex });
@@ -230,6 +326,7 @@ class AddPetForm extends Component {
 											fluid
 											clearable
 											name="animalType_id"
+											defaultValue={this.state.animalType_id}
 											onChange={this.setSelectInputValue}
 											label={i18n.t("addPet.animalType")}
 											options={this.state.animalOptions}
@@ -252,6 +349,7 @@ class AddPetForm extends Component {
 												fluid
 												clearable
 												name="primaryBreed_id"
+												defaultValue={this.state.primaryBreed_id}
 												onChange={this.setSelectInputValue}
 												options={this.state.primary_breedOption}
 												placeholder={i18n.t("addPet.primary")}>
@@ -274,6 +372,7 @@ class AddPetForm extends Component {
 												fluid
 												clearable
 												name="secondaryBreed_id"
+												defaultValue={this.state.secondaryBreed_id}
 												onChange={this.setSelectInputValue}
 												options={this.state.primary_breedOption}
 												placeholder={i18n.t("addPet.secondary")}>
@@ -285,6 +384,7 @@ class AddPetForm extends Component {
 											fluid
 											clearable
 											name="gender"
+											defaultValue={this.state.gender}
 											onChange={this.setSelectInputValue}
 											options={this.state.genderOptions}
 											placeholder={i18n.t("addPet.gender")}>
@@ -296,6 +396,7 @@ class AddPetForm extends Component {
 											fluid
 											clearable
 											name="altered_id"
+											defaultValue={this.state.altered_id}
 											onChange={this.setSelectInputValue}
 											options={this.state.alteredOptions}
 											placeholder={i18n.t("addPet.alteredStatus")}>
@@ -307,6 +408,7 @@ class AddPetForm extends Component {
 											fluid
 											clearable
 											name="status"
+											defaultValue={this.state.status}
 											onChange={this.setSelectInputValue}
 											options={this.state.statusOptions}
 											placeholder={i18n.t("addPet.status")}>
@@ -339,6 +441,98 @@ class AddPetForm extends Component {
 							</div>
 						</div>
 					</Tab.Pane>
+			},
+			{
+				menuItem: i18n.t("addPet.features"), render: () =>
+					<Tab.Pane>
+						<div className="formRow">
+							<div className="column-contact-form">
+								<Form className="contact-form" >
+									{this.state.FeaturesGroups.map((feature, index) =>
+										<div key={index}>
+											<div className="flex-container" style={{ paddingTop: "10px" }}>
+												<h1 style={{ paddingTop: "15px" }}>{i18n.t("matchPet.feature")} {index + 1}</h1>
+												<Form.Button
+													style={{ color: "Red", paddingTop: "10px", paddingLeft: "10px" }}
+													content="x"
+													name={index}
+													onClick={this.removeFeature.bind(this)}
+												></Form.Button>
+											</div>
+											<Form.Field>
+												<label>{i18n.t("manageUniqueFeatures.part")}</label>
+												<Dropdown
+													placeholder={i18n.t("manageUniqueFeatures.part")}
+													name="bodyPart"
+													fluid
+													selection
+													noResultsMessage={index}
+													defaultValue={feature.bodyPart}
+													onChange={this.featureGroupChange.bind(this)}
+													options={this.state.partOptions}
+												/>
+											</Form.Field>
+											<Form.Field>
+												<label>{i18n.t("manageUniqueFeatures.color")}</label>
+												<Dropdown
+													placeholder={i18n.t("manageUniqueFeatures.color")}
+													name="color"
+													fluid
+													selection
+													noResultsMessage={index}
+													defaultValue={feature.color}
+													onChange={this.featureGroupChange.bind(this)}
+													options={this.state.colorOptions}
+												/>
+											</Form.Field>
+											<Form.Field>
+												<label>{i18n.t("manageUniqueFeatures.feature")}</label>
+												<Dropdown
+													placeholder={i18n.t("manageUniqueFeatures.feature")}
+													name="feature"
+													fluid
+													selection
+													noResultsMessage={index}
+													defaultValue={feature.feature}
+													onChange={this.featureGroupChange.bind(this)}
+													options={this.state.featureOptions}
+												/>
+											</Form.Field>
+											<Form.Field>
+												<label>{i18n.t("manageUniqueFeatures.position")}</label>
+												<Dropdown
+													placeholder={i18n.t("manageUniqueFeatures.position")}
+													name="position"
+													fluid
+													selection
+													noResultsMessage={index}
+													defaultValue={feature.position}
+													onChange={this.featureGroupChange.bind(this)}
+													options={this.state.positionOptions}
+												/>
+											</Form.Field>
+										</div>
+									)}
+									<Form.Field style={{ paddingTop: "10px", paddingRight: "20%", paddingLeft: "20%" }}>
+										<Form.Button
+											style={{ width: "100%", paddingBottom: "10px" }}
+											name="LeftPets"
+											content={i18n.t("matchPet.addFeature")}
+											onClick={this.addFeatureGroup.bind(this)}
+										></Form.Button>
+									</Form.Field>
+									<Form.Field style={{ paddingLeft: "70%" }}>
+										<Form.Button
+											style={{ width: "100%", }}
+											content={i18n.t("addPet.next")}
+											onClick={this.handleRangeChange}
+											value={2}>
+										</Form.Button>
+									</Form.Field>
+								</Form>
+							</div>
+						</div>
+					</Tab.Pane >
 			},
 			{
 				menuItem: i18n.t("addPet.petLocation"), render: () =>

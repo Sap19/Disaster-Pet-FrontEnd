@@ -48,6 +48,7 @@ export class Dashboard extends Component {
 				<div className="row" >
 				{this.state.loaded ?
 						<Loader active inline='centered' /> :
+					this.state.Pets.length > 0 ?
 					this.state.Pets.map((pet, i) =>
 						<div className="column-petGalleryCard" key={i}>
 							<Link to={`/petDetails/${pet[0].pet_id}`}>
@@ -75,7 +76,7 @@ export class Dashboard extends Component {
 							</Card>
 							</Link>
 						</div>
-					)}
+					): <h1>{i18n.t("dashboard.noPets")}</h1>}
 				</div>
 				<Footer />
             </div>

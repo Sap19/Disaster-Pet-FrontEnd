@@ -94,7 +94,8 @@
 		"breed": "Criar",
 		"gender": "Género",
 		"altered": "Alterado",
-		"status": "Estado"
+		"status": "Estado",
+		"noPets": "No se agregaron mascotas"
 	},
 	"addPet": {
 		"petName": "Nombre de mascota",
@@ -116,7 +117,8 @@
 		"animalInfo": "Información animal",
 		"petLocation": "Ubicación de mascotas",
 		"optional": "(Opcional)",
-		"petWasAdded": "¡Se agregó la mascota!"
+		"petWasAdded": "¡Se agregó la mascota!",
+		"features": "Características de las mascotas"
 	},
 	"matchPet": {
 		"title": "Coincidencia de mascotas",
@@ -128,7 +130,13 @@
 		"alterStatus": "Alterar estado",
 		"petType": "Tipo de mascota",
 		"coat": "Color de la capa",
-		"reset": "Restablecer búsqueda"
+		"reset": "Restablecer búsqueda",
+		"feature": "Característica",
+		"position": "Posición",
+		"part": "Part",
+		"color": "Parte",
+		"addFeature": "Agregar función",
+		"searchBtn": "Buscar"
 	},
 	"adminTools": {
 		"title": "Herramientas de administración",
@@ -136,15 +144,23 @@
 		"manageUsers": "Administrar usuarios",
 		"manageRoles": "Administrar roles",
 		"disaster": "Desastre",
-		"manageDisasters": "Gestionar desastres",
+		"manageDisasters": "Administrar desastres",
 		"pets": "Mascotas",
 		"managePets": "Administrar mascotas",
 		"manageBreeds": "Administrar razas",
-		"manageAnimalT": "Gestionar tipos de animales",
+		"manageAnimalT": "Administrar tipos de animales",
 		"manageGender": "Administrar géneros",
 		"manageStatus": "Administrar estado",
 		"manageAltered": "Administrar estado alterado",
-		"backToAdmin": "Volver a las herramientas de administración"
+		"backToAdmin": "Volver a las herramientas de administración",
+		"feature": "Característica",
+		"manageFeature": "Administrar características",
+		"position": "Administrar posiciones",
+		"part": "Administrar piezas",
+		"color": "Administrar colores",
+		"unique": "Administrar Características unicas",
+		"location": "Localización",
+		"county": "Administrar Condado"
 	},
 	"manageUsers": {
 		"name": "Nombre",
@@ -238,5 +254,107 @@
 		"back": "Volver a administrar el estado alterado",
 		"editTitle": "Editar estado alterado",
 		"edit": "Editar estado alterado"
+	},
+	"manageColors": {
+		"title": "Administrar Colores",
+		"color": "Color",
+		"search": "Buscar",
+		"addColor": "Agregar Nuevo Color",
+		"back": "Volver a Administrar Colores",
+		"editTitle": "Edición de color",
+		"colorName": "Color",
+		"edit": "Editar",
+		"updated": "¡El color ha sido actualizado!",
+		"new": "Nuevo color agregado",
+		"addTitle": "Nuevo color agregado"
+	},
+	"manageFeatures": {
+		"title": "Administrar características",
+		"feature": "Característica",
+		"search": "Buscar",
+		"addFeature": "Agregar Nueva Función",
+		"back": "Volver a Administrar Funciones",
+		"editTitle": "Función Editar",
+		"featureName": "Característica",
+		"edit": "Editar",
+		"updated": "¡La Función ha Sido Actualizada!",
+		"new": "Nueva Característica Agregada",
+		"addTitle": "Nueva Caracteristica"
+	},
+	"manageParts": {
+		"title": "Administrar Piezas",
+		"part": "Parte",
+		"search": "Buscar",
+		"addPart": "Agregar nueva pieza",
+		"back": "Back to Manage Parts",
+		"editTitle": "Volver a Gestionar piezas",
+		"partName": "Parte",
+		"edit": "Editar",
+		"updated": "¡La pieza ha sido actualizada!",
+		"new": "Nueva pieza agregada",
+		"addTitle": "Parte nueva"
+	},
+	"managePositions": {
+		"title": "Gestionar posiciones",
+		"position": "Posición",
+		"search": "Buscar",
+		"addPosition": "Agregar nueva posición",
+		"back": "Volver a Gestionar posiciones",
+		"editTitle": "Posición Editar",
+		"positionName": "Posición",
+		"edit": "Editar",
+		"updated": "¡La posición ha sido actualizada!",
+		"new": "Nueva posición agregada",
+		"addTitle": "Nueva posición"
+	},
+	"manageUniqueFeatures": {
+		"title": "Gestionar funciones únicas",
+		"uniquefeature": "Característica única",
+		"position": "Posición",
+		"part": "Parte",
+		"feature": "Característica",
+		"color": "Color",
+		"animal": "Animal",
+		"search": "Buscar",
+		"addUniquefeature": "Agregar nueva característica única",
+		"back": "Volver a Gestionar funciones únicas",
+		"editTitle": "Edición de función única",
+		"UniquefeatureName": "Característica única",
+		"edit": "Editar",
+		"updated": "¡Se ha actualizado la característica única!",
+		"new": "Una nueva característica única agregada",
+		"addTitle": "Nueva característica única"
+	},
+	"manageCounty": {
+		"title": "Administrar condado",
+		"county": "condado",
+		"search": "Buscar",
+		"addCounty": "Agregar nuevo condado",
+		"back": "Volver a Administrar condado",
+		"editTitle": "Condado Editar",
+		"countyName": "condado",
+		"edit": "Editar",
+		"updated": "¡El condado ha sido actualizado!",
+		"new": "Nuevo condado agregado",
+		"addTitle": "Nuevo condado",
+		"state": "Estado"
+	},
+	"manageDisaster" : {
+		"title": "Administrar desastres",
+		"disaster": "Desastres",
+		"search": "Buscar",
+		"addDisaster": "Add New Disaster",
+		"back": "Agregar nuevo desastre",
+		"editTitle": "Desastre Editar",
+		"disasterName": "Desastre Editar",
+		"name": "Nombre del desastre",
+		"county": "Condado",
+		"state": "Expresar",
+		"start": "Fecha de inicio",
+		"end": "Fecha final",
+		"edit": "Editar",
+		"updated": "¡El desastre ha sido actualizado!",
+		"new": "Nuevo desastre agregado",
+		"addTitle": "Nuevo desastre"
 	}
 }

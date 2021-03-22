@@ -3,6 +3,7 @@ import { Button, Dropdown, Form, Input, Table, Loader } from 'semantic-ui-react'
 import '../../../Assets/Css/AdminTools/ManageUsers.css'
 import { Link } from "react-router-dom"
 import i18n from '../../../Component/i18n/i18n';
+import Moment from 'moment';
 
 export class ManagePets extends Component {
 	constructor(props) {
@@ -132,7 +133,9 @@ export class ManagePets extends Component {
 											<Table.Cell>{pet.primary_breed}</Table.Cell>
 											<Table.Cell>{pet.secondary_breed}</Table.Cell>
 											<Table.Cell>{pet.altered_status}</Table.Cell>
-											<Table.Cell>{pet.date_created.slice(0, 16)}</Table.Cell>
+											{localStorage.getItem("i18nextLng") == "en" ?
+												<Table.Cell style={{ textAlign: "left", display: 'inline' }}>{Moment(pet.date_created.slice(0, 16)).format('MM-DD-YYYY')}</Table.Cell> :
+												<Table.Cell style={{ textAlign: "left", display: 'inline' }}>{Moment(pet.date_created.slice(0, 16)).format('DD-MM-YYYY')}</Table.Cell>}
 										</Table.Row>
 									)}
 							</Table.Body>

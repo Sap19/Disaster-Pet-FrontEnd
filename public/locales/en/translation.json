@@ -94,7 +94,8 @@
 		"breed": "Breed",
 		"gender": "Gender",
 		"altered": "Altered",
-		"status": "Status"
+		"status": "Status",
+		"noPets": "No Pets Added"
 	},
 	"addPet": {
 		"petName": "Pet Name",
@@ -116,7 +117,8 @@
 		"animalInfo": "Animal Information",
 		"petLocation": "Pet Location",
 		"optional": "(Optional)",
-		"petWasAdded": "Pet Was Added!"
+		"petWasAdded": "Pet Was Added!",
+		"features": "Pet Features"
 	},
 	"matchPet": {
 		"title": "Pet Matching",
@@ -128,7 +130,13 @@
 		"alterStatus": "Alter Status",
 		"petType": "Pet Type",
 		"coat": "Coat Color",
-		"reset": "Reset Search"
+		"reset": "Reset Search",
+		"feature": "Feature",
+		"position": "Position",
+		"part": "Part",
+		"color": "Color",
+		"addFeature": "Add Feature",
+		"searchBtn": "Search"
 	},
 	"adminTools": {
 		"title": "Admin Tools",
@@ -144,7 +152,15 @@
 		"manageGender": "Manage Genders",
 		"manageStatus": "Manage Status",
 		"manageAltered": "Manage Altered Status",
-		"backToAdmin": "Back to Admin Tools"
+		"backToAdmin": "Back to Admin Tools",
+		"feature": "Feature",
+		"manageFeature": "Manage Features",
+		"position": "Manage Positions",
+		"part": "Manage Parts",
+		"color": "Manage Colors",
+		"unique": "Manage Unique Features",
+		"location": "Location",
+		"county": "Manage County"
 	},
 	"manageUsers": {
 		"name": "Name",
@@ -238,5 +254,107 @@
 		"back": "Back To Manage Altered Status",
 		"editTitle": "Edit Altered Status",
 		"edit": "Edit Altered Status"
+	},
+	"manageColors": {
+		"title": "Manage Colors",
+		"color": "Color",
+		"search": "Search",
+		"addColor": "Add New Color",
+		"back": "Back to Manage Colors",
+		"editTitle": "Color Edit",
+		"colorName": "Color",
+		"edit": "Edit",
+		"updated": "Color Has Been Updated!",
+		"new": "New Color Added",
+		"addTitle": "New Color"
+	},
+	"manageFeatures": {
+		"title": "Manage Features",
+		"feature": "Feature",
+		"search": "Search",
+		"addFeature": "Add New Feature",
+		"back": "Back to Manage Features",
+		"editTitle": "Feature Edit",
+		"featureName": "Feature",
+		"edit": "Edit",
+		"updated": "Feature Has Been Updated!",
+		"new": "New Feature Added",
+		"addTitle": "New Feature"
+	},
+	"manageParts": {
+		"title": "Manage Parts",
+		"part": "Part",
+		"search": "Search",
+		"addPart": "Add New Part",
+		"back": "Back to Manage Parts",
+		"editTitle": "Part Edit",
+		"partName": "Part",
+		"edit": "Edit",
+		"updated": "Part Has Been Updated!",
+		"new": "New Part Added",
+		"addTitle": "New Part"
+	},
+	"managePositions": {
+		"title": "Manage Positions",
+		"position": "Position",
+		"search": "Search",
+		"addPosition": "Add New Position",
+		"back": "Back to Manage Positions",
+		"editTitle": "Position Edit",
+		"positionName": "Position",
+		"edit": "Edit",
+		"updated": "Position Has Been Updated!",
+		"new": "New Position Added",
+		"addTitle": "New Position"
+	},
+	"manageUniqueFeatures": {
+		"title": "Manage Unique Features",
+		"uniquefeature": "Unique Feature",
+		"position": "Position",
+		"part": "Part",
+		"feature": "Feature",
+		"color": "Color",
+		"animal": "Animal",
+		"search": "Search",
+		"addUniquefeature": "Add New Unique Feature",
+		"back": "Back to Manage Unique Features",
+		"editTitle": "Unique Feature Edit",
+		"UniquefeatureName": "Unique Feature",
+		"edit": "Edit",
+		"updated": "Unique Feature Has Been Updated!",
+		"new": "New Unique Feature Added",
+		"addTitle": "New Unique Feature"
+	},
+	"manageCounty": {
+		"title": "Manage County",
+		"county": "County",
+		"search": "Search",
+		"addCounty": "Add New County",
+		"back": "Back to Manage County",
+		"editTitle": "County Edit",
+		"countyName": "County",
+		"edit": "Edit",
+		"updated": "County Has Been Updated!",
+		"new": "New County Added",
+		"addTitle": "New County",
+		"state": "State"
+	},
+	"manageDisaster" : {
+		"title": "Manage Disaster",
+		"disaster": "Disaster",
+		"search": "Search",
+		"addDisaster": "Add New Disaster",
+		"back": "Back to Manage Disaster",
+		"editTitle": "Disaster Edit",
+		"disasterName": "Disaster",
+		"name": "Disaster Name",
+		"county": "County",
+		"state": "State",
+		"start": "Start Date",
+		"end": "End Date",
+		"edit": "Edit",
+		"updated": "Disaster Has Been Updated!",
+		"new": "New Disaster Added",
+		"addTitle": "New Disaster"
 	}
 }

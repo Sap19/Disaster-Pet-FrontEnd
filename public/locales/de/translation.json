@@ -92,7 +92,8 @@
 		"breed": "Rasse",
 		"gender": "Geschlecht",
 		"altered": "Geändert",
-		"status": "die Stellung"
+		"status": "die Stellung",
+		"noPets": "Keine Haustiere hinzugefügt"
 	},
 	"addPet": {
 		"petName": "Haustiername",
@@ -114,7 +115,8 @@
 		"animalInfo": "Tierinformation",
 		"petLocation": "Haustierstandort",
 		"optional": "(freiwillig)",
-		"petWasAdded": "Haustier wurde hinzugefügt!"
+		"petWasAdded": "Haustier wurde hinzugefügt!",
+		"features": "Haustier Merkmale"
 	},
 	"matchPet": {
 		"title": "Haustier passend",
@@ -126,7 +128,13 @@
 		"alterStatus": "Status ändern",
 		"petType": "Haustiertyp",
 		"coat": "Fellfarbe",
-		"reset": "Suche zurücksetzen"
+		"reset": "Suche zurücksetzen",
+		"feature": "Merkmal",
+		"position": "Position",
+		"part": "Teil",
+		"color": "Farbe",
+		"addFeature": "Feature hinzufügen",
+		"searchBtn": "Suche"
 	},
 	"adminTools": {
 		"title": "Admin Tools",
@@ -142,7 +150,15 @@
 		"manageGender": "Geschlechter verwalten",
 		"manageStatus": "Status verwalten",
 		"manageAltered": "Geänderten Status verwalten",
-		"backToAdmin": "Zurück zu den Admin-Tools"
+		"backToAdmin": "Zurück zu den Admin-Tools",
+		"feature": "Merkmal",
+		"manageFeature": "Features verwalten",
+		"position": "Positionen verwalten",
+		"part": "Teile verwalten",
+		"color": "Farben verwalten",
+		"unique": "Verwalten Sie einzigartige Funktionen",
+		"location": "Ort",
+		"county": "Grafschaft verwalten"
 	},
 	"manageUsers": {
 		"name": "Name",
@@ -236,5 +252,107 @@
 		"back": "Zurück zum Verwalten des geänderten Status",
 		"editTitle": "Geänderten Status bearbeiten",
 		"edit": "Geänderten Status bearbeiten"
+	},
+	"manageColors": {
+		"title": "Farben verwalten",
+		"color": "Farbe",
+		"search": "Suche",
+		"addColor": "Neue Farbe hinzufügen",
+		"back": "Zurück zum Verwalten von Farben",
+		"editTitle": "Farbbearbeitung",
+		"colorName": "Farbe",
+		"edit": "Bearbeiten",
+		"updated": "Farbe wurde aktualisiert!",
+		"new": "Neue Farbe hinzugefügt",
+		"addTitle": "Neue Farbe"
+	},
+	"manageFeatures": {
+		"title": "Features verwalten", 
+		"feature": "Merkmal",
+		"search": "Suche",
+		"addFeature": "Neue Funktion hinzufügen",
+		"back": "Zurück zum Verwalten von Funktionen",
+		"editTitle": "Feature Edit",
+		"featureName": "Merkmal",
+		"edit": "Bearbeiten",
+		"updated": "Funktion wurde aktualisiert!",
+		"new": "Neue Funktion hinzugefügt",
+		"addTitle": "Neue Funktion"
+	},
+	"manageParts": {
+		"title": "Teile verwalten",
+		"part": "Teil",
+		"search": "Suche",
+		"addPart": "Neues Teil hinzufügen",
+		"back": "Zurück zum Verwalten von Teilen",
+		"editTitle": "Part Edit",
+		"partName": "Teil",
+		"edit": "Bearbeiten",
+		"updated": "Teil wurde aktualisiert!",
+		"new": "Neuer Teil hinzugefügt",
+		"addTitle": "Neuer Teil"
+	},
+	"managePositions": {
+		"title": "Positionen verwalten",
+		"position": "Position",
+		"search": "Suche",
+		"addPosition": "Add New Position",
+		"back": "Back to Manage Positions",
+		"editTitle": "Position Edit",
+		"positionName": "Position",
+		"edit": "Bearbeiten",
+		"updated": "Position wurde aktualisiert!",
+		"new": "Neue Position hinzugefügt",
+		"addTitle": "Neue Position"
+	},
+	"manageUniqueFeatures": {
+		"title": "Einzigartige Funktionen verwalten",
+		"uniquefeature": "Einzigartiges Merkmal",
+		"position": "Position",
+		"part": "Teil",
+		"feature": "Merkmal",
+		"color": "Farbe",
+		"animal": "Tier",
+		"search": "Suche",
+		"addUniquefeature": "Neue einzigartige Funktion hinzufügen",
+		"back": "Zurück zum Verwalten einzigartiger Funktionen",
+		"editTitle": "Unique Feature Edit",
+		"UniquefeatureName": "Einzigartiges Merkmal",
+		"edit": "Bearbeiten",
+		"updated": "Einzigartige Funktion wurde aktualisiert!",
+		"new": "Neue einzigartige Funktion hinzugefügt",
+		"addTitle": "Neues einzigartiges Feature"
+	},
+	"manageCounty": {
+		"title": "County verwalten",
+		"county": "Bezirk",
+		"search": "Suche",
+		"addCounty": "Add New County",
+		"back": "Back to Manage County",
+		"editTitle": "County Edit",
+		"countyName": "Bezirk",
+		"edit": "Bearbeiten",
+		"updated": "Grafschaft wurde aktualisiert!",
+		"new": "New County hinzugefügt",
+		"addTitle": "New County",
+		"state": "Zustand"
+	},
+	"manageDisaster" : {
+		"title": "Katastrophe verwalten",
+		"disaster": "Katastrophe",
+		"search": "Suche",
+		"addDisaster": "Neue Katastrophe hinzufügen",
+		"back": "Zurück zum Verwalten von Katastrophen",
+		"editTitle": "Katastrophenbearbeitung",
+		"disasterName": "Katastrophe",
+		"name": "Name der Katastrophe",
+		"county": "Bezirk",
+		"state": "Zustand",
+		"start": "Anfangsdatum",
+		"end": "Endtermin",
+		"edit": "Bearbeiten",
+		"updated": "Katastrophe wurde aktualisiert!",
+		"new": "Neue Katastrophe hinzugefügt",
+		"addTitle": "Neue Katastrophe"
 	}
 }

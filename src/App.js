@@ -22,6 +22,13 @@ import ManageAnimalTypes from './Pages/AdminTools/Pets/ManageAnimalTypes'
 import ManageBreeds from './Pages/AdminTools/Pets/ManageBreeds'
 import ManageGenders from './Pages/AdminTools/Pets/ManagerGenders'
 import ManageStatus from './Pages/AdminTools/Pets/ManageStatus'
+import ManageColors from './Pages/AdminTools/Features/ManageColors'
+import ManageParts from './Pages/AdminTools/Features/ManageParts'
+import ManagePositions from './Pages/AdminTools/Features/ManagePositions'
+import ManageFeatures from './Pages/AdminTools/Features/ManageFeatures'
+import ManageUniqueFeatures from './Pages/AdminTools/Features/ManageUniqueFeatures'
+import ManageDisasters from './Pages/AdminTools/Disaster/ManageDisasters'
+import ManageCounty from './Pages/AdminTools/Location/ManageCounty'
 import UserEdit from './Pages/AdminTools/User/EditPages/UserEdit'
 import PetEdit from './Pages/AdminTools/Pets/EditPages/PetEdit'
 import AlteredStatusEdit from './Pages/AdminTools/Pets/EditPages/AlteredStatusEdit'
@@ -30,12 +37,26 @@ import BreedEdit from './Pages/AdminTools/Pets/EditPages/BreedEdit'
 import GenderEdit from './Pages/AdminTools/Pets/EditPages/GenderEdit'
 import StatusEdit from './Pages/AdminTools/Pets/EditPages/StatusEdit'
 import RoleEdit from './Pages/AdminTools/User/EditPages/RoleEdit'
+import ColorEdit from './Pages/AdminTools/Features/EditPages/ColorEdit'
+import FeatureEdit from './Pages/AdminTools/Features/EditPages/FeatureEdit'
+import PartEdit from './Pages/AdminTools/Features/EditPages/PartEdit'
+import PositionEdit from './Pages/AdminTools/Features/EditPages/PositionEdit'
+import UniqueFeatureEdit from './Pages/AdminTools/Features/EditPages/UniqueFeatureEdit'
+import DisasterEdit from './Pages/AdminTools/Disaster/EditPages/DisasterEdit'
+import CountyEdit from './Pages/AdminTools/Location/EditPages/CountyEdit'
 import NewAlteredStatus from './Pages/AdminTools/Pets/NewPages/NewAlteredStatus'
 import NewAnimalTypes from './Pages/AdminTools/Pets/NewPages/NewAnimalType'
 import NewBreed from './Pages/AdminTools/Pets/NewPages/NewBreed'
 import NewGender from './Pages/AdminTools/Pets/NewPages/NewGender'
 import NewStatus from './Pages/AdminTools/Pets/NewPages/NewStatus'
 import NewRole from './Pages/AdminTools/User/NewPages/NewRole'
+import NewColor from './Pages/AdminTools/Features/NewPages/NewColor'
+import NewFeature from './Pages/AdminTools/Features/NewPages/NewFeature'
+import NewPart from './Pages/AdminTools/Features/NewPages/NewPart'
+import NewPosition from './Pages/AdminTools/Features/NewPages/NewPosition'
+import NewUniqueFeature from './Pages/AdminTools/Features/NewPages/NewUniqueFeature'
+import NewDisadter from './Pages/AdminTools/Disaster/NewPages/NewDisaster'
+import NewCounty from './Pages/AdminTools/Location/NewPages/NewCounty'
 import { ProtectedRoute } from "./Component/ProtectedRoutes/protected.route"
 import { AdminProtectedRoute } from "./Component/ProtectedRoutes/AdminProtected.route"
 import i18n from './Component/i18n/i18n';
@@ -89,6 +110,16 @@ class App extends Component {
 							<AdminProtectedRoute exact path="/manageStatus" component={ManageStatus} />
 							<AdminProtectedRoute exact path="/manageAlteredStatus" component={ManageAlteredStatus} />
 
+							<AdminProtectedRoute exact path="/manageColors" component={ManageColors} />
+							<AdminProtectedRoute exact path="/manageParts" component={ManageParts} />
+							<AdminProtectedRoute exact path="/managePositions" component={ManagePositions} />
+							<AdminProtectedRoute exact path="/manageFeatures" component={ManageFeatures} />
+							<AdminProtectedRoute exact path="/manageUniquefeatures" component={ManageUniqueFeatures} />
+
+							<AdminProtectedRoute exact path="/manageDisasters" component={ManageDisasters} />
+
+							<AdminProtectedRoute exact path="/manageCounty" component={ManageCounty} />
+
 							<AdminProtectedRoute exact path="/adminTools" component={AdminTools} />
 							<AdminProtectedRoute path="/userEdit/:id" component={UserEdit} />
 							<AdminProtectedRoute path="/petEdit/:id" component={PetEdit} />
@@ -100,12 +131,33 @@ class App extends Component {
 							<AdminProtectedRoute path="/alteredStatusEdit/:id" component={AlteredStatusEdit} />
 							<AdminProtectedRoute path="/roleEdit/:id" component={RoleEdit} />
 
+							<AdminProtectedRoute path="/colorEdit/:id" component={ColorEdit} />
+							<AdminProtectedRoute path="/featureEdit/:id" component={FeatureEdit} />
+							<AdminProtectedRoute path="/partEdit/:id" component={PartEdit} />
+							<AdminProtectedRoute path="/positionEdit/:id" component={PositionEdit} />
+							<AdminProtectedRoute path="/uniquefeatureEdit/:id" component={UniqueFeatureEdit} />
+
+							<AdminProtectedRoute path="/disasterEdit/:id" component={DisasterEdit} />
+
+							<AdminProtectedRoute path="/countyEdit/:id" component={CountyEdit} />
+
 							<AdminProtectedRoute path="/newBreed" component={NewBreed} />
 							<AdminProtectedRoute path="/newAnimalType" component={NewAnimalTypes} />
 							<AdminProtectedRoute path="/newGender" component={NewGender} />
 							<AdminProtectedRoute path="/newStatus" component={NewStatus} />
 							<AdminProtectedRoute path="/newAlteredStatus" component={NewAlteredStatus} />
 							<AdminProtectedRoute path="/newRole" component={NewRole} />
+
+							<AdminProtectedRoute path="/newColor" component={NewColor} />
+							<AdminProtectedRoute path="/newFeature" component={NewFeature} />
+							<AdminProtectedRoute path="/newPart" component={NewPart} />
+							<AdminProtectedRoute path="/newPosition" component={NewPosition} />
+							<AdminProtectedRoute path="/newUniquefeature" component={NewUniqueFeature} />
+
+							<AdminProtectedRoute path="/newDisaster" component={NewDisadter} />
+
+							<AdminProtectedRoute path="/newCounty" component={NewCounty} />
+
 							<Route path="*" component={NotFound} />
 						</Switch>
 					</div>

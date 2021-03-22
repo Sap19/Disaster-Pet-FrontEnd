@@ -19,3 +19,18 @@
 	width: 50%;
 	padding-left: 1%;
 }
+.featureColumn {
+    float: left;
+    width: 25%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.featureRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.featureRow {
+	padding-bottom: 60px;
+	padding-top: 40px;
+}

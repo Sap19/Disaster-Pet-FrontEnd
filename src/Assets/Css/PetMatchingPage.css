@@ -69,3 +69,27 @@
     display: table;
     clear: both;
 }
+.flex-container {
+	display: flex;
+}
+
+.flex-container > div {
+	margin: 10px;
+	font-size: 30px;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding-left:5%;
+    padding-right: 5%;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.row {
+	padding-bottom: 60px;
+	padding-top: 40px;
+}

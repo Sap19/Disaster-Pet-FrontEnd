@@ -3,7 +3,7 @@ import { Button, Dropdown, Form, Message, Loader } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import i18n from '../../../../Component/i18n/i18n';
 
-export class UserEdit extends Component {
+export class PetEdit extends Component {
 
 	constructor(props) {
 		super(props);
@@ -281,4 +281,4 @@ export class UserEdit extends Component {
 	}
 }
 
-export default UserEdit
+export default PetEdit
