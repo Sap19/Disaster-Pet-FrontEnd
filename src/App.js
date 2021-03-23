@@ -59,6 +59,7 @@ import NewDisadter from './Pages/AdminTools/Disaster/NewPages/NewDisaster'
 import NewCounty from './Pages/AdminTools/Location/NewPages/NewCounty'
 import { ProtectedRoute } from "./Component/ProtectedRoutes/protected.route"
 import { AdminProtectedRoute } from "./Component/ProtectedRoutes/AdminProtected.route"
+import Wiki from './Pages/Wiki'
 import i18n from './Component/i18n/i18n';
 
 class App extends Component {
@@ -96,6 +97,7 @@ class App extends Component {
 							<Route exact path="/forgotPassword" component={ForgotPassword} />
 							<Route exact path="/resetPassword/:token" component={ResetPassword} />
 							<Route exact path="/rainbowGallery" component={RainbowGallery} />
+							<Route exact path="/howTo" component={Wiki} />
 							<ProtectedRoute exact path="/dashboard" component={Dashboard} />
 							<ProtectedRoute exact path="/addPet" component={AddPet} />
 							<ProtectedRoute exact path="/matchPets" component={PetMatching} />

@@ -13,6 +13,7 @@ export class NavigationBar extends Component {
 				{ 'key': 'en', 'value': 'en', 'text': 'en' },
 				{ 'key': 'de', 'value': 'de', 'text': 'de' },
 				{ 'key': 'es', 'value': 'es', 'text': 'es' },
+				{ 'key': 'ru', 'value': 'ru', 'text': 'ru' },
 			],
 			lng: 'en'
 		}
