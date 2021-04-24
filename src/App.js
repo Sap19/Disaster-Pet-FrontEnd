@@ -14,6 +14,8 @@ import PetMatching from './Pages/PetMatchingPage'
 import RainbowGallery from './Pages/RainbowGallery'
 import PetDetails from './Pages/PetDetails'
 import AdminTools from './Pages/AdminTools'
+import PDFSelect from './Pages/PDFSelect'
+import PDFMaker from './Pages/PDFMaker'
 import ManageUsers from './Pages/AdminTools/User/ManageUser'
 import ManagePets from './Pages/AdminTools/Pets/ManagePets'
 import ManageRoles from './Pages/AdminTools/User/ManageRoles'
@@ -102,6 +104,8 @@ class App extends Component {
 							<ProtectedRoute exact path="/addPet" component={AddPet} />
 							<ProtectedRoute exact path="/matchPets" component={PetMatching} />
 							<ProtectedRoute path="/petDetails/:id" component={PetDetails} />
+							<ProtectedRoute path="/pdfSelect/" component={PDFSelect} />
+							<ProtectedRoute path="/pdf/:id" component={PDFMaker} />
 							<AdminProtectedRoute exact path="/manageUsers" component={ManageUsers} />
 							<AdminProtectedRoute exact path="/managePets" component={ManagePets} />
 

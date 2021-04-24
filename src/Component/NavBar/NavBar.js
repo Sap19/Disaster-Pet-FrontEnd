@@ -58,6 +58,8 @@ export class NavigationBar extends Component {
 								<Nav.Link href="/addPet">{i18n.t("navBar.addPet")}</Nav.Link>}
 							{auth.getUserId() > 1 &&
 								<Nav.Link href="/matchPets">{i18n.t("navBar.matchPet")}</Nav.Link>}
+							{auth.getUserId() > 1 &&
+								<Nav.Link href="/pdfSelect">{i18n.t("navBar.flyer")}</Nav.Link>}
 							{auth.isAdminAuth() &&
 								<Nav.Link href="/adminTools">{i18n.t("navBar.admin")}</Nav.Link>}
 						</Nav>

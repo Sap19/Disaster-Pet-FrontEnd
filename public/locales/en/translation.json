@@ -29,7 +29,8 @@
 		"admin": "Admin Tools",
 		"logout": "Logout",
 		"login": "Login",
-		"signup": "Sign Up"
+		"signup": "Sign Up",
+		"flyer": "Flyer Maker"
 	},
 	"error": "Server Error. Please Refresh Page",
 	"emailValidation" : {
@@ -161,6 +162,9 @@
 		"unique": "Manage Unique Features",
 		"location": "Location",
 		"county": "Manage County"
+	},
+	"pdfFlyer" : {
+		"title": "Flyer Maker"
 	},
 	"manageUsers": {
 		"name": "Name",
