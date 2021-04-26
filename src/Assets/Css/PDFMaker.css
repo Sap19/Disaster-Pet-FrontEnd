@@ -1,44 +1,17 @@
-.body {
-	padding-top: 35px;
-	padding-bottom: 65px;
+.column {
+    float: left;
+    width: 50%;
+    padding-left:5%;
+    padding-right: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
-.title {
-	font-size: 24px;
-	text-align: 'center';
-	font-family: 'Oswald';
+.pdfMakerRow:after {
+    content: "";
+    display: table;
+    clear: both;
 }
-.author {
-	font-size: 12px;
-	text-align: 'center';
-	margin-bottom: 40px;
-}
-.subtitle {
-	font-size: 18px;
-	margin: 12px;
-	font-family: 'Oswald';
-}
-.text {
-	margin: 12;
-	font-size: 14;
-	text-align: 'justify';
-	font-family: 'Times-Roman';
-}
-.image {
-	width: 15px;
-	height: 100px;
-}
-.header {
-	font-size: 12px;
-	margin-bottom: 20px;
-	text-align: 'center';
-	color: 'grey';
-}
-.pageNumber {
-	position: 'absolute';
-	font-size: 12;
-	bottom: 30;
-	left: 0;
-	right: 0;
-	text-align: 'center';
-	color: 'grey';
+.pdfMakerRow {
+    padding-bottom: 0px;
+    padding-top: 0px;
 }

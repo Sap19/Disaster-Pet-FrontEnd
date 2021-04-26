@@ -29,10 +29,6 @@ export class UserEdit extends Component {
 		})
 	}
 	setInputValue(property, val) {
-		val = val.trim();
-		if (val.length > 500) {
-			return;
-		}
 		this.setState({
 			[property]: val,
 		})
