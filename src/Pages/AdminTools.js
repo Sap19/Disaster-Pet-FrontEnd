@@ -51,6 +51,11 @@ export class AdminTools extends Component {
 						<a href="/manageCounty">{i18n.t("adminTools.county")}</a>
 						<br/>
                     </div>
+					<div className="column" >
+                        <h2 style={{textAlign: 'left', textDecorationLine:"underline"}}>Matches</h2>
+						<a href="/manageMatches">Manage Matches</a>
+						<br/>
+                    </div>
                 </div>
             </div>
         )

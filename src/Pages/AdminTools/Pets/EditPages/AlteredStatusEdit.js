@@ -41,7 +41,6 @@ export class AlterdStatusEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Single Altered Status Have Been Returned") {
 				this.setState({
 					status: result.AlteredStatus[0].status,
@@ -70,7 +69,6 @@ export class AlterdStatusEdit extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "Altured Status Updated") {
-				console.log(result)
 				this.setState({
 					successMessage: "Altured Status Has Been Updated!"
 				})

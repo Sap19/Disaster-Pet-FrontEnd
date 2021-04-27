@@ -31,6 +31,8 @@ import ManageFeatures from './Pages/AdminTools/Features/ManageFeatures'
 import ManageUniqueFeatures from './Pages/AdminTools/Features/ManageUniqueFeatures'
 import ManageDisasters from './Pages/AdminTools/Disaster/ManageDisasters'
 import ManageCounty from './Pages/AdminTools/Location/ManageCounty'
+import ManageMatches from './Pages/AdminTools/Matches/ManageMatches'
+import ViewMatch from './Pages/AdminTools/Matches/ViewMatch'
 import UserEdit from './Pages/AdminTools/User/EditPages/UserEdit'
 import PetEdit from './Pages/AdminTools/Pets/EditPages/PetEdit'
 import AlteredStatusEdit from './Pages/AdminTools/Pets/EditPages/AlteredStatusEdit'
@@ -125,6 +127,10 @@ class App extends Component {
 							<AdminProtectedRoute exact path="/manageDisasters" component={ManageDisasters} />
 
 							<AdminProtectedRoute exact path="/manageCounty" component={ManageCounty} />
+
+							<AdminProtectedRoute exact path="/manageMatches" component={ManageMatches} />
+
+							<AdminProtectedRoute exact path="/viewMatch" component={ViewMatch} />
 
 							<AdminProtectedRoute exact path="/adminTools" component={AdminTools} />
 							<AdminProtectedRoute path="/userEdit/:id" component={UserEdit} />

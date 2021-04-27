@@ -137,7 +137,9 @@
 		"part": "Part",
 		"color": "Color",
 		"addFeature": "Add Feature",
-		"searchBtn": "Search"
+		"searchBtn": "Search",
+		"deny": "Deny Match",
+		"accept": "Accept Match"
 	},
 	"adminTools": {
 		"title": "Admin Tools",

@@ -20,7 +20,6 @@ export class ManageParts extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -51,7 +50,6 @@ export class ManageParts extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All BodyParts Have Been Returned") {
-				console.log(result.BodyPart)
 				this.setState({
 					Parts: result.BodyPart,
 					loaded: false

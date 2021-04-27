@@ -15,7 +15,6 @@ function PetDetails({ match }) {
 	const [petImages, setImages] = useState([])
 	const [petFeatures, setFeatures] = useState([])
 	function exampleReducer(state, action) {
-		console.log(action)
 		switch (action.type) {
 			case 'close':
 				return { open: false }
@@ -47,7 +46,6 @@ function PetDetails({ match }) {
 		const pet = await fetchPet.json();
 		pet.pets[0].date_created = pet.pets[0].date_created.slice(0, 16)
 		setPet(pet.pets[0])
-		console.log(pet.pets[0])
 		pet.images.map((image, i) => {
 			petImagesArray.push(image[0])
 		})
@@ -56,7 +54,6 @@ function PetDetails({ match }) {
 		})
 		setImages(petImagesArray)
 		setFeatures(petFeaturesArray)
-		console.log(pet)
 	}
 	return (
 		<div style={{ paddingTop: "60px" }}>

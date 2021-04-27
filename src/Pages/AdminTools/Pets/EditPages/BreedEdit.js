@@ -41,7 +41,6 @@ export class BreedEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Breed Has Been Returned") {
 				this.setState({
 					breed: result.Breed[0].breed,
@@ -70,7 +69,6 @@ export class BreedEdit extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "Breed Updated") {
-				console.log(result)
 				this.setState({
 					successMessage: "Breed Has Been Updated!"
 				})

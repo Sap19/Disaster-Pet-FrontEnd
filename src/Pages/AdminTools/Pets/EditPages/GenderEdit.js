@@ -41,7 +41,6 @@ export class GenderEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Gender Has Been Returned") {
 				this.setState({
 					gender: result.Genders[0].gender,
@@ -70,7 +69,6 @@ export class GenderEdit extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "Gender Updated") {
-				console.log(result)
 				this.setState({
 					successMessage: "Gender Has Been Updated!"
 				})

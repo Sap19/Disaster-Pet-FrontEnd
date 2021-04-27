@@ -33,7 +33,6 @@ export class Dashboard extends Component {
 					loaded: false
 				})
 			}
-			console.log(result)
 		} catch (e) {
 			console.log(e)
 		}

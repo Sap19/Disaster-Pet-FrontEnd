@@ -20,7 +20,6 @@ export class ManageAlteredStatus extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -51,7 +50,6 @@ export class ManageAlteredStatus extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All Altered Statuses Have Been Returned") {
-				console.log(result.AlteredStatus)
 				this.setState({
 					AlteredStatus: result.AlteredStatus,
 					loaded: false

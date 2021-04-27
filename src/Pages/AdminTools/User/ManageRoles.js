@@ -20,7 +20,6 @@ export class ManageRoles extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -51,7 +50,6 @@ export class ManageRoles extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All Roles Have Been Returned") {
-				console.log(result.Roles)
 				this.setState({
 					Roles: result.Roles,
 					loaded: false

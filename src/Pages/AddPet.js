@@ -57,19 +57,16 @@ class AddPetForm extends Component {
 	}
 
 	removeImage(filename) {
-		console.log(filename);
 		const newList = this.state.selectedFiles.filter((file) => file.name !== filename);
 		this.setState({
 			selectedFiles: newList
 		})
-		console.log(this.state.selectedFiles)
 	}
 
 	fileSelectedHandler = (event) => {
 		this.setState({
 			arr: this.state.selectedFiles.push(event.target.files[0])
 		})
-		console.log(this.state.selectedFiles);
 	}
 
 	setInputValue(property, val) {
@@ -101,7 +98,6 @@ class AddPetForm extends Component {
 				},
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.msg === "Token has expired") {
 				this.props.history.push('/login')
 			}
@@ -150,7 +146,7 @@ class AddPetForm extends Component {
 				},
 			});
 			let result = await res.json();
-			console.log(result);
+
 			result.animal.forEach((animal, i) => {
 				this.setState({
 					arr: this.state.animalOptions.push({ 'key': animal.id, 'value': animal.id, 'text': animal.animal })
@@ -252,12 +248,11 @@ class AddPetForm extends Component {
 					zipcode: this.state.zipcode,
 					pet_status: this.state.status,
 					image_url: imageUrl,
-					features: this.state.FeaturesGroups,
+					feature: this.state.FeaturesGroups,
 					user_id: userID
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "successfully added pet") {
 				this.setState({
 					isEmailValid: false,
@@ -275,7 +270,6 @@ class AddPetForm extends Component {
 		}
 	}
 	addFeatureGroup(event) {
-		console.log(event);
 		this.setState({
 			arr: this.state.FeaturesGroups.push({
 				'animal': this.state.animalType_id, 'position': '', 'bodyPart': '', 'color': '', 'feature': ''
@@ -291,15 +285,12 @@ class AddPetForm extends Component {
 		})
 	}
 	featureGroupChange(event, data) {
-		console.log("feature change",event.target, data)
 		var tempFeature = this.state.FeaturesGroups
-		console.log(tempFeature[data.noResultsMessage])
 		tempFeature[data.noResultsMessage][data.name] = data.value
 		this.setState({
 			FeaturesGroups: tempFeature,
 			breedDisabled: false,
 		})
-		console.log(this.state.FeaturesGroups);
 	}
 	handleRangeChange = e => this.setState({ activeIndex: e.target.value });
 	handleTabChange = (e, { activeIndex }) => this.setState({ activeIndex });

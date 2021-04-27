@@ -4,6 +4,12 @@
     padding-left:5%;
     padding-right: 5%;
 }
+.column1 {
+    float: left;
+    width: 33.33%;
+    padding-left:5%;
+    padding-right: 5%;
+}
 h2 {
     text-align: center;
 }

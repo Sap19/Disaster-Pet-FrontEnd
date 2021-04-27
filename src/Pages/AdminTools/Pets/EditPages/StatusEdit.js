@@ -41,7 +41,6 @@ export class StatusEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Pet Status Has Been Returned") {
 				this.setState({
 					status: result.Status[0].status,
@@ -70,7 +69,6 @@ export class StatusEdit extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "Pet Status Updated") {
-				console.log(result)
 				this.setState({
 					successMessage: "Status Has Been Updated!"
 				})

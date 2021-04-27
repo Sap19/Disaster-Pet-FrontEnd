@@ -23,7 +23,6 @@ export class ManageDisasters extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -54,7 +53,6 @@ export class ManageDisasters extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "all disasters returned") {
-				console.log(result.Disasters)
 				this.setState({
 					Disasters: result.Disasters,
 					loaded: false

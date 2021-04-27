@@ -21,7 +21,6 @@ export class ManageCounty extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -52,7 +51,6 @@ export class ManageCounty extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All Counties Have Been Returned") {
-				console.log(result.locations)
 				this.setState({
 					locations: result.locations,
 					loaded: false

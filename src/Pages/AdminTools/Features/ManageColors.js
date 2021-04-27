@@ -20,7 +20,6 @@ export class ManageColors extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -51,7 +50,6 @@ export class ManageColors extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All Colors Have Been Returned") {
-				console.log(result.Color)
 				this.setState({
 					Colors: result.Color,
 					loaded: false

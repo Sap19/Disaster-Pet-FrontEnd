@@ -42,7 +42,6 @@ export class CountyEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Single County Have Been Returned") {
 				this.setState({
 					county_name: result.locations[0].countyname,
@@ -72,7 +71,6 @@ export class CountyEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result);
 			if (result.message === "county updated") {
 				this.setState({
 					successMessage: i18n.t("manageCounty.updated")

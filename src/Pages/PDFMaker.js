@@ -54,7 +54,6 @@ export class PDFMaker extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result);
 			var tempImages = []
 			result.images.map((image, i) => {
 				tempImages.push(image[0])

@@ -1,0 +1,21 @@
+.rowMatch {
+	padding-top: 0%;
+	padding-bottom: 0%;
+}
+.rowMatch:after {
+	content: "";
+    display: table;
+    clear: both;
+}
+.columnMatchAccept {
+    float: left;
+    width: 50%;
+    padding-left:30%;
+    padding-right: 5%;
+}
+.columnMatchDeny {
+    float: left;
+    width: 50%;
+    padding-left:5%;
+    padding-right: 30%;
+}

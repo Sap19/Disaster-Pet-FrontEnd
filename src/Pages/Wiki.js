@@ -16,6 +16,15 @@ import forgotPassword from "../Assets/Images/wiki/forgotPassword.png"
 import addPet from "../Assets/Images/wiki/addPet.png"
 import addFeature from "../Assets/Images/wiki/addFeature.png"
 import Feature from "../Assets/Images/wiki/Feature.png"
+import location from "../Assets/Images/wiki/location.png"
+import Dash from "../Assets/Images/wiki/Dash.png"
+import petDetail from "../Assets/Images/wiki/petDetail.png"
+import petMatch from "../Assets/Images/wiki/petMatch.png"
+import PetGallery from "../Assets/Images/wiki/PetGallery.png"
+import AdminDash from "../Assets/Images/wiki/AdminDash.png"
+import newRoles from "../Assets/Images/wiki/newRoles.png"
+import manageRoles from "../Assets/Images/wiki/manageRoles.png"
+import manageUsers from "../Assets/Images/wiki/manageUsers.png"
 
 export class Wiki extends Component {
 	constructor(props) {
@@ -144,27 +153,174 @@ export class Wiki extends Component {
 									</ul>
 									<li>From here the user can click to add another feature with the same drop downs for however many features the user wants to add </li>
 								</ul>
-								<li>Pet Location: </li>
+								<li>Pet Location: The final portion of adding pets is to include a location for where the pet was lost. </li>
+								<Image style={{ paddingLeft: "25%", width: "75%" }} src={location}></Image>
+								<li>Pet Location: The final portion of adding pets is to include a location for where the pet was lost. </li>
+								<ul style={{ fontSize: "18px", textAlign: "left" }}>
+									<li>Address: address where pet was lost </li>
+									<li>State: state of the address  </li>
+									<li>City: what city the address is in  </li>
+									<li>Zip Code: the zip code of the address  </li>
+								</ul>
 							</ul>
 						</ul>
 					</Tab.Pane>
 			},
 			{
-				menuItem: 'Match Pet', render: () =>
+				menuItem: 'Dashboard / Pet Detail', render: () =>
 					<Tab.Pane>
-						<h1 style={{ fontWeight: "bold", textAlign: "left" }}>Pet Matching</h1>
+						<h1 style={{ fontWeight: "bold", textAlign: "left" }}>Dashboard</h1>
+						<p style={{ fontSize: "18px", textAlign: "left" }}>
+							The dashboard contains the pictures of all the dogs linked to that user.
+							If the user is a client, it will be all pets that they added individually.
+							If the user is a volunteer this will display all pets that they are currently supposed to be focusing on matching with other pets in the system.
+						</p>
+						<Image style={{ paddingLeft: "25%", width: "75%" }} src={Dash}></Image>
+						<ul style={{ fontSize: "18px", textAlign: "left" }}>
+							<li>The dashboard has sqaure sections containing a specific pet and the basic information for that pet. </li>
+							<li>From here you can get to the detail page for that specific pet by clicking on the picture of the one you wish to select.  </li>
+						</ul>
+						<br />
+						<h1 style={{ fontWeight: "bold", textAlign: "left" }}>Pet Details</h1>
+						<p style={{ fontSize: "18px", textAlign: "left" }}>
+							The pet Details page provides all the information available for the specific pet selected.
+							This includes basic information, all the provided features, and any location data provided for that pet.
+						</p>
+						<Image style={{ paddingLeft: "25%", width: "75%" }} src={petDetail}></Image>
+						<ul style={{ fontSize: "18px", textAlign: "left" }}>
+							<li>Pictured above is a pet detail page for a dog in the system, this page can look different depending on how much information is provided for a pet.  </li>
+							<ul style={{ fontSize: "18px", textAlign: "left" }}>
+								<li>This example has 1 picture, and 1 feature. This page could incorporate multiple images and multiple features  </li>
+							</ul>
+						</ul>
 					</Tab.Pane>
 			},
 			{
-				menuItem: 'Pet Gallery & Rainbow Gallery', render: () =>
+				menuItem: 'Match Pets', render: () =>
+					<Tab.Pane>
+						<h1 style={{ fontWeight: "bold", textAlign: "left" }}>Pet Matching</h1>
+						<p style={{ fontSize: "18px", textAlign: "left" }}>
+							The most important feature of this website is the pet matching page.
+							The whole purpose of this site is to reunite lost pets with their families. This means that the found pets need to be matched with lost family pets added to the system.
+						</p>
+						<Image style={{ paddingLeft: "25%", width: "75%" }} src={petMatch}></Image>
+						<ul style={{ fontSize: "18px", textAlign: "left" }}>
+							<li>The above image shows the pet matching page on the site </li>
+							<li>This page is split in half into two identical halves which allows the user to view images of pets in the database on both sides. </li>
+							<ul style={{ fontSize: "18px", textAlign: "left" }}>
+								<li>The left side is the search side where you fill in the parameters in the grey box to what pet you are trying to match </li>
+								<ul style={{ fontSize: "18px", textAlign: "left" }}>
+									<li>If you select an image on the left-hand side, it will fill in the text boxes on the left side </li>
+								</ul>
+								<li>The right side will automatically be filtered to match the left side to try and generate matches between the two sides. </li>
+								<ul style={{ fontSize: "18px", textAlign: "left" }}>
+									<li>The user can edit the search parameters on the right side as well.
+									This way the user can broaden the matching pets on the right side that way they have more options to look through.
+									Since users who added the pet may have not added them the exact same way as the reunification service.
+									</li>
+								</ul>
+							</ul>
+						</ul>
+					</Tab.Pane>
+			},
+			{
+				menuItem: 'Pet Gallery / Rainbow Gallery', render: () =>
 					<Tab.Pane>
 						<h1 style={{ fontWeight: "bold", textAlign: "left" }}>Pet Gallery & Rainbow Gallery</h1>
+						<p style={{ fontSize: "18px", textAlign: "left" }}>
+							One feature that is available whether a user is a registered member is the pet gallery along with the rainbow gallery.
+						</p>
+						<Image style={{ paddingLeft: "25%", width: "75%" }} src={PetGallery}></Image>
+						<ul style={{ fontSize: "18px", textAlign: "left" }}>
+							<li>The pet gallery and the rainbow gallery are both set up the same.
+							The rainbow gallery is the gallery that contains all the pets that unfortunately crossed the rainbow bridge during the disaster.
+								The pet gallery page contains all pets alive, or unknown status in our system </li>
+							<li>The page loads up and all pets are displayed under the dropdown menus  </li>
+							<ul style={{ fontSize: "18px", textAlign: "left" }}>
+								<li>These menus can be used to filter the pets based on the criteria that the user selects </li>
+							</ul>
+						</ul>
 					</Tab.Pane>
 			},
 			this.state.isAdmin ? {
 				menuItem: 'Admin Tools', render: () =>
 					<Tab.Pane>
 						<h1 style={{ fontWeight: "bold", textAlign: "left" }}>Admin Tools</h1>
+						<p>
+							The admin tools are available for all admin users is a set of tools to directly edit tables in the database.
+						</p>
+						<br />
+						<h2 style={{ fontWeight: "bold", textAlign: "left" }}>Admin Tool Dashboard </h2>
+						<Image style={{ paddingLeft: "25%", width: "75%" }} src={AdminDash}></Image>
+						<ul style={{ fontSize: "18px", textAlign: "left" }}>
+							<li>The above image is the dashboard for the admin tool menu. </li>
+							<li>It includes links to every table in the system that can be edited by the admin </li>
+							<ul style={{ fontSize: "18px", textAlign: "left" }}>
+								<li>Categories include:  </li>
+								<ul style={{ fontSize: "18px", textAlign: "left" }}>
+									<li>Users: All tables having direct impact on users  </li>
+									<ul style={{ fontSize: "18px", textAlign: "left" }}>
+										<li>Users: All current users in the system ( clients, volunteers, and admin) </li>
+										<li>Roles: contain all roles (user, admin, volunteer) </li>
+									</ul>
+									<li>Pets: All tables having to do with pets </li>
+									<ul style={{ fontSize: "18px", textAlign: "left" }}>
+										<li>Pets table: contains all pets  </li>
+										<li>Breeds: contains all breeds in the system  </li>
+										<li>Animal type: contains all animal types </li>
+										<li>Gender: contains all genders  </li>
+										<li>Status: contains status of life data  </li>
+										<li>Altered Status contains all altered options (spayed, neutered, intact)  </li>
+									</ul>
+									<li>Location: all tables having to do with locations  </li>
+									<ul style={{ fontSize: "18px", textAlign: "left" }}>
+										<li>Location: Table containing all addresses in the system  </li>
+									</ul>
+									<li>Disaster: All tables having to do with disasters  </li>
+									<ul style={{ fontSize: "18px", textAlign: "left" }}>
+										<li>Disaster: contains basic information on disasters </li>
+									</ul>
+									<li>Feature: All feature tables  </li>
+									<ul style={{ fontSize: "18px", textAlign: "left" }}>
+										<li>Colors: all colors in the database </li>
+										<li>Features: All features in the database </li>
+										<li>Parts: all body parts currently in the system </li>
+										<li>Positions: all positions currently in the system </li>
+										<li>Unique Features: all unique features for all pets in the database </li>
+									</ul>
+								</ul>
+							</ul>
+						</ul>
+						<br />
+						<h2 style={{ fontWeight: "bold", textAlign: "left" }}>Management Tools  </h2>
+						<Image style={{ paddingLeft: "25%", width: "75%" }} src={manageUsers}></Image>
+						<ul style={{ fontSize: "18px", textAlign: "left" }}>
+							<li>The above example of a tool is the manage users' tables. </li>
+							<ul style={{ fontSize: "18px", textAlign: "left" }}>
+								<li>This tool does not give much for options, the admin can search through all the tables as well as edit the users in the system.</li>
+								<li>They cannot add new users to the DB </li>
+							</ul>
+						</ul>
+						<Image style={{ paddingLeft: "25%", width: "75%" }} src={manageRoles}></Image>
+						<ul style={{ fontSize: "18px", textAlign: "left" }}>
+							<li>The next example is the manage roles admin tool. </li>
+							<ul style={{ fontSize: "18px", textAlign: "left" }}>
+								<li>This tool can edit and add roles into the system </li>
+							</ul>
+							<li>To add a new role the user will need to click the green button to be redirected to the add new role page  </li>
+							<Image style={{ paddingLeft: "25%", width: "75%" }} src={newRoles}></Image>
+							<li>The add new role page has a simple layout  </li>
+							<ul style={{ fontSize: "18px", textAlign: "left" }}>
+								<li>There is only one text box that is for the name of the new role then the user can click the button to confirm the add  </li>
+								<ul style={{ fontSize: "18px", textAlign: "left" }}>
+									<li>The database will automatically add the id for the role  </li>
+								</ul>
+								<li>Other adds in the admin tool menu may have more textboxes that are required so the page will provide more text boxes for the admin to fill in. </li>
+								<ul style={{ fontSize: "18px", textAlign: "left" }}>
+									<li>The ids will still be automatically added for every table  </li>
+								</ul>
+							</ul>
+						</ul>
 					</Tab.Pane>
 			} : '',
 		]

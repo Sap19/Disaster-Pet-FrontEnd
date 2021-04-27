@@ -41,7 +41,6 @@ export class RoleEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Single Roles Have Been Returned") {
 				this.setState({
 					role_name: result.Roles[0].role_name,

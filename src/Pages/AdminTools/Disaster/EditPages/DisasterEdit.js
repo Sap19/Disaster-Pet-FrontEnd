@@ -29,7 +29,6 @@ export class DisasterEdit extends Component {
 	}
 	async DisasterInfo() {
 		try {
-			console.log(this.state.DisasterID)
 			let res = await fetch('http://127.0.0.1:5000/managedisater', {
 				method: 'POST',
 				headers: {
@@ -42,7 +41,6 @@ export class DisasterEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Color Has Been Returned") {
 				this.setState({
 					color_name: result.Color[0].color,
@@ -70,7 +68,6 @@ export class DisasterEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result);
 			if (result.message === "Color Updated") {
 				this.setState({
 					successMessage: i18n.t("manageColors.updated")

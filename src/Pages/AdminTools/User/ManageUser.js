@@ -23,7 +23,6 @@ export class ManageUser extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -54,7 +53,6 @@ export class ManageUser extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "all users returned") {
-				console.log(result)
 				this.setState({
 					Users: result.Users,
 					Roles: result.Roles,

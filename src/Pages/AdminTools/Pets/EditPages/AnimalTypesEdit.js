@@ -41,7 +41,6 @@ export class AnimalTypeEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Single Animal Types Have Been Returned") {
 				this.setState({
 					animal: result.AnimalTypes[0].animal,
@@ -70,7 +69,6 @@ export class AnimalTypeEdit extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "Animal Type Updated") {
-				console.log(result)
 				this.setState({
 					successMessage: "Animal Type Has Been Updated!"
 				})

@@ -24,7 +24,6 @@ export class ManageUniqueFeatures extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -55,7 +54,6 @@ export class ManageUniqueFeatures extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All Features Have Been Returned") {
-				console.log(result.Feature)
 				this.setState({
 					UniqueFeatures: result.Feature,
 					loaded: false

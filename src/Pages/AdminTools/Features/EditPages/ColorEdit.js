@@ -41,7 +41,6 @@ export class ColorEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Color Has Been Returned") {
 				this.setState({
 					color_name: result.Color[0].color,
@@ -69,7 +68,6 @@ export class ColorEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result);
 			if (result.message === "Color Updated") {
 				this.setState({
 					successMessage: i18n.t("manageColors.updated")

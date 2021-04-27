@@ -20,7 +20,6 @@ export class ManageGenders extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -51,7 +50,6 @@ export class ManageGenders extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All Genders Have Been Returned") {
-				console.log(result.Genders)
 				this.setState({
 					Gender: result.Genders,
 					loaded: false

@@ -41,7 +41,6 @@ export class PositionEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Position Has Been Returned") {
 				this.setState({
 					position_name: result.Position[0].position,
@@ -69,7 +68,6 @@ export class PositionEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result);
 			if (result.message === "Position Updated") {
 				this.setState({
 					successMessage: i18n.t("managePositions.updated")

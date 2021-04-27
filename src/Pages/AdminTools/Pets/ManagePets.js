@@ -27,7 +27,6 @@ export class ManagePets extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -50,7 +49,6 @@ export class ManagePets extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "successfully Pulled!") {
-				console.log(result)
 				this.setState({
 					Pets: result.pets,
 					loaded: false

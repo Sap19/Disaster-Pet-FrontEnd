@@ -34,3 +34,8 @@
 	padding-bottom: 60px;
 	padding-top: 40px;
 }
+.featureColumnManage {
+    float: left;
+    padding-left: 5%;
+    padding-right: 5%;
+}

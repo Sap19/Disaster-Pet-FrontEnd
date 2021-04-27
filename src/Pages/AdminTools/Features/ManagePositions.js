@@ -20,7 +20,6 @@ export class ManagePositions extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -51,7 +50,6 @@ export class ManagePositions extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All Positions Have Been Returned") {
-				console.log(result.Position)
 				this.setState({
 					Positions: result.Position,
 					loaded: false

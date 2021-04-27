@@ -20,7 +20,6 @@ export class ManageBreed extends Component {
 	}
 
 	setDropDownInputValue = (event, data) => {
-		console.log(data.value)
 		this.setState({
 			[data.name]: data.value,
 		})
@@ -51,7 +50,6 @@ export class ManageBreed extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "All Breeds Have Been Returned") {
-				console.log(result.Breeds)
 				this.setState({
 					Breed: result.Breeds,
 					loaded: false

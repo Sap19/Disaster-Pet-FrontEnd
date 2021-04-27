@@ -26,9 +26,7 @@ export class UniqueFeatureEdit extends Component {
 		}
 	}
 	newDropDownValue = (event, data) => {
-		console.log(event, data)
 		let newSelectedID = data.options.filter((option) => option.value === data.value)
-		console.log(newSelectedID)
 		this.setState({
 			[data.name]: newSelectedID[0].key,
 		})
@@ -48,7 +46,6 @@ export class UniqueFeatureEdit extends Component {
 				},
 			});
 			let result = await res.json();
-			console.log(result);
 			result.animal.forEach((animal, i) => {
 				this.setState({
 					arr: this.state.animalOptions.push({ 'key': animal.id, 'value': animal.id, 'text': animal.animal })
@@ -100,7 +97,6 @@ export class UniqueFeatureEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Feature Has Been Returned") {
 				this.setState({
 					color: result.Feature[0].colorid,

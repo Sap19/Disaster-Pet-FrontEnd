@@ -61,7 +61,6 @@ export class RainbowGallery extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "successfully Pulled!") {
-				console.log(result)
 				result.breeds.forEach((breed, i) => {
 					this.setState({
 						arr: this.state.primary_breedOption.push({ 'key': breed.id, 'value': breed.id, 'text': breed.breed })
@@ -88,7 +87,6 @@ export class RainbowGallery extends Component {
 					Pets: result.pets,
 					loaded: false
 				})
-				console.log(this.state.Pets)
 			}
 
 		} catch (e) {

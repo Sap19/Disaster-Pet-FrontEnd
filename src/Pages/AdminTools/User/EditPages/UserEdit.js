@@ -47,7 +47,6 @@ export class UserEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			let roleArray = []
 			if (result.message === "single user has been returned") {
 				result.Roles.forEach((role, i) => {

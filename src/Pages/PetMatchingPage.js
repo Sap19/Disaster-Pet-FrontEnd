@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from "lodash";
 import { Dropdown, Card, Image, Form, Input, Loader } from 'semantic-ui-react'
 import "../Assets/Css/PetMatchingPage.css"
 import i18n from '../Component/i18n/i18n';
@@ -12,6 +13,10 @@ export class PetMatching extends Component {
 			alteredOptions: [],
 			animalOptions: [],
 			statusOptions: [],
+			partOptions: [],
+			colorOptions: [],
+			featureOptions: [],
+			positionOptions: [],
 			RightPets: [],
 			LeftPets: [],
 			DefualtPets: [],
@@ -24,11 +29,14 @@ export class PetMatching extends Component {
 			primary_breed: '',
 			loaded: true,
 			rightFeatures: [],
-			leftFeatures: []
+			leftFeatures: [],
+			accept: null,
+			deny: false
 		}
 	}
 	componentDidMount() {
 		this.MatchingInit();
+		this.getDropdownInfo();
 	}
 	handleSearchChange(event) {
 
@@ -89,9 +97,7 @@ export class PetMatching extends Component {
 		})
 	}
 	leftSelectPet(event) {
-		console.log(event.target)
-		const NewRightPet = this.state.RightPets.filter((pet) => pet.pet_id.toString().indexOf(event.target.getAttribute('value')) !== -1)
-		console.log(NewRightPet);
+		const NewRightPet = this.state.RightPets.filter((pet) => pet.pet_id.toString() == event.target.getAttribute('value'))
 		const newLeftPet = this.state.RightPets.filter((pet) =>
 			pet.altered_status === NewRightPet[0].altered_status &&
 			pet.animal_type === NewRightPet[0].animal_type &&
@@ -104,12 +110,11 @@ export class PetMatching extends Component {
 			//altered_status: NewRightPet[0].altered_status,
 			//pet_type: NewRightPet[0].animal_type,
 			//breed: NewRightPet[0].primary_breed,
-			LeftPets: newLeftPet
+			//LeftPets: newLeftPet
 		})
 	}
 	rightSelectPet(event) {
-		console.log(event.target)
-		const newLeftPet = this.state.LeftPets.filter((pet) => pet.pet_id.toString().indexOf(event.target.getAttribute('value')) !== -1)
+		const newLeftPet = this.state.LeftPets.filter((pet) => pet.pet_id.toString() == event.target.getAttribute('value'))
 		this.setState({
 			LeftPets: newLeftPet
 		})
@@ -120,34 +125,39 @@ export class PetMatching extends Component {
 		})
 	}
 	addRightFeatureGroup(event) {
-		console.log(event);
 		this.setState({
 			arr: this.state.rightFeatures.push({
-				'color': '', 'part': '', 'feature': '', 'position': ''
+				'colorid': '', 'partid': '', 'featureid': '', 'positionid': ''
 			})
 		})
 	}
 
-	rightFeatureGroupChange(event, index) {
-		console.log(event, index)
+	rightFeatureGroupChange(event, data) {
+		var tempFeature = this.state.rightFeatures
+		tempFeature[data.noResultsMessage][data.name] = data.value
+		this.setState({
+			rightFeatures: tempFeature,
+		})
 	}
 	addLeftFeatureGroup(event) {
-		console.log(event);
 		this.setState({
 			arr: this.state.leftFeatures.push({
-				'color': '', 'part': '', 'feature': '', 'position': ''
+				'colorid': '', 'partid': '', 'featureid': '', 'positionid': ''
 			})
 		})
 	}
 
-	leftFeatureGroupChange(event, index) {
-		console.log(event, index)
+	leftFeatureGroupChange(event, data) {
+		var tempFeature = this.state.leftFeatures
+		tempFeature[data.noResultsMessage][data.name] = data.value
+		this.setState({
+			leftFeatures: tempFeature,
+		})
 	}
 	removeRightFeature(event) {
 		var i = parseInt(event.target.name)
-		console.log(i)
 		const values = this.state.rightFeatures
-		values.splice(i,1)
+		values.splice(i, 1)
 		this.setState({
 			rightFeatures: values
 		})
@@ -155,16 +165,149 @@ export class PetMatching extends Component {
 	removeLeftFeature(event) {
 		var i = parseInt(event.target.name)
 		const values = this.state.leftFeatures
-		values.splice(i,1)
+		values.splice(i, 1)
 		this.setState({
 			leftFeatures: values
 		})
 	}
 	async searchLeftFeatures() {
-
+		var vm = this
+		var temp4IDs = []
+		var temp3IDs = []
+		var temp2IDs = []
+		var temp1IDs = []
+		this.state.leftFeatures.forEach((feature, index) => {
+			vm.state.DefualtPets.forEach((pet, i) => {
+				var counter = 0;
+				if(pet.featureID[0]) {
+					if(pet.featureID[0][0].colurid == feature.colorid) {
+						counter += 1
+					}
+					if(pet.featureID[0][0].featureid == feature.featureid) {
+						counter += 1
+					}
+					if(pet.featureID[0][0].positionid == feature.positionid) {
+						counter += 1
+					}
+					if(pet.featureID[0][0].bodyPartid == feature.partid) {
+						counter += 1
+					}
+					if(counter == 1) {
+						temp1IDs.push(pet)
+					} else if (counter == 2) {
+						temp2IDs.push(pet)
+					} else if (counter == 3) {
+						temp3IDs.push(pet)
+					} else if (counter == 4) {
+						temp4IDs.push(pet)
+					}
+				}
+			})
+		})
+		temp4IDs = temp4IDs.concat(temp3IDs)
+		temp4IDs = temp4IDs.concat(temp2IDs)
+		temp4IDs = temp4IDs.concat(temp1IDs)
+		if(temp4IDs.length == 0) {
+			alert("No matches found with those features on the Left Side")
+			return;
+		}
+		this.setState({
+			RightPets: temp4IDs
+		})
 	}
 	async searchRightFeatures() {
+		var vm = this
+		var temp4IDs = []
+		var temp3IDs = []
+		var temp2IDs = []
+		var temp1IDs = []
+		this.state.rightFeatures.forEach((feature, index) => {
+			vm.state.DefualtPets.forEach((pet, i) => {
+				var counter = 0;
+				if(pet.featureID[0]) {
+					if(pet.featureID[0][0].colurid == feature.colorid) {
+						counter += 1
+					}
+					if(pet.featureID[0][0].featureid == feature.featureid) {
+						counter += 1
+					}
+					if(pet.featureID[0][0].positionid == feature.positionid) {
+						counter += 1
+					}
+					if(pet.featureID[0][0].bodyPartid == feature.partid) {
+						counter += 1
+					}
+					if(counter == 1) {
+						temp1IDs.push(pet)
+					} else if (counter == 2) {
+						temp2IDs.push(pet)
+					} else if (counter == 3) {
+						temp3IDs.push(pet)
+					} else if (counter == 4) {
+						temp4IDs.push(pet)
+					}
+				}
+			})
+		})
+		temp4IDs = temp4IDs.concat(temp3IDs)
+		temp4IDs = temp4IDs.concat(temp2IDs)
+		temp4IDs = temp4IDs.concat(temp1IDs)
+		if(temp4IDs.length == 0) {
+			alert("No matches found with those features on the Right Side")
+			return;
+		}
+		this.setState({
+			LeftPets: temp4IDs
+		})
+	}
+	async accept() {
+		this.PotentialMatch(this.state.accept);
 
+	}
+	async deny() {
+		this.PotentialMatch(this.state.deny);
+	}
+	async getDropdownInfo() {
+		try {
+			let res = await fetch('http://127.0.0.1:5000/uniquefeaturesinfo', {
+				method: 'GET',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+					'Authorization': "Bearer " + localStorage.getItem('token')
+				},
+			});
+			let result = await res.json();
+
+			result.BodyPart.forEach((bodyPart, i) => {
+				this.setState({
+					arr: this.state.partOptions.push({ 'key': bodyPart.id, 'value': bodyPart.id, 'text': bodyPart.bodypart })
+				})
+			})
+
+			result.color.forEach((color, i) => {
+				this.setState({
+					arr: this.state.colorOptions.push({ 'key': color.id, 'value': color.id, 'text': color.color })
+				})
+			})
+			result.feature.forEach((feature, i) => {
+				this.setState({
+					arr: this.state.featureOptions.push({ 'key': feature.id, 'value': feature.id, 'text': feature.feature })
+				})
+			})
+			result.position.forEach((position, i) => {
+				this.setState({
+					arr: this.state.positionOptions.push({ 'key': position.id, 'value': position.id, 'text': position.position })
+				})
+			})
+			this.setState({
+				loaded: false
+			})
+		} catch (e) {
+			this.setState({
+				errorMessage: "Server Error. Please Refresh Page"
+			})
+		}
 	}
 	async MatchingInit() {
 		try {
@@ -173,7 +316,6 @@ export class PetMatching extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "successfully Pulled!") {
-				console.log(result)
 				result.breeds.forEach((breed, i) => {
 					this.setState({
 						arr: this.state.primary_breedOption.push({ 'key': breed.id, 'value': breed.id, 'text': breed.breed })
@@ -207,7 +349,6 @@ export class PetMatching extends Component {
 					DefualtPets: result.pets,
 					loaded: false
 				})
-				console.log(this.state.RightPets)
 			}
 
 		} catch (e) {
@@ -216,7 +357,35 @@ export class PetMatching extends Component {
 			})
 		}
 	}
+	async PotentialMatch(selection) {
+		if(this.state.RightPets.length != 1 || this.state.LeftPets.length != 1) {
+			alert("Please make sure you have one pet selected on both sides!")
+			return;
+		}
+		try {
+			let res = await fetch('http://127.0.0.1:5000/managepetmatch', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					id: this.state.RightPets[0].pet_id,
+					potentialid: this.state.LeftPets[0].pet_id,
+					match: selection
+				})
+			});
+			let result = await res.json();
+			if (result.message === "New Match Has been Added") {
+				alert("Match has been Sent")
+			}
 
+		} catch (e) {
+			this.setState({
+				errorMessage: "Server Error. Please Refresh Page"
+			})
+		}
+	}
 	render() {
 		let rightFilteredPets = this.state.RightPets.filter(
 			(pet) => {
@@ -231,6 +400,22 @@ export class PetMatching extends Component {
 		return (
 			<div style={{ paddingTop: "60px" }}>
 				<h1>{i18n.t("matchPet.title")}</h1>
+				<Form.Field style={{ paddingBottom: "10px", paddingRight: "20%", paddingLeft: "20%" }}>
+					<Form.Button
+						style={{ width: "100%", }}
+						name="accept"
+						content={i18n.t("matchPet.accept")}
+						onClick={this.accept.bind(this)}
+					></Form.Button>
+				</Form.Field>
+				<Form.Field style={{ paddingBottom: "10px", paddingRight: "20%", paddingLeft: "20%" }}>
+					<Form.Button
+						style={{ width: "100%", }}
+						name="deny"
+						content={i18n.t("matchPet.deny")}
+						onClick={this.deny.bind(this)}
+					></Form.Button>
+				</Form.Field>
 				<div className="row">
 					<div className="sidenav">
 						<Form.Field style={{ padding: "10px" }}>
@@ -333,49 +518,53 @@ export class PetMatching extends Component {
 								<Form.Field style={{ padding: "10px" }}>
 									<Dropdown
 										placeholder={i18n.t("matchPet.position")}
-										name="position"
+										name="positionid"
 										fluid
 										clearable
 										search
 										selection
-										onChange={e => this.leftFeatureGroupChange(e, index)}
-										options={this.state.alteredOptions}
+										noResultsMessage={index}
+										onChange={this.leftFeatureGroupChange.bind(this)}
+										options={this.state.positionOptions}
 									/>
 								</Form.Field>
 								<Form.Field style={{ padding: "10px" }}>
 									<Dropdown
 										placeholder={i18n.t("matchPet.part")}
-										name="part"
+										name="partid"
 										fluid
 										clearable
 										search
 										selection
-										onChange={e => this.leftFeatureGroupChange(e, index)}
-										options={this.state.animalOptions}
+										noResultsMessage={index}
+										onChange={this.leftFeatureGroupChange.bind(this)}
+										options={this.state.partOptions}
 									/>
 								</Form.Field>
 								<Form.Field style={{ padding: "10px" }}>
 									<Dropdown
 										placeholder={i18n.t("matchPet.feature")}
-										name="feature"
+										name="featureid"
 										fluid
 										clearable
 										search
 										selection
-										onChange={e => this.leftFeatureGroupChange(e, index)}
-										options={[]}
+										noResultsMessage={index}
+										onChange={this.leftFeatureGroupChange.bind(this)}
+										options={this.state.featureOptions}
 									/>
 								</Form.Field>
 								<Form.Field style={{ padding: "10px" }}>
 									<Dropdown
 										placeholder={i18n.t("matchPet.color")}
-										name="color"
+										name="colorid"
 										fluid
 										clearable
 										search
 										selection
-										onChange={e => this.leftFeatureGroupChange(e, index)}
-										options={this.state.primary_breedOption}
+										noResultsMessage={index}
+										onChange={this.leftFeatureGroupChange.bind(this)}
+										options={this.state.colorOptions}
 									/>
 								</Form.Field>
 							</div>
@@ -491,56 +680,60 @@ export class PetMatching extends Component {
 								<Form.Field style={{ padding: "10px" }}>
 									<Dropdown
 										placeholder={i18n.t("matchPet.position")}
-										name="position"
+										name="positionid"
 										fluid
 										clearable
 										search
 										selection
-										onChange={e => this.rightFeatureGroupChange(e, index)}
-										options={this.state.alteredOptions}
+										noResultsMessage={index}
+										onChange={this.rightFeatureGroupChange.bind(this)}
+										options={this.state.positionOptions}
 									/>
 								</Form.Field>
 								<Form.Field style={{ padding: "10px" }}>
 									<Dropdown
 										placeholder={i18n.t("matchPet.part")}
-										name="part"
+										name="partid"
 										fluid
 										clearable
 										search
 										selection
-										onChange={e => this.rightFeatureGroupChange(e, index)}
-										options={this.state.animalOptions}
+										noResultsMessage={index}
+										onChange={this.rightFeatureGroupChange.bind(this)}
+										options={this.state.partOptions}
 									/>
 								</Form.Field>
 								<Form.Field style={{ padding: "10px" }}>
 									<Dropdown
 										placeholder={i18n.t("matchPet.feature")}
-										name="feature"
+										name="featureid"
 										fluid
 										clearable
 										search
 										selection
-										onChange={e => this.rightFeatureGroupChange(e, index)}
-										options={[]}
+										noResultsMessage={index}
+										onChange={this.rightFeatureGroupChange.bind(this)}
+										options={this.state.featureOptions}
 									/>
 								</Form.Field>
 								<Form.Field style={{ padding: "10px" }}>
 									<Dropdown
 										placeholder={i18n.t("matchPet.color")}
-										name="color"
+										name="colorid"
 										fluid
 										clearable
 										search
 										selection
-										onChange={e => this.rightFeatureGroupChange(e, index)}
-										options={this.state.primary_breedOption}
+										noResultsMessage={index}
+										onChange={this.rightFeatureGroupChange.bind(this)}
+										options={this.state.colorOptions}
 									/>
 								</Form.Field>
 							</div>
 						)}
 						<Form.Field style={{ paddingTop: "10px", paddingRight: "20%", paddingLeft: "20%" }}>
 							<Form.Button
-								style={{ width: "100%", paddingBottom: "10px"}}
+								style={{ width: "100%", paddingBottom: "10px" }}
 								name="LeftPets"
 								content={i18n.t("matchPet.addFeature")}
 								onClick={this.addRightFeatureGroup.bind(this)}

@@ -41,7 +41,6 @@ export class FeatureEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Feature Has Been Returned") {
 				this.setState({
 					feature_name: result.Feature[0].feature,
@@ -69,7 +68,6 @@ export class FeatureEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result);
 			if (result.message === "Feature Updated") {
 				this.setState({
 					successMessage: i18n.t("manageFeatures.updated")

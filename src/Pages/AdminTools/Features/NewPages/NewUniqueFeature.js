@@ -25,9 +25,7 @@ export class NewUniqueFeature extends Component {
 		}
 	}
 	newDropDownValue = (event, data) => {
-		console.log(event, data)
 		let newSelectedID = data.options.filter((option) => option.value === data.value)
-		console.log(newSelectedID)
 		this.setState({
 			[data.name]: newSelectedID[0].key,
 		})
@@ -46,7 +44,6 @@ export class NewUniqueFeature extends Component {
 				},
 			});
 			let result = await res.json();
-			console.log(result);
 			result.animal.forEach((animal, i) => {
 				this.setState({
 					arr: this.state.animalOptions.push({ 'key': animal.id, 'value': animal.id, 'text': animal.animal })

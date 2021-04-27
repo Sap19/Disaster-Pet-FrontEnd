@@ -41,7 +41,6 @@ export class PartEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "BodyPart Has Been Returned") {
 				this.setState({
 					part_name: result.BodyPart[0].bodypart,
@@ -69,7 +68,6 @@ export class PartEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result);
 			if (result.message === "BodyPart Updated") {
 				this.setState({
 					successMessage: i18n.t("manageParts.updated")

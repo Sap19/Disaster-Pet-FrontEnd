@@ -32,9 +32,7 @@ export class PetEdit extends Component {
 	}
 	
 	newDropDownValue = (event, data) => {
-		console.log(event, data)
 		let newSelectedID = data.options.filter((option) => option.value === data.value)
-		console.log(newSelectedID)
 		this.setState({
 			[data.name]: newSelectedID[0].key,
 		})
@@ -62,7 +60,6 @@ export class PetEdit extends Component {
 				})
 			});
 			let result = await res.json();
-			console.log(result)
 			if (result.message === "Pet Returned") {
 				this.setState({
 					pet: result.Pet[0],
@@ -87,7 +84,6 @@ export class PetEdit extends Component {
 			});
 			let result = await res.json();
 			if (result.message === "successfully Pulled!") {
-				console.log(result)
 				result.breeds.forEach((breed, i) => {
 					this.setState({
 						arr: this.state.primary_breedOption.push({ 'key': breed.id, 'value': breed.id, 'text': breed.breed })
